@@ -194,9 +194,49 @@ lazy.setup({
         }
     },
 
+    {
+        "nvim-lualine/lualine.nvim",                     -- Status Line
+        opts = {
+            theme = "rose-pine",
+            globalstatus = true,
+            component_separators = '',
+            section_separators = '',
+            sections = {
+                lualine_a = { "mode" },
+                lualine_b = { "branch", "diagnostics" },
+                lualine_c = {
+                    {
+                        "filename",
+                        file_status = false,
+                        path = 4
+                    }
+                },
+                lualine_x = { "filetype" },
+                lualine_y = { "selectioncount", "searchcount" },
+                lualine_z = { "location" }
+            },
+            inactive_sections = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = {
+                    {
+                        "filename",
+                        file_status = false,
+                        path = 4
+                    }
+                },
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {}
+            }
+        }
+    },
+
     "github/copilot.vim",                               -- Github Copilot
 
     "christoomey/vim-tmux-navigator",                   -- Tmux Navigation
+
+    "xiyaowong/transparent.nvim",                       -- Transparent Background
 
     {
         "rose-pine/neovim",                             -- Rose Pine Theme
@@ -222,3 +262,4 @@ for type, icon in pairs(signs) do
 end
 
 vim.cmd("colorscheme rose-pine")
+vim.cmd("TransparentEnable")

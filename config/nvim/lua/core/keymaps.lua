@@ -4,6 +4,12 @@ local keymap = vim.keymap.set
 vim.g.mapleader = " "
 keymap("n", "<Space>", "<Nop>")
 
+-- dick flattening
+keymap({ "n", "i", "v" }, "<Up>", "<Nop>")
+keymap({ "n", "i", "v" }, "<Down>", "<Nop>")
+keymap({ "n", "i", "v" }, "<Left>", "<Nop>")
+keymap({ "n", "i", "v" }, "<Right>", "<Nop>")
+
 -- exit insert mode
 keymap("i", "jk", "<Esc>")
 keymap("i", "<C-c>", "<Esc>")
@@ -41,10 +47,7 @@ keymap("n", "<Leader>=", "<cmd>vs<CR>")
 -- keymap("n", "<Leader>k", "<C-w>k")
 -- keymap("n", "<Leader>l", "<C-w>l")
 
--- TODO: maybe remap fugitive actions (stage, commit, etc.)
-
 -- LSP Commands
-
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function()
@@ -53,7 +56,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
         keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
         keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-        keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+        -- keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
         keymap("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
         keymap("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     end

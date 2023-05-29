@@ -13,4 +13,3 @@ case FreeBSD NetBSD DragonFly
 case '*'
     set -x OSTYPE "unknown"
 end
-
