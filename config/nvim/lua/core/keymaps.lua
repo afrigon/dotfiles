@@ -62,7 +62,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 })
 
-
 -- LEADER Commands
 
 -- select all
@@ -87,6 +86,9 @@ keymap("n", "<Leader>q", function()
     end
 end)
 
+-- replace word under cursor
+keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 -- delete without replacing clipboard
 keymap({"n", "v"}, "<Leader>d", "\"_dd")
 
@@ -94,10 +96,13 @@ keymap({"n", "v"}, "<Leader>d", "\"_dd")
 keymap("n", "<Leader>o", "<cmd>Telescope git_files<CR>")
 
 -- quickly open file using telescope
-keymap("n", "<Leader>O", "<cmd>Telescope find_files<CR>")
+keymap("n", "<Leader>p", "<cmd>Telescope find_files<CR>")
+
+-- format the buffer
+keymap("n", "<leader>f", vim.lsp.buf.format)
 
 -- find a search term in the working directory using telescope
-keymap("n", "<Leader>f", "<cmd>Telescope live_grep<CR>")
+keymap("n", "<Leader>F", "<cmd>Telescope live_grep<CR>")
 
 -- togge undo tree
 keymap("n", "<Leader>u", "<cmd>UndotreeToggle<CR>")

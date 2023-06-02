@@ -35,7 +35,7 @@ lazy.setup({
             vim.cmd("TSUpdate")
             require('nvim-treesitter.configs').setup(opts)
         end,
-        opts={
+        opts = {
             auto_install = true,
             highlight = {
                 enable = true
@@ -197,23 +197,27 @@ lazy.setup({
     {
         "nvim-lualine/lualine.nvim",                     -- Status Line
         opts = {
-            theme = "rose-pine",
-            globalstatus = true,
-            component_separators = '',
-            section_separators = '',
+            options = {
+                component_separators = "",
+                section_separators = { left = "", right = "" },
+                disabled_filetypes = { "undotree", "Trouble", "fugitive" },
+            },
             sections = {
-                lualine_a = { "mode" },
+                lualine_a = {{
+                    "mode",
+                    fmt = function(str)
+                        return str:sub(1,1)
+                    end
+                }},
                 lualine_b = { "branch", "diagnostics" },
-                lualine_c = {
-                    {
-                        "filename",
-                        file_status = false,
-                        path = 4
-                    }
-                },
+                lualine_c = {{
+                    "filename",
+                    file_status = false,
+                    path = 4
+                }},
                 lualine_x = { "filetype" },
-                lualine_y = { "selectioncount", "searchcount" },
-                lualine_z = { "location" }
+                lualine_y = { "selectioncount", "searchcount", "location" },
+                lualine_z = {}
             },
             inactive_sections = {
                 lualine_a = {},
@@ -231,6 +235,26 @@ lazy.setup({
             }
         }
     },
+
+    {
+        "ThePrimeagen/harpoon",                         -- Fast File Navigation
+        config = function()
+            require("harpoon").setup()
+
+            local mark = require("harpoon.mark")
+            local ui = require("harpoon.ui")
+
+            vim.keymap.set("n", "<leader>a", mark.add_file)
+            vim.keymap.set("n", "<Leader>h", ui.toggle_quick_menu)
+
+            vim.keymap.set("n", "<Leader>1", function() ui.nav_file(1) end)
+            vim.keymap.set("n", "<Leader>2", function() ui.nav_file(2) end)
+            vim.keymap.set("n", "<Leader>3", function() ui.nav_file(3) end)
+            vim.keymap.set("n", "<Leader>4", function() ui.nav_file(4) end)
+        end
+    },
+
+    "norcalli/nvim-colorizer.lua",                      -- Colorizer
 
     "github/copilot.vim",                               -- Github Copilot
 
@@ -263,3 +287,4 @@ end
 
 vim.cmd("colorscheme rose-pine")
 vim.cmd("TransparentEnable")
+

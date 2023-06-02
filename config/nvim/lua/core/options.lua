@@ -49,8 +49,10 @@ vim.opt.hls = true
 -- enable incremental searching
 vim.opt.is = true
 
+-- always show the status line
+vim.opt.ls = 2
+
 -- disable the default status line
-vim.opt.ls = 3
 vim.opt.smd = false
 vim.opt.ru = false
 vim.opt.sc = false
