@@ -113,3 +113,12 @@ keymap("n", "<Leader>g", "<cmd>Git<CR>")
 -- open trouble
 keymap("n", "<Leader>e", "<cmd>TroubleToggle<CR>")
 
+-- run the current file
+keymap("n", "<Leader>r", "<cmd>VimuxRunCommand('clear;' . expand('%:p'))<CR>")
+
+-- prompt for a command to run
+keymap("n", "<Leader>R", "<cmd>VimuxPromptCommand<CR>")
+
+-- run last command executed by VimuxRunCommand
+keymap("n", "<Leader><CR>", "<cmd>VimuxRunLastCommand<CR>")
+

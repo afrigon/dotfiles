@@ -172,6 +172,8 @@ lazy.setup({
         end
     },
 
+    "jiangmiao/auto-pairs",                             -- Auto Pairs
+
 
     "tpope/vim-fugitive",                               -- Git integration
 
@@ -192,6 +194,20 @@ lazy.setup({
         opts = {
             use_diagnostic_signs = true
         }
+    },
+
+    {
+        "jose-elias-alvarez/null-ls.nvim",              -- LSP Helper
+        config = function()
+            local null_ls = require("null-ls")
+
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.diagnostics.swiftlint,
+                    null_ls.builtins.formatting.swiftlint
+                },
+            })
+        end
     },
 
     {
@@ -253,6 +269,8 @@ lazy.setup({
             vim.keymap.set("n", "<Leader>4", function() ui.nav_file(4) end)
         end
     },
+
+    "preservim/vimux",                                  -- Tmux interaction
 
     "norcalli/nvim-colorizer.lua",                      -- Colorizer
 
