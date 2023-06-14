@@ -2,6 +2,7 @@ set -x EDITOR nvim
 set -x GIT_EDITOR $EDITOR
 set -x SUDO_EDITOR $EDITOR
 set -x VISUAL $EDITOR
+set -x BROWSER firefox
 
 switch (uname)
 case Linux
