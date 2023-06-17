@@ -1,0 +1,46 @@
+* {
+    border: none;
+    font-family: "SF Pro Text", "SauceCodePro Nerd Font";
+    font-size: 13px;
+    font-weight: 500;
+}
+
+window#waybar {
+	background-color: #191724;
+}
+
+#workspaces, #network, #battery, #clock, #mode {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 0 4px;
+	border-radius: 8px;
+	transition: none;
+	color: #FFFFFF;
+}
+
+.modules-left, .modules-right {
+    padding: 0 8px;
+}
+
+#clock {
+    padding-right: 16px;
+}
+
+#workspaces button {
+    color: #696969
+}
+
+#workspaces button.focused {
+    color: #FFFFFF
+}
+
+tooltip {
+    background-color: #191724;
+    border: 1px solid #393552;
+    border-radius: 16px;
+}
+
+tooltip label {
+    color: #FFFFFF;
+}
+

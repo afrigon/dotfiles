@@ -1,0 +1,35 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "modules-left": ["sway/mode"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["battery", "network", "clock"],
+    "sway/workspaces": {
+        "disable-scroll": true
+    },
+    "network": {
+        "format-wifi": " ",
+        "format-disconnected": "󰖪 ",
+        "format-ethernet": "󰈁",
+        "tooltip-format": "{essid} ({signalStrength})\nIP: {ipaddr}\nGateway: {gwaddr}\nSubnet: {netmask}",
+        "on-click": "nm-connection-editor"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon}",
+        "format-charging": " ",
+        "format-plugged": " ",
+        "format-alt": "{icon}",
+        "format-icons": [" ", " ", " ", " ", " "],
+        "tooltip-format": "Battery: {capacity}%\nPower Source: Battery",
+        "tooltip-format-charging": "Battery: {capacity}%\nPower Source: Power Adapter"
+    },
+    "clock": {
+        "format": "{:%a %b %d %I:%M %p}",
+        "tooltip": false
+    }
+}

@@ -1,0 +1,59 @@
+[global]
+    font = SF Pro Text 10
+
+    format = "<b>%s</b>\n%b"
+    allow_markup = yes
+    indicate_hidden = yes
+    ignore_newline = no
+    word_wrap = yes
+    idle_threshold = 60
+
+    transparency = 100
+
+    width = 400
+    height = 200
+    offset = 16x16
+
+    padding = 16
+    horizontal_padding = 16
+    corner_radius = 16
+    separator_height = 0
+    gap_size = 6
+    line_height = 8
+    frame_width = 1
+
+    icon_corner_radius = 4
+
+    layer = overlay
+
+    alignment = left
+
+    icon_position = left
+    min_icon_size = 48
+    max_icon_size = 48
+
+    # dmenu path
+    dmenu = /usr/bin/dmenu -p dunst
+
+    # browser for opening urls in context menu
+    browser = /usr/bin/firefox -new-tab
+
+    separator_color = frame
+
+[urgency_low]
+    frame_color = "#393552"
+    foreground = "#ffffff"
+    background = "#191724"
+    timeout = 10
+
+[urgency_normal]
+    frame_color = "#393552"
+    foreground = "#ffffff"
+    background = "#191724"
+    timeout = 15
+
+[urgency_critical]
+    frame_color = "#393552"
+    foreground = "#ffffff"
+    background = "#191724"
+    timeout = 0

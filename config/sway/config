@@ -1,0 +1,52 @@
+include ~/.config/i3/config
+
+# wallpaper
+output * bg ~/.bg/4.jpg fill
+
+gaps inner 8
+
+input "1118:2479:Microsoft_Surface_045E:09AF_Touchpad" {
+    tap enabled
+    tap_button_map lrm
+    scroll_factor 0.5
+    natural_scroll disabled
+    middle_emulation enabled
+    dwt enabled
+}
+
+input "1118:2478:Microsoft_Surface_045E:09AE_Keyboard" {
+    repeat_delay 400
+    repeat_rate 20
+}
+
+# remove timeout delay for GTK windows
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# capture the entire screen to clipboard
+bindsym Print exec grim - | wl-copy -t image/png
+
+# capture the specified screen area to clipboard    
+bindsym Shift+Alt+s exec grim -g "$(slurp)" - | wl-copy -t image/png
+
+# shutdown / restart / suspend
+set $mode_system (s)leep, (r)estart, (q) shutdown, (l)ock, (e)xit
+
+mode "$mode_system" {
+    bindsym s exec --no-startup-id swaylock -f && systemctl suspend, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym q exec --no-startup-id systemctl poweroff -i, mode "default"
+    bindsym l exec --no-startup-id swaylock, mode "default"
+    bindsym e exit, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Ctrl+c mode "default"
+    bindsym $mod+q mode "default"
+}
+
+bindsym $mod+q mode "$mode_system"
+
+# status bar
+bar {
+    swaybar_command waybar
+}
