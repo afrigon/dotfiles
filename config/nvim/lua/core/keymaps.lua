@@ -5,10 +5,10 @@ vim.g.mapleader = " "
 keymap("n", "<Space>", "<Nop>")
 
 -- dick flattening
-keymap({ "n", "i", "v" }, "<Up>", "<Nop>")
-keymap({ "n", "i", "v" }, "<Down>", "<Nop>")
-keymap({ "n", "i", "v" }, "<Left>", "<Nop>")
-keymap({ "n", "i", "v" }, "<Right>", "<Nop>")
+-- keymap({ "n", "i", "v" }, "<Up>", "<Nop>")
+-- keymap({ "n", "i", "v" }, "<Down>", "<Nop>")
+-- keymap({ "n", "i", "v" }, "<Left>", "<Nop>")
+-- keymap({ "n", "i", "v" }, "<Right>", "<Nop>")
 
 -- exit insert mode
 keymap("i", "jk", "<Esc>")

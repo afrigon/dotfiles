@@ -63,17 +63,13 @@ lazy.setup({
         "williamboman/mason-lspconfig.nvim",           -- Mason LSP Bridge
         opts = {
             ensure_installed = {
-                "bashls",                              -- bash
                 "clangd",                              -- c/c++
-                "cssls",                               -- css
                 "gopls",                               -- go
                 "html",                                -- html
-                -- "hls",                                 -- haskell
                 "kotlin_language_server",              -- kotlin
                 "lua_ls",                              -- lua
                 "intelephense",                        -- php
                 "pyright",                             -- python
-                -- "solargraph",                          -- ruby
                 "rust_analyzer",                       -- rust
                 "sqlls",                               -- sql
                 "tsserver",                            -- typescript
