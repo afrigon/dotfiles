@@ -66,8 +66,6 @@ lazy.setup({
                 "bashls",                              -- bash
                 "clangd",                              -- c/c++
                 "cssls",                               -- css
-                "dockerls",                            -- docker
-                "docker_compose_language_service",     -- docker-compose
                 "gopls",                               -- go
                 "html",                                -- html
                 -- "hls",                                 -- haskell
@@ -79,7 +77,6 @@ lazy.setup({
                 "rust_analyzer",                       -- rust
                 "sqlls",                               -- sql
                 "tsserver",                            -- typescript
-                "zls",                                 -- zig
             }
         }
     },
