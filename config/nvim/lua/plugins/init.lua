@@ -165,9 +165,6 @@ lazy.setup({
         end
     },
 
-    "jiangmiao/auto-pairs",                             -- Auto Pairs
-
-
     "tpope/vim-fugitive",                               -- Git integration
 
     {
