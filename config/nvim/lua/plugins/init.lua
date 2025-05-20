@@ -32,18 +32,6 @@ lazy.setup({
     {
         "nvim-treesitter/nvim-treesitter",              -- Treesitter 
         config = function(_, opts)
-
-            -- setting up x
-            require "nvim-treesitter.parsers".get_parser_configs().x = {
-                install_info = {
-                    url = "https://github.com/afrigon/tree-sitter-x",
-                    files = { "src/parser.c" },
-                    branch = "main",
-                },
-            }
-
-            vim.filetype.add({ extension = { x = "x" } })
-
             vim.cmd("TSUpdate")
 
             require('nvim-treesitter.configs').setup(opts)
@@ -85,15 +73,7 @@ lazy.setup({
     "nvim-treesitter/nvim-treesitter-context",         -- Sticky Context
 
     {
-        "williamboman/mason.nvim",                     -- Language Server Manager
-        build = ":MasonUpdate",
-        config = function()
-            require("mason").setup()
-        end
-    },
-
-    {
-        "williamboman/mason-lspconfig.nvim",           -- Mason LSP Bridge
+        "mason-org/mason-lspconfig.nvim",              -- Language Server Manager
         opts = {
             ensure_installed = {
                 "clangd",                              -- c/c++
@@ -104,7 +84,11 @@ lazy.setup({
                 "rust_analyzer",                       -- rust
                 "sqlls",                               -- sql
             }
-        }
+        },
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
     },
 
     {
@@ -147,54 +131,6 @@ lazy.setup({
         end
     },
 
-    {
-        "neovim/nvim-lspconfig",                        -- LSP Configuration
-        config = function()
-            local lspconfig = require("lspconfig")
-            local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-            require('mason-lspconfig').setup_handlers({
-                function(server_name)
-                    lspconfig[server_name].setup({
-                        capabilities = lsp_capabilities,
-                    })
-                end,
-            })
-
-            lspconfig.lua_ls.setup {
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = {
-                                'vim',
-                                'require'
-                            },
-                        },
-                        workspace = {
-                            library = vim.api.nvim_get_runtime_file("", true),
-                        }
-                    }
-                }
-            }
-
-            lspconfig.sourcekit.setup {
-                cmd = { "sourcekit-lsp" },
-                filetypes = { "swift", "objective-c" },
-                root_dir = lspconfig.util.root_pattern("Package.swift", ".git"),
-                settings = {
-                    sourcekit = {
-                        enableSyntaxMap = true,
-                        enableKiteCompletions = true,
-                        completion = {
-                            autoimportThreshold = 100,
-                            enableSnippets = true
-                        }
-                    }
-                }
-            }
-        end
-    },
-
     "tpope/vim-fugitive",                               -- Git integration
 
     {
@@ -214,20 +150,6 @@ lazy.setup({
         opts = {
             use_diagnostic_signs = true
         }
-    },
-
-    {
-        "jose-elias-alvarez/null-ls.nvim",              -- LSP Helper
-        config = function()
-            local null_ls = require("null-ls")
-
-            null_ls.setup({
-                sources = {
-                    null_ls.builtins.diagnostics.swiftlint,
-                    null_ls.builtins.formatting.swiftlint
-                },
-            })
-        end
     },
 
     {
@@ -292,13 +214,9 @@ lazy.setup({
         end
     },
 
-    "preservim/vimux",                                  -- Tmux interaction
-
     "norcalli/nvim-colorizer.lua",                      -- Colorizer
 
     "github/copilot.vim",                               -- Github Copilot
-
-    "christoomey/vim-tmux-navigator",                   -- Tmux Navigation
 
     "xiyaowong/transparent.nvim",                       -- Transparent Background
 
@@ -327,4 +245,6 @@ end
 
 vim.cmd("colorscheme rose-pine")
 vim.cmd("TransparentEnable")
+
+-- vim.lsp.enable('sourcekit')
 
