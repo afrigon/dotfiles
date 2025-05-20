@@ -25,14 +25,27 @@ end
 lazy.setup({
     {
         'nvim-telescope/telescope.nvim',                -- Fuzzy finder
-        tag = '0.1.0',
+        tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
     {
         "nvim-treesitter/nvim-treesitter",              -- Treesitter 
         config = function(_, opts)
+
+            -- setting up x
+            require "nvim-treesitter.parsers".get_parser_configs().x = {
+                install_info = {
+                    url = "https://github.com/afrigon/tree-sitter-x",
+                    files = { "src/parser.c" },
+                    branch = "main",
+                },
+            }
+
+            vim.filetype.add({ extension = { x = "x" } })
+
             vim.cmd("TSUpdate")
+
             require('nvim-treesitter.configs').setup(opts)
         end,
         opts = {
@@ -47,6 +60,26 @@ lazy.setup({
                 enable = true
             }
         }
+    },
+
+    {
+        "nvim-tree/nvim-tree.lua",                                    -- File Explorer
+        config = function()
+            require("nvim-tree").setup {
+                sort = {
+                    sorter = "case_sensitive",
+                },
+                view = {
+                    width = 30,
+                },
+                renderer = {
+                    group_empty = true,
+                },
+                filters = {
+                    dotfiles = true,
+                }
+            }
+        end
     },
 
     "nvim-treesitter/nvim-treesitter-context",         -- Sticky Context
@@ -65,14 +98,11 @@ lazy.setup({
             ensure_installed = {
                 "clangd",                              -- c/c++
                 "gopls",                               -- go
-                "html",                                -- html
                 "kotlin_language_server",              -- kotlin
                 "lua_ls",                              -- lua
-                "intelephense",                        -- php
                 "pyright",                             -- python
                 "rust_analyzer",                       -- rust
                 "sqlls",                               -- sql
-                "tsserver",                            -- typescript
             }
         }
     },
@@ -202,8 +232,10 @@ lazy.setup({
 
     {
         "nvim-lualine/lualine.nvim",                     -- Status Line
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {
             options = {
+                icons_enabled = true,
                 component_separators = "",
                 section_separators = { left = "", right = "" },
                 disabled_filetypes = { "undotree", "Trouble", "fugitive" },

@@ -1,0 +1,19 @@
+background-blur=15
+background-opacity=0.75
+
+window-decoration=none
+fullscreen=true
+macos-non-native-fullscreen=visible-menu
+
+copy-on-select=clipboard
+quit-after-last-window-closed=true
+window-save-state=always
+
+keybind = ctrl+j=goto_split:down
+keybind = ctrl+k=goto_split:up
+keybind = ctrl+l=goto_split:right
+keybind = ctrl+h=goto_split:left
+
+keybind = ctrl+[=new_split:right
+keybind = ctrl+]=new_split:down
+

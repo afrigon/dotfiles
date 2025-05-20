@@ -92,17 +92,18 @@ keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- delete without replacing clipboard
 keymap({"n", "v"}, "<Leader>d", "\"_dd")
 
+-- format the buffer
+keymap("n", "<leader>f", vim.lsp.buf.format)
+
+-- find a search term in the working directory using telescope
+keymap("n", "<Leader>F", "<cmd>Telescope live_grep<CR>")
+
 -- quickly open git file using telescope
 keymap("n", "<Leader>o", "<cmd>Telescope git_files<CR>")
 
 -- quickly open file using telescope
 keymap("n", "<Leader>p", "<cmd>Telescope find_files<CR>")
 
--- format the buffer
-keymap("n", "<leader>f", vim.lsp.buf.format)
-
--- find a search term in the working directory using telescope
-keymap("n", "<Leader>F", "<cmd>Telescope live_grep<CR>")
 
 -- togge undo tree
 keymap("n", "<Leader>u", "<cmd>UndotreeToggle<CR>")
@@ -111,7 +112,7 @@ keymap("n", "<Leader>u", "<cmd>UndotreeToggle<CR>")
 keymap("n", "<Leader>g", "<cmd>Git<CR>")
 
 -- open trouble
-keymap("n", "<Leader>e", "<cmd>TroubleToggle<CR>")
+keymap("n", "<Leader>e", "<cmd>Trouble diagnostics<CR>")
 
 -- run the current file
 keymap("n", "<Leader>r", "<cmd>VimuxRunCommand('clear;' . expand('%:p'))<CR>")
