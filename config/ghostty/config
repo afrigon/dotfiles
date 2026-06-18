@@ -1,13 +1,14 @@
-background-blur=15
-background-opacity=0.75
+background-blur = 15
+background-opacity = 0.75
 
-window-decoration=none
-fullscreen=true
-macos-non-native-fullscreen=visible-menu
+window-decoration = none
+macos-non-native-fullscreen = visible-menu
 
-copy-on-select=clipboard
-quit-after-last-window-closed=true
-window-save-state=always
+copy-on-select = clipboard
+quit-after-last-window-closed = true
+window-save-state = always
+
+font-feature = -calt
 
 keybind = ctrl+j=goto_split:down
 keybind = ctrl+k=goto_split:up

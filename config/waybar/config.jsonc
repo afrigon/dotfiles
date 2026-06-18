@@ -1,0 +1,66 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "spacing": 12,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "tray",
+        "battery", 
+        "network", 
+        "bluetooth", 
+        "pulseaudio", 
+        "cpu", 
+        "clock"
+    ],
+    "hyprland/workspaces": {
+        "format": "{name} ({id})",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+    "bluetooth": {
+        "format": "󰂯",
+        "on-click": "ghostty -e bluetui"
+    },
+    "pulseaudio": {
+        "format": "{volume}%  ",
+        "format-muted": "{volume}%  ",
+        "on-click": "ghostty -e pulsemixer",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+    "cpu": {
+        "format": "{usage}%  ",
+        "on-click": "ghostty -e btop"
+    },
+    "network": {
+        "format-wifi": " ",
+        "format-disconnected": "󰖪 ",
+        "format-ethernet": "󰈁",
+        "tooltip-format": "SSID: {essid}\nSignal: {signalStrength}\nIP: {ipaddr}\nGateway: {gwaddr}\nSubnet: {netmask}\n : {bandwidthUpBytes}  : {bandwidthDownBytes}",
+        "on-click": "ghostty -e impala"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon}",
+        "format-charging": " ",
+        "format-plugged": " ",
+        "format-alt": "{icon}",
+        "format-icons": [" ", " ", " ", " ", " "],
+        "tooltip-format": "Battery: {capacity}%\nPower Source: Battery",
+        "tooltip-format-charging": "Battery: {capacity}%\nPower Source: Power Adapter"
+    },
+    "clock": {
+        "format": "{:%a %d %I:%M}",
+        "tooltip": false
+    }
+}

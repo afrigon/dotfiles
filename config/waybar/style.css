@@ -1,37 +1,29 @@
 * {
     border: none;
-    font-family: "SF Pro Text", "SauceCodePro Nerd Font";
-    font-size: 13px;
+    font-family: "Jetbrains Mono Nerd Font";
+    font-size: 12px;
     font-weight: 500;
+    color: #FFFFFF;
 }
 
 window#waybar {
-	background-color: #191724;
-}
-
-#workspaces, #network, #battery, #clock, #mode {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    padding: 0 4px;
-	border-radius: 8px;
-	transition: none;
-	color: #FFFFFF;
+    background-color: transparent;
 }
 
 .modules-left, .modules-right {
-    padding: 0 8px;
-}
-
-#clock {
-    padding-right: 16px;
+    margin: 0 12px;
 }
 
 #workspaces button {
-    color: #696969
+    padding: 0 5px;
 }
 
-#workspaces button.focused {
-    color: #FFFFFF
+#workspaces button:hover label {
+    color: #000000;
+}
+
+#workspaces button.active label {
+    font-weight: 900;
 }
 
 tooltip {
