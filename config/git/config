@@ -78,9 +78,6 @@
 [grep]
 	lineNumber = true
 
-[credential]
-	helper = osxkeychain
-
 [diff]
 	renames = copies
 	indentHeuristic = true

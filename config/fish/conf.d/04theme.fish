@@ -1,7 +1,3 @@
-# Fish syntax-highlighting + pager theme.
-# Migrated out of fish's auto-generated `fish_frozen_theme.fish` (the 4.3
-# universal->global scope migration) into tracked config. Edit freely, or
-# regenerate with the interactive `fish_config` tool.
 set --global fish_color_autosuggestion 555 brblack
 set --global fish_color_cancel -r
 set --global fish_color_command blue

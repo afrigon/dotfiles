@@ -39,10 +39,11 @@
         "on-click": "ghostty -e btop"
     },
     "network": {
+        "family": "ipv6",
         "format-wifi": " ",
         "format-disconnected": "󰖪 ",
         "format-ethernet": "󰈁",
-        "tooltip-format": "SSID: {essid}\nSignal: {signalStrength}\nIP: {ipaddr}\nGateway: {gwaddr}\nSubnet: {netmask}\n : {bandwidthUpBytes}  : {bandwidthDownBytes}",
+        "tooltip-format": "SSID: {essid}\nSignal: {signaldBm}dBm\nIP: {ipaddr}\nGateway: {gwaddr}\n : {bandwidthUpBytes}  : {bandwidthDownBytes}",
         "on-click": "ghostty -e impala"
     },
     "battery": {
