@@ -38,14 +38,14 @@ keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 
 -- split window
-keymap("n", "<Leader>-", "<cmd>sp<CR>")
-keymap("n", "<Leader>=", "<cmd>vs<CR>")
+keymap("n", "<Leader>]", "<cmd>sp<CR>")
+keymap("n", "<Leader>[", "<cmd>vs<CR>")
 
 -- window movement (disabled, handled via vim-tmux-navigator)
--- keymap("n", "<Leader>h", "<C-w>h")
--- keymap("n", "<Leader>j", "<C-w>j")
--- keymap("n", "<Leader>k", "<C-w>k")
--- keymap("n", "<Leader>l", "<C-w>l")
+keymap("n", "<Leader>h", "<C-w>h")
+keymap("n", "<Leader>j", "<C-w>j")
+keymap("n", "<Leader>k", "<C-w>k")
+keymap("n", "<Leader>l", "<C-w>l")
 
 -- LSP Commands
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -103,7 +103,6 @@ keymap("n", "<Leader>o", "<cmd>Telescope git_files<CR>")
 
 -- quickly open file using telescope
 keymap("n", "<Leader>p", "<cmd>Telescope find_files<CR>")
-
 
 -- togge undo tree
 keymap("n", "<Leader>u", "<cmd>UndotreeToggle<CR>")

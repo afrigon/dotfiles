@@ -59,8 +59,7 @@
   format = ssh
 
 [gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
+  program = "/opt/1Password/op-ssh-sign"
 
 [apply]
 	# Detect whitespace errors when applying a patch
@@ -78,9 +77,6 @@
 
 [grep]
 	lineNumber = true
-
-[credential]
-	helper = osxkeychain
 
 [diff]
 	renames = copies
