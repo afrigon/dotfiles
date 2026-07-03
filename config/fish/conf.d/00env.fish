@@ -1,3 +1,4 @@
+set -x CLAUDE_CONFIG_DIR ~/.config/claude
 set -x EDITOR nvim
 set -x GIT_EDITOR $EDITOR
 set -x SUDO_EDITOR $EDITOR

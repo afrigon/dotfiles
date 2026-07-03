@@ -71,6 +71,10 @@
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
+[pull]
+	# Reconcile divergent branches with a merge (not rebase) — no more prompt
+	rebase = false
+
 [help]
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
