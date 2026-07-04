@@ -1,7 +1,7 @@
 {
     "layer": "bottom",
     "position": "top",
-    "spacing": 12,
+    "spacing": 0,
     "modules-left": [
         "hyprland/workspaces"
     ],
@@ -10,8 +10,9 @@
     ],
     "modules-right": [
         "tray",
-        "battery", 
-        "network", 
+        "battery",
+        "network#wireguard",
+        "network",
         "bluetooth", 
         "pulseaudio", 
         "cpu", 
@@ -24,25 +25,36 @@
             "default": ""
         }
     },
+    "tray": {
+        "spacing": 8
+    },
     "bluetooth": {
-        "format": "󰂯",
+        "format": "<span size='120%'>󰂯</span>",
         "on-click": "ghostty -e bluetui"
     },
     "pulseaudio": {
-        "format": "{volume}%  ",
-        "format-muted": "{volume}%  ",
+        "format": "{volume}% ",
+        "format-muted": "{volume}% ",
         "on-click": "ghostty -e pulsemixer",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
     "cpu": {
-        "format": "{usage}%  ",
+        "format": "{usage}% ",
         "on-click": "ghostty -e btop"
+    },
+    "network#wireguard": {
+        "interface": "wg0",
+        "format": "<span size='120%'>󰖂</span>",
+        "format-disconnected": "<span size='120%'>󰖂</span>",
+        "tooltip-format": "WireGuard: connected\nIP: {ipaddr}",
+        "tooltip-format-disconnected": "WireGuard: disconnected",
+        "on-click": "ip link show wg0 >/dev/null 2>&1 && sudo wg-quick down wg0 || sudo wg-quick up wg0"
     },
     "network": {
         "family": "ipv6",
-        "format-wifi": " ",
-        "format-disconnected": "󰖪 ",
-        "format-ethernet": "󰈁",
+        "format-wifi": "",
+        "format-disconnected": "<span size='120%'>󰖪</span>",
+        "format-ethernet": "<span size='120%'>󰈁</span>",
         "tooltip-format": "SSID: {essid}\nSignal: {signaldBm}dBm\nIP: {ipaddr}\nGateway: {gwaddr}\n : {bandwidthUpBytes}  : {bandwidthDownBytes}",
         "on-click": "ghostty -e impala"
     },
@@ -53,10 +65,10 @@
             "critical": 10
         },
         "format": "{icon}",
-        "format-charging": " ",
-        "format-plugged": " ",
+        "format-charging": "",
+        "format-plugged": "",
         "format-alt": "{icon}",
-        "format-icons": [" ", " ", " ", " ", " "],
+        "format-icons": ["", "", "", "", ""],
         "tooltip-format": "Battery: {capacity}%\nPower Source: Battery",
         "tooltip-format-charging": "Battery: {capacity}%\nPower Source: Power Adapter"
     },

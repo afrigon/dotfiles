@@ -1,7 +1,7 @@
 * {
     border: none;
-    font-family: "Jetbrains Mono Nerd Font";
-    font-size: 12px;
+    font-family: "JetBrainsMono Nerd Font Propo";
+    font-size: 14px;
     font-weight: 500;
     color: #FFFFFF;
 }
@@ -11,11 +11,15 @@ window#waybar {
 }
 
 .modules-left, .modules-right {
-    margin: 0 12px;
+    margin: 0 8px;
+}
+
+#workspaces, #window, #tray, #battery, #network, #bluetooth, #pulseaudio, #cpu, #clock {
+    padding: 2px 8px;
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 6px;
 }
 
 #workspaces button:hover label {
@@ -34,5 +38,9 @@ tooltip {
 
 tooltip label {
     color: #FFFFFF;
+}
+
+#network.wireguard.disconnected {
+    color: #6e6a86;
 }
 
