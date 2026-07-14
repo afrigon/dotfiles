@@ -3,3 +3,12 @@ lazy-lock.json
 private.sh
 private.bash
 private.fish
+.DS_Store
+
+# claude code
+config/claude/*
+config/claude/!.gitignore
+config/claude/!CLAUDE.md
+config/claude/!settings.json
+config/claude/!statusline.sh
+config/claude/!keybindings.json
