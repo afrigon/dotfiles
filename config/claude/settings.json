@@ -15,7 +15,6 @@
       "Bash(gh release list *)"
     ]
   },
-  "model": "claude-fable-5[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.config/claude/statusline.sh",
@@ -35,5 +34,6 @@
   "autoMemoryEnabled": false,
   "theme": "dark",
   "editorMode": "vim",
-  "preferredNotifChannel": "notifications_disabled"
+  "preferredNotifChannel": "notifications_disabled",
+  "model": "claude-fable-5[1m]"
 }

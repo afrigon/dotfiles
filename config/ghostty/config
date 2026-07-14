@@ -8,6 +8,8 @@ copy-on-select = clipboard
 quit-after-last-window-closed = true
 window-save-state = always
 
+font-family = "JetBrains Mono"
+font-family = "Noto Sans Mono CJK KR"
 font-feature = -calt
 
 keybind = ctrl+j=goto_split:down
