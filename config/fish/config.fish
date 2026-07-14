@@ -1,4 +1,5 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-source /home/xehos/.config/op/plugins.sh
+
+source "$HOME/.config/op/plugins.sh"
