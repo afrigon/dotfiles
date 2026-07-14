@@ -6,6 +6,7 @@ fish_add_path -a -P /sbin
 fish_add_path -a -P /bin
 
 fish_add_path -p -P $HOME/bin
+fish_add_path -a -P $HOME/.local/bin
 
 # homebrew
 fish_add_path -p -P /usr/local/bin
