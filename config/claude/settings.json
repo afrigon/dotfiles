@@ -41,5 +41,6 @@
   "theme": "dark",
   "editorMode": "vim",
   "preferredNotifChannel": "notifications_disabled",
-  "remoteControlAtStartup": false
+  "remoteControlAtStartup": false,
+  "model": "claude-fable-5[1m]"
 }
