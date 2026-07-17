@@ -13,14 +13,19 @@
       "Bash(gh issue list *)",
       "Bash(gh release view *)",
       "Bash(gh release list *)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
-  "model": "claude-fable-5[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.config/claude/statusline.sh",
     "refreshInterval": 30,
     "hideVimModeIndicator": true
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "poka-swe@poka-claude-marketplace": true
   },
   "feedbackSurveyRate": 0,
   "spinnerTipsEnabled": false,
@@ -35,5 +40,6 @@
   "autoMemoryEnabled": false,
   "theme": "dark",
   "editorMode": "vim",
-  "preferredNotifChannel": "notifications_disabled"
+  "preferredNotifChannel": "notifications_disabled",
+  "remoteControlAtStartup": false
 }
