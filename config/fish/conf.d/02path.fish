@@ -13,6 +13,9 @@ fish_add_path -p -P /usr/local/bin
 fish_add_path -p -P /opt/homebrew/bin
 fish_add_path -p -P /opt/homebrew/opt/python/libexec/bin
 
+# mint
+fish_add_path -p -P $HOME/.mint/bin
+
 # rust
 fish_add_path -p -P $HOME/.cargo/bin
 

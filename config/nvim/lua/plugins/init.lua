@@ -30,24 +30,32 @@ lazy.setup({
     },
 
     {
-        "nvim-treesitter/nvim-treesitter",              -- Treesitter 
-        config = function(_, opts)
-            vim.cmd("TSUpdate")
+        "nvim-treesitter/nvim-treesitter",              -- Treesitter
+        branch = "main",
+        lazy = false,
+        build = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter").setup()
 
-            require('nvim-treesitter.configs').setup(opts)
-        end,
-        opts = {
-            auto_install = true,
-            highlight = {
-                enable = true
-            },
-            indent = {
-                enable = true
-            },
-            incremental_selection = {
-                enable = true
-            }
-        }
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(args)
+                    local language = vim.treesitter.language.get_lang(args.match)
+
+                    if not language or not require("nvim-treesitter.parsers")[language] then
+                        return
+                    end
+
+                    require("nvim-treesitter").install(language):await(function(err)
+                        if err or not vim.api.nvim_buf_is_valid(args.buf) then
+                            return
+                        end
+
+                        vim.treesitter.start(args.buf, language)
+                        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end)
+                end
+            })
+        end
     },
 
     {

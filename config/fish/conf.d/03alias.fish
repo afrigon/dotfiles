@@ -9,6 +9,7 @@ alias ida32="/Applications/IDA\ Pro\ 7.0/IDA.app/Contents/MacOS/ida"
 
 # navigation
 alias s="cd $HOME/src"
+alias poka="cd $HOME/src/poka-ios/"
 
 alias quit="exit"
 

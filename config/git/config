@@ -29,6 +29,7 @@
 
 	# Ignore file permissions changes
 	filemode = false
+	ignorecase = true
 
 [color]
 	ui = auto
@@ -152,3 +153,5 @@
 
 	# Commit all changes in case of emergency
 	dump = !git checkout -b stash && git add . && git commit -av && git push origin stash
+[rerere]
+	enabled = true
