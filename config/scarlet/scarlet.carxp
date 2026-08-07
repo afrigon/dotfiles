@@ -15,7 +15,7 @@
   <Info>
    <Type>VST3</Type>
    <Name>Pro-Q 4</Name>
-   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-Q 4.vst3</Binary>
+   <Binary>FabFilter Pro-Q 4.vst3</Binary>
    <Label>Pro-Q 4</Label>
   </Info>
 
@@ -128,7 +128,7 @@ elJMRllUWWpBLi4uLi4uLi4zTzwvSUVkaXRDb250cm9sbGVyPjwvVlNUM1BsdWdpblN0YXRlPgA=
   <Info>
    <Type>VST3</Type>
    <Name>Pro-G</Name>
-   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-G.vst3</Binary>
+   <Binary>FabFilter Pro-G.vst3</Binary>
    <Label>Pro-G</Label>
   </Info>
 
@@ -158,7 +158,7 @@ Li4uLi4uM088L0lFZGl0Q29udHJvbGxlcj48L1ZTVDNQbHVnaW5TdGF0ZT4A
   <Info>
    <Type>VST3</Type>
    <Name>Pro-C 3</Name>
-   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-C 3.vst3</Binary>
+   <Binary>FabFilter Pro-C 3.vst3</Binary>
    <Label>Pro-C 3</Label>
   </Info>
 
@@ -196,7 +196,7 @@ Li4uLmVBVVl4UWtiZ00xWkk0RllrZ20uLi4uLnNEaVFGVUZZLi4uLi4uLi4uOUM8L0lFZGl0Q29udHJv
   <Info>
    <Type>VST3</Type>
    <Name>Pro-DS</Name>
-   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-DS.vst3</Binary>
+   <Binary>FabFilter Pro-DS.vst3</Binary>
    <Label>Pro-DS</Label>
   </Info>
 
@@ -225,7 +225,7 @@ bGVyPjEyLkZZVFlqQS4uLi4uLi4uM088L0lFZGl0Q29udHJvbGxlcj48L1ZTVDNQbHVnaW5TdGF0ZT4A
   <Info>
    <Type>VST3</Type>
    <Name>Pro-L 2</Name>
-   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-L 2.vst3</Binary>
+   <Binary>FabFilter Pro-L 2.vst3</Binary>
    <Label>Pro-L 2</Label>
   </Info>
 
