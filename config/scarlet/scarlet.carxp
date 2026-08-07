@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CARLA-PROJECT>
+<CARLA-PROJECT VERSION='2.5'>
+ <EngineSettings>
+  <ForceStereo>true</ForceStereo>
+  <PreferPluginBridges>false</PreferPluginBridges>
+  <PreferUiBridges>true</PreferUiBridges>
+  <UIsAlwaysOnTop>false</UIsAlwaysOnTop>
+  <MaxParameters>200</MaxParameters>
+  <UIBridgesTimeout>4000</UIBridgesTimeout>
+ </EngineSettings>
+
+ <!-- Pro-Q 4 -->
+ <Plugin>
+  <Info>
+   <Type>VST3</Type>
+   <Name>Pro-Q 4</Name>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-Q 4.vst3</Binary>
+   <Label>Pro-Q 4</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x3f9</Options>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+
+   <Chunk>
+VkMyIT8OAAA8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJVVEYtOCI/PiA8VlNUM1BsdWdpblN0YXRlPjxJQ29tcG9uZW50PjI0MjQuRllqUFNFLi4u
+Li5WQi4uLi4uLmYrLi4uLjl5dFl6TFAuLi4uLi4uLi43Qy4uLi5QLi4uZi5BLi4uLkQuLi4zTy4uLi4uLi4uLjlDLi4uM08uLi5mKy4uLkhJRC4uZmpQLi4u
+Li4uLi4uLi5kWlJFUDNvSVlBQS4uLi4uLi4uLi4uLi5SQkEuLi4uLi4uLjNPLi4uZituOGIrREQuLi4uUGY4eTQ5Li4uLi4uLi4uLlAuLi4uLkEuLi45Qy4u
+Li4uLi4uZisuLi4uOUMuLi4zTy4uLlJCQS4uSElELi4uLi4uLi4uLmZtbFRDRDJPaVNQLi4uLi4uLi4uLi4uLmZqUC4uLi4uLi4uLjlDLi4uM09KR2RCQUEu
+Li5BTC4uLnZPLi4uLi4uLi4uLkQuLi4uUC4uLmYrLi4uLi4uLi4uM08uLi5mKy4uLi45Qy4uZmpQLi4uUkJBLi4uLi4uLi4uLjNvSTAudzh5M0RELi4uLi4u
+Li4uLi4uLkhJRC4uLi4uLi4uZisuLi4uOWk3VCtNUHZHRS4uc0NTODZDLi4uM08uLi4uLkEuLi4uRC4uLjNPLi4uLi4uLi4uOUMuLi4zTy4uLmYrLi4uSElE
+Li5malAuLi4uLi4uLi4uLmRaUk1QYitMTkFBLi4uLi4uLi4uLi4uLlJCQS4uLi4uLi4uLi4uLi4uLm44YmVERC4uLi4uLi4uLisuLi4uLi4uLi4uUC4uLi4u
+QS4uLjlDLi4uLi4uLi5mKy4uLi45Qy4uLjNPLi4uUkJBLi5ISUQuLi4uLi4uLi4uZm1sVEFEZFpSVlAuLi4uLi4uLi4uLi4uZmpQLi4uLi4uLi4uLi4uLi4u
+LlpPMkdBQS4uLi4uLi4udk8uLi4uLi4uLi4uRC4uLi5QLi4uZisuLi4uLi4uLi4zTy4uLmYrLi4uLjlDLi5malAuLi5SQkEuLi4uLi4uLi4uM29JVS5nbWxq
+RUQuLi4uLi4uLi4uLi4uSElELi4uLi4uLi4uLi4uLi4uZjF5OFFQLi4uLi4uLi4uN0MuLi4uLi4uLi4uQS4uLi5ELi4uM08uLi4uLi4uLi45Qy4uLjNPLi4u
+ZisuLi5ISUQuLmZqUC4uLi4uLi4uLi4uZFpSRVAzb0lZQUEuLi4uLi4uLi4uLi4uUkJBLi4uLi4uLi4uLi4uLi4ubjhiZURELi4uLi4uLi4uKy4uLi4uLi4u
+Li5QLi4uLi5BLi4uOUMuLi4uLi4uLmYrLi4uLjlDLi4uM08uLi5SQkEuLkhJRC4uLi4uLi4uLi5mbWxUQURkWlJWUC4uLi4uLi4uLi4uLi5malAuLi4uLi4u
+Li4uLi4uLi4uWk8yR0FBLi4uLi4uLi52Ty4uLi4uLi4uLi5ELi4uLlAuLi5mKy4uLi4uLi4uLjNPLi4uZisuLi4uOUMuLmZqUC4uLlJCQS4uLi4uLi4uLi4z
+b0lVLmdtbGpFRC4uLi4uLi4uLi4uLi5ISUQuLi4uLi4uLi4uLi4uLi5mMXk4UVAuLi4uLi4uLi43Qy4uLi4uLi4uLi5BLi4uLkQuLi4zTy4uLi4uLi4uLjlD
+Li4uM08uLi5mKy4uLkhJRC4uZmpQLi4uLi4uLi4uLi5kWlJFUDNvSVlBQS4uLi4uLi4uLi4uLi5SQkEuLi4uLi4uLi4uLi4uLi5uOGJlREQuLi4uLi4uLi4r
+Li4uLi4uLi4uLlAuLi4uLkEuLi45Qy4uLi4uLi4uZisuLi4uOUMuLi4zTy4uLlJCQS4uSElELi4uLi4uLi4uLmZtbFRBRGRaUlZQLi4uLi4uLi4uLi4uLmZq
+UC4uLi4uLi4uLi4uLi4uLi5aTzJHQUEuLi4uLi4uLnZPLi4uLi4uLi4uLkQuLi4uUC4uLmYrLi4uLi4uLi4uM08uLi5mKy4uLi45Qy4uZmpQLi4uUkJBLi4u
+Li4uLi4uLjNvSVUuZ21sakVELi4uLi4uLi4uLi4uLkhJRC4uLi4uLi4uLi4uLi4uLmYxeThRUC4uLi4uLi4uLjdDLi4uLi4uLi4uLkEuLi4uRC4uLjNPLi4u
+Li4uLi4uOUMuLi4zTy4uLmYrLi4uSElELi5malAuLi4uLi4uLi4uLmRaUkVQM29JWUFBLi4uLi4uLi4uLi4uLlJCQS4uLi4uLi4uLi4uLi4uLm44YmVERC4u
+Li4uLi4uLisuLi4uLi4uLi4uUC4uLi4uQS4uLjlDLi4uLi4uLi5mKy4uLi45Qy4uLjNPLi4uUkJBLi5ISUQuLi4uLi4uLi4uZm1sVEFEZFpSVlAuLi4uLi4u
+Li4uLi4uZmpQLi4uLi4uLi4uLi4uLi4uLlpPMkdBQS4uLi4uLi4udk8uLi4uLi4uLi4uRC4uLi5QLi4uZisuLi4uLi4uLi4zTy4uLmYrLi4uLjlDLi5malAu
+Li5SQkEuLi4uLi4uLi4uM29JVS5nbWxqRUQuLi4uLi4uLi4uLi4uSElELi4uLi4uLi4uLi4uLi4uZjF5OFFQLi4uLi4uLi4uN0MuLi4uLi4uLi4uQS4uLi5E
+Li4uM08uLi4uLi4uLi45Qy4uLjNPLi4uZisuLi5ISUQuLmZqUC4uLi4uLi4uLi4uZFpSRVAzb0lZQUEuLi4uLi4uLi4uLi4uUkJBLi4uLi4uLi4uLi4uLi4u
+bjhiZURELi4uLi4uLi4uKy4uLi4uLi4uLi5QLi4uLi5BLi4uOUMuLi4uLi4uLmYrLi4uLjlDLi4uM08uLi5SQkEuLkhJRC4uLi4uLi4uLi5mbWxUQURkWlJW
+UC4uLi4uLi4uLi4uLi5malAuLi4uLi4uLi4uLi4uLi4uWk8yR0FBLi4uLi4uLi52Ty4uLi4uLi4uLi5ELi4uLlAuLi5mKy4uLi4uLi4uLjNPLi4uZisuLi4u
+OUMuLmZqUC4uLlJCQS4uLi4uLi4uLi4zb0lVLmdtbGpFRC4uLi4uLi4uLi4uLi5ISUQuLi4uLi4uLi4uLi4uLi5mMXk4UVAuLi4uLi4uLi43Qy4uLi4uLi4u
+Li5BLi4uLkQuLi4zTy4uLi4uLi4uLjlDLi4uM08uLi5mKy4uLkhJRC4uZmpQLi4uLi4uLi4uLi5kWlJFUDNvSVlBQS4uLi4uLi4uLi4uLi5SQkEuLi4uLi4u
+Li4uLi4uLi5uOGJlREQuLi4uLi4uLi4rLi4uLi4uLi4uLlAuLi4uLkEuLi45Qy4uLi4uLi4uZisuLi4uOUMuLi4zTy4uLlJCQS4uSElELi4uLi4uLi4uLmZt
+bFRBRGRaUlZQLi4uLi4uLi4uLi4uLmZqUC4uLi4uLi4uLi4uLi4uLi5aTzJHQUEuLi4uLi4uLnZPLi4uLi4uLi4uLkQuLi4uUC4uLmYrLi4uLi4uLi4uM08u
+Li5mKy4uLi45Qy4uZmpQLi4uUkJBLi4uLi4uLi4uLjNvSVUuZ21sakVELi4uLi4uLi4uLi4uLkhJRC4uLi4uLi4uLi4uLi4uLmYxeThRUC4uLi4uLi4uLjdD
+Li4uLi4uLi4uLkEuLi4uRC4uLjNPLi4uLi4uLi4uOUMuLi4zTy4uLmYrLi4uSElELi5malAuLi4uLi4uLi4uLmRaUkVQM29JWUFBLi4uLi4uLi4uLi4uLlJC
+QS4uLi4uLi4uLi4uLi4uLm44YmVERC4uLi4uLi4uLisuLi4uLi4uLi4uUC4uLi4uQS4uLjlDLi4uLi4uLi5mKy4uLi45Qy4uLjNPLi4uUkJBLi5ISUQuLi4u
+Li4uLi4uZm1sVEFEZFpSVlAuLi4uLi4uLi4uLi4uZmpQLi4uLi4uLi4uLi4uLi4uLlpPMkdBQS4uLi4uLi4udk8uLi4uLi4uLi4uRC4uLi5QLi4uZisuLi4u
+Li4uLi4zTy4uLmYrLi4uLjlDLi5malAuLi5SQkEuLi4uLi4uLi4uM29JVS5nbWxqRUQuLi4uLi4uLi4uLi4uSElELi4uLi4uLi4uLi4uLi45Qy4uLi4uLi4u
+Zit2cHBwNUMuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi45Qy4uLjNPLi4uLi4uLi4uOUsuLi4zTy4uLi4uQS4uLi5ELi4uRFAuLi4uLi4uLi45Qy4u
+LjNPLi4uUC5BLi4uLi4uLi4uLi4uLi4uLi4uLjlDLi4uM08uLi5mKy4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4u
+Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uRllEYnhFLi4uLi4uLi4uLjwvSUNvbXBvbmVudD48SUVk
+aXRDb250cm9sbGVyPjIwNC5GRUVNdk0uLi4udkEuLi4uTDgxY2ZMVGN6OCsrKytlLi4uLi5FLi4uLi5rYnUwUlRBLi4uLkxUY1NZVS4uLi4uRC4uLi5YLi4u
+LlBQVVFFUk9JVUIuLi4uRkVsWEZrRmF6VWxiSy4uLi5QVFFTTWpUSUFFVUk4alNpLi4uLnZ6YTJBeFgwUW1LZmJqYmtFRmNmWDFheEFoYmswMWExa2xhbUFo
+YjAwbFhyVWxLRC4uLi5QVVBHTTBGLi4uLkw4MWNmTFZjendCUlB3QlJvY0ZaZi5XWHlNR0tGa0ZhelVsYk4uLi4uN0VUa0lHVXhFMVhxa2phalVGZEIuLi4u
+elJMRllUWWpBLi4uLi4uLi4zTzwvSUVkaXRDb250cm9sbGVyPjwvVlNUM1BsdWdpblN0YXRlPgA=
+   </Chunk>
+  </Data>
+ </Plugin>
+
+ <!-- Noise Suppressor for Voice (Mono) -->
+ <Plugin>
+  <Info>
+   <Type>LADSPA</Type>
+   <Name>Noise Suppressor for Voice (Mono)</Name>
+   <Binary>/usr/lib/ladspa/librnnoise_ladspa.so</Binary>
+   <Label>noise_suppressor_mono</Label>
+   <UniqueID>9354877</UniqueID>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x2</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>VAD Threshold</Name>
+    <Value>50</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>VAD Grace Period</Name>
+    <Value>200</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Retroactive VAD Grace</Name>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>3</Index>
+    <Name>Placeholder</Name>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>4</Index>
+    <Name>Placeholder</Name>
+    <Value>0</Value>
+   </Parameter>
+  </Data>
+ </Plugin>
+
+ <!-- Pro-G -->
+ <Plugin>
+  <Info>
+   <Type>VST3</Type>
+   <Name>Pro-G</Name>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-G.vst3</Binary>
+   <Label>Pro-G</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x3f9</Options>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+
+   <Chunk>
+VkMyIYwBAAA8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJVVEYtOCI/PiA8VlNUM1BsdWdpblN0YXRlPjxJQ29tcG9uZW50PjE3OS5GRWxYRkkuLi4u
+dkMuLi4uRFVsWWdVR2F6QXhUa1FHY280MVkuLi4uLkhCLi4uLi4uZmd2Li4udi4yTHlMNkMuLi5uT3VuSzU5Li4uLi5EcWVqZ085MG53OUxHNjE3Qy4uLkxQ
+Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi45Qy4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLmYrQi4uLi4uLi4uLi4uLi4uLi4uLi4u
+Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uM09BLi4uLkQuLi4uLjwvSUNvbXBvbmVudD48SUVkaXRDb250cm9sbGVyPjEyLkZZVFlqQS4u
+Li4uLi4uM088L0lFZGl0Q29udHJvbGxlcj48L1ZTVDNQbHVnaW5TdGF0ZT4A
+   </Chunk>
+  </Data>
+ </Plugin>
+
+ <!-- Pro-C 3 -->
+ <Plugin>
+  <Info>
+   <Type>VST3</Type>
+   <Name>Pro-C 3</Name>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-C 3.vst3</Binary>
+   <Label>Pro-C 3</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x3f9</Options>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+
+   <Chunk>
+VkMyIYMEAAA8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJVVEYtOCI/PiA8VlNUM1BsdWdpblN0YXRlPjxJQ29tcG9uZW50PjQyNC5GWWpQU0UuLi4u
+LlkuLi4uLi4uLi4uLi4uSEwuLi4uLi4uLi4ubllsWTdDLi4uTFAuLi5iQklzRHU1Q2pONG5PLi4uZisuLi4uQUQuLi4uLi4uLi4uLi4uLjlDLi4uLi5QTk50
+OS4uLi4uLi4uLjN1Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLlAuLi4uLnpMeUwyaUlrMnJPLi4uLi4uLi4uLi4uLi4zTy4uLmYrLi4uLi4uLi4u
+M08uLi5mK3JhRk1DRC4uLi4uLi4uLisuLi4uLkQuLi4zTy4uLi4uLi4uLjlDLi4uLi4uLi5mKy5wZk5ERC4uLjN1ZVBubjkuLi4uLi4uLi4zTy4uLi4uLi4u
+LjlDLi4uLi4uLi5mK244Yk9ERC4uLm5NcFY5eTkuLi4uLi4uLi4zTy4uLi4uLi4uLjlDLi4uLi4uLi5mK244YmVERC4uLi4uLi4uLisuLi4uLi4uLi4zTy4u
+Li4uLi4uLjlDLi4uLi4uLi5mK244YmVERC4uLi4uLi4uLisuLi4uLi4uLi4zTy4uLi4uLi4uLjlDLi4uLi4uLi5mK244YmVERC4uLi4uLi4uLisuLi4uLi4u
+Li4zTy4uLi4uLi4uLjlDLi4uLi4uLi4uLi4uLi45Qy4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uRFAuLi4uLi4uLi5BRC4uLi4uLi4uLi5Y
+alF2SVcuLi4uLi4uLi4uLjwvSUNvbXBvbmVudD48SUVkaXRDb250cm9sbGVyPjMzNS5GTXpMdk0uLi4udkMuLi4uRFVsWWdVR2F6QXhUa1FHY280MVkrKysr
+K0cuLi4uUEEuLi4uUEkyYXNMVC4uLi4uQ1UyVFZFLi4uLi5BLi4uLkYuLi4uRFRVVGd6U1JZLi4uLmZYTUVsYW9NMUIuLi4uRFV6VENJVVJQUVVSTzRUcC4u
+Li5UZ1ZaeUFCYnhVMWJrUUdIb01HSHI4VlhqVUZZZmJHWms0Rkg0OFZjZjdGYms0RkhnQWhha2NHSG80MWJ6RWxhaVVsS0puUFZ1VUdIaUVsYWZMVmN5UTJh
+c2tsZGtBQmNuVUZIRFVsWWdVR2F6QXhUa1FHY280MVlmLm1ia01XWXpBUlh5QVJkdVVHSHJrMVprd0JIZzRGWWZMV1gxVUZIb1FHSDFrVlhmUEdaa0FCYnhV
+MWJrUUdIdUFHY284bGF5QVJhazRWY2YzQ0hTRWxja0FSUHlBQlFrWVZYMHdGY3RQLi4uLi5VQWN6VFMuLi4uUFRZbEVWY3JRR0tDd1ZZZzRGS1NRV1h4UW1D
+Li4uLmVBVVl4UWtiZ00xWkk0RllrZ20uLi4uLnNEaVFGVUZZLi4uLi4uLi4uOUM8L0lFZGl0Q29udHJvbGxlcj48L1ZTVDNQbHVnaW5TdGF0ZT4A
+   </Chunk>
+  </Data>
+ </Plugin>
+
+ <!-- Pro-DS -->
+ <Plugin>
+  <Info>
+   <Type>VST3</Type>
+   <Name>Pro-DS</Name>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-DS.vst3</Binary>
+   <Label>Pro-DS</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x3f9</Options>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+
+   <Chunk>
+VkMyIUEBAAA8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJVVEYtOCI/PiA8VlNUM1BsdWdpblN0YXRlPjxJQ29tcG9uZW50PjEyMy5GRWxYRkkuLi4u
+dkMuLi4uRFVsWWdVR2F6QXhUa1FHY280MVkuLi4uLlBBLi4uLi4uLjNPNHQ2dDkuLi5mREQuLi4zTy4uLi4rLi4uLi4uLi4uVFAuLi5mKy4uLi4uLi4uLi4u
+S2Z6Qit6RVZYOEMuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi5ELi4uLlAuLi4uLjwvSUNvbXBvbmVudD48SUVkaXRDb250cm9s
+bGVyPjEyLkZZVFlqQS4uLi4uLi4uM088L0lFZGl0Q29udHJvbGxlcj48L1ZTVDNQbHVnaW5TdGF0ZT4A
+   </Chunk>
+  </Data>
+ </Plugin>
+
+ <!-- Pro-L 2 -->
+ <Plugin>
+  <Info>
+   <Type>VST3</Type>
+   <Name>Pro-L 2</Name>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-L 2.vst3</Binary>
+   <Label>Pro-L 2</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x3f9</Options>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+
+   <Chunk>
+VkMyIYEBAAA8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJVVEYtOCI/PiA8VlNUM1BsdWdpblN0YXRlPjxJQ29tcG9uZW50PjE3MS5GRWxYRkkuLi4u
+dkMuLi4uRFVsWWdVR2F6QXhUa1FHY280MVkuLi4uLi5CLi4uLi4uLkpQLi4ubi53ZFQzM0NvK0FzTzkwbnc5Li4uLjZDLi4udk8uLi4uLi4uLi4uLi4uLi5Q
+Li4uZisuLi4uLi4uLi4uUC4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLjN1Li4uZisuLi4uLi4uLi4uLi4uLmYrLi4uLi4uLi4uTFAuLi4uLkEuLi4u
+Li4uLi4uLi4uWEFDLi4uLi4uLi4zTy4uLi4uRC4uLi5QLi4uLi48L0lDb21wb25lbnQ+PElFZGl0Q29udHJvbGxlcj4xMi5GWVRZakEuLi4uLi4uLjNPPC9J
+RWRpdENvbnRyb2xsZXI+PC9WU1QzUGx1Z2luU3RhdGU+AA==
+   </Chunk>
+  </Data>
+ </Plugin>
+</CARLA-PROJECT>

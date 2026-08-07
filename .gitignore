@@ -6,9 +6,14 @@ private.fish
 .DS_Store
 
 # claude code
+.claude
 config/claude/*
 config/claude/!.gitignore
 config/claude/!CLAUDE.md
 config/claude/!settings.json
 config/claude/!statusline.sh
 config/claude/!keybindings.json
+
+# systemd enablement state
+config/systemd/user/*.wants/
+config/systemd/user/pipewire-session-manager.service

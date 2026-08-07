@@ -1,0 +1,16 @@
+[Unit]
+Description=Wooting Background Service for Wootility
+After=graphical-session.target
+
+[Service]
+Type=simple
+# x-win only supports Wayland via a GNOME Shell extension; presenting an X11
+# session makes it query XWayland instead, so XWayland windows (games) match.
+Environment=XDG_SESSION_TYPE=x11
+UnsetEnvironment=WAYLAND_DISPLAY
+ExecStart=/usr/bin/wooting-bg-service
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

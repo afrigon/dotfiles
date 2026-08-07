@@ -1,0 +1,16 @@
+[Unit]
+Description=Microphone processing chain
+After=pipewire.service
+Requires=pipewire.service
+
+[Service]
+Environment=PIPEWIRE_QUANTUM=1024/48000
+ExecStart=/usr/bin/carla --no-gui %h/.config/scarlet/scarlet.carxp
+ExecStartPost=%h/.config/scarlet/scarlet-link.sh
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=5s
+KillMode=mixed
+
+[Install]
+WantedBy=default.target

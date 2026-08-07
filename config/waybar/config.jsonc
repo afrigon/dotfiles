@@ -9,6 +9,7 @@
         "hyprland/window"
     ],
     "modules-right": [
+        "custom/monitor-input",
         "tray",
         "battery",
         "network#wireguard",
@@ -27,6 +28,11 @@
     },
     "tray": {
         "spacing": 8
+    },
+    "custom/monitor-input": {
+        "format": "<span size='120%'>󰍹</span>",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/scripts/toggle-monitor-input.sh"
     },
     "bluetooth": {
         "format": "<span size='120%'>󰂯</span>",

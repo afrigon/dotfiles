@@ -1,0 +1,13 @@
+[Unit]
+Description=Home Assistant Desktop Companion
+Documentation=https://github.com/tobias-kuendig/hacompanion
+
+[Service]
+# Make sure to set the absolute path to hacompanion correctly below
+ExecStart=/usr/bin/hacompanion -config=%E/hacompanion.toml
+Restart=on-failure
+RestartSec=5
+Type=simple
+
+[Install]
+WantedBy=default.target
