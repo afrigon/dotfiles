@@ -18,11 +18,12 @@ local config = {
 }
 
 local ensure_started = function(app)
-    local handle = io.popen("pgrep -f '" .. app.pattern .. "'")
+    local handle = io.popen("pgrep -P $PPID -f '" .. app.pattern .. "'")
     local running = handle:read("*l") ~= nil
     handle:close()
 
     if not running then
+        io.popen("pkill -9 -f '" .. app.pattern .. "'"):close()
         waywall.exec(app.command)
     end
 end
