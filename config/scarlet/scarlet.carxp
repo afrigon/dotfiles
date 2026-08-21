@@ -15,7 +15,7 @@
   <Info>
    <Type>VST3</Type>
    <Name>Pro-Q 4</Name>
-   <Binary>FabFilter Pro-Q 4.vst3</Binary>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-Q 4.vst3</Binary>
    <Label>Pro-Q 4</Label>
   </Info>
 
@@ -36,7 +36,7 @@ Li5WQi4uLi4uLmYrLi4uLjl5dFl6TFAuLi4uLi4uLi43Qy4uLi5QLi4uZi5BLi4uLkQuLi4zTy4uLi4u
 Li4uLi4uLi5kWlJFUDNvSVlBQS4uLi4uLi4uLi4uLi5SQkEuLi4uLi4uLjNPLi4uZituOGIrREQuLi4uUGY4eTQ5Li4uLi4uLi4uLlAuLi4uLkEuLi45Qy4u
 Li4uLi4uZisuLi4uOUMuLi4zTy4uLlJCQS4uSElELi4uLi4uLi4uLmZtbFRDRDJPaVNQLi4uLi4uLi4uLi4uLmZqUC4uLi4uLi4uLjlDLi4uM09KR2RCQUEu
 Li5BTC4uLnZPLi4uLi4uLi4uLkQuLi4uUC4uLmYrLi4uLi4uLi4uM08uLi5mKy4uLi45Qy4uZmpQLi4uUkJBLi4uLi4uLi4uLjNvSTAudzh5M0RELi4uLi4u
-Li4uLi4uLkhJRC4uLi4uLi4uZisuLi4uOWk3VCtNUHZHRS4uc0NTODZDLi4uM08uLi4uLkEuLi4uRC4uLjNPLi4uLi4uLi4uOUMuLi4zTy4uLmYrLi4uSElE
+Li4uLi4uLkhJRC4uLi4uLi4uLi4uLi4uOWk3VCtNUC4uLmYrckNTODZDLi4uM08uLi4uLkEuLi4uRC4uLjNPLi4uLi4uLi4uOUMuLi4zTy4uLmYrLi4uSElE
 Li5malAuLi4uLi4uLi4uLmRaUk1QYitMTkFBLi4uLi4uLi4uLi4uLlJCQS4uLi4uLi4uLi4uLi4uLm44YmVERC4uLi4uLi4uLisuLi4uLi4uLi4uUC4uLi4u
 QS4uLjlDLi4uLi4uLi5mKy4uLi45Qy4uLjNPLi4uUkJBLi5ISUQuLi4uLi4uLi4uZm1sVEFEZFpSVlAuLi4uLi4uLi4uLi4uZmpQLi4uLi4uLi4uLi4uLi4u
 LlpPMkdBQS4uLi4uLi4udk8uLi4uLi4uLi4uRC4uLi5QLi4uZisuLi4uLi4uLi4zTy4uLmYrLi4uLjlDLi5malAuLi5SQkEuLi4uLi4uLi4uM29JVS5nbWxq
@@ -128,7 +128,7 @@ elJMRllUWWpBLi4uLi4uLi4zTzwvSUVkaXRDb250cm9sbGVyPjwvVlNUM1BsdWdpblN0YXRlPgA=
   <Info>
    <Type>VST3</Type>
    <Name>Pro-G</Name>
-   <Binary>FabFilter Pro-G.vst3</Binary>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-G.vst3</Binary>
    <Label>Pro-G</Label>
   </Info>
 
@@ -158,7 +158,7 @@ Li4uLi4uM088L0lFZGl0Q29udHJvbGxlcj48L1ZTVDNQbHVnaW5TdGF0ZT4A
   <Info>
    <Type>VST3</Type>
    <Name>Pro-C 3</Name>
-   <Binary>FabFilter Pro-C 3.vst3</Binary>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-C 3.vst3</Binary>
    <Label>Pro-C 3</Label>
   </Info>
 
@@ -196,7 +196,7 @@ Li4uLmVBVVl4UWtiZ00xWkk0RllrZ20uLi4uLnNEaVFGVUZZLi4uLi4uLi4uOUM8L0lFZGl0Q29udHJv
   <Info>
    <Type>VST3</Type>
    <Name>Pro-DS</Name>
-   <Binary>FabFilter Pro-DS.vst3</Binary>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-DS.vst3</Binary>
    <Label>Pro-DS</Label>
   </Info>
 
@@ -225,7 +225,7 @@ bGVyPjEyLkZZVFlqQS4uLi4uLi4uM088L0lFZGl0Q29udHJvbGxlcj48L1ZTVDNQbHVnaW5TdGF0ZT4A
   <Info>
    <Type>VST3</Type>
    <Name>Pro-L 2</Name>
-   <Binary>FabFilter Pro-L 2.vst3</Binary>
+   <Binary>/home/xehos/.vst3/yabridge/FabFilter Pro-L 2.vst3</Binary>
    <Label>Pro-L 2</Label>
   </Info>
 
@@ -249,4 +249,251 @@ RWRpdENvbnRyb2xsZXI+PC9WU1QzUGx1Z2luU3RhdGU+AA==
    </Chunk>
   </Data>
  </Plugin>
+
+ <ExternalPatchbay>
+  <Connection>
+   <Source>Scarlett 4i4 Input (raw):capture_FL</Source>
+   <Target>Carla:audio-in1</Target>
+  </Connection>
+  <Connection>
+   <Source>Scarlett 4i4 Input (raw):capture_FL</Source>
+   <Target>Carla:audio-in2</Target>
+  </Connection>
+  <Connection>
+   <Source>Elgato HD60 X Input:capture_FL</Source>
+   <Target>OBS:input_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Elgato HD60 X Input:capture_FR</Source>
+   <Target>OBS:input_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>loopback-4076987-29:output_FL</Source>
+   <Target>Scarlett 4i4 Output:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>loopback-4076987-29:output_FR</Source>
+   <Target>Scarlett 4i4 Output:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>loopback-4076987-29:output_LFE</Source>
+   <Target>Scarlett 4i4 Output:playback_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Carla:audio-out1</Source>
+   <Target>Scarlett 4i4 Input:input_MONO</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS/OBS-Monitor:output_FL</Source>
+   <Target>Scarlett 4i4 Output:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS/OBS-Monitor:output_FR</Source>
+   <Target>Scarlett 4i4 Output:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS/OBS-Monitor:output_LFE</Source>
+   <Target>Scarlett 4i4 Output:playback_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Factorio: Space Age 2.0.77:output_FL</Source>
+   <Target>OBS Audio Input:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Factorio: Space Age 2.0.77:output_FR</Source>
+   <Target>OBS Audio Input:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Spotify/spotify:output_FL</Source>
+   <Target>Scarlett 4i4 Output:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Spotify/spotify:output_FL</Source>
+   <Target>OBS: Spotify:input_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Spotify/spotify:output_FR</Source>
+   <Target>Scarlett 4i4 Output:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Spotify/spotify:output_FR</Source>
+   <Target>OBS: Spotify:input_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Spotify/spotify:output_LFE</Source>
+   <Target>Scarlett 4i4 Output:playback_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Spotify/spotify:output_LFE</Source>
+   <Target>OBS: Spotify:input_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL</Source>
+   <Target>OBS: Firefox:input_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL</Source>
+   <Target>Scarlett 4i4 Output:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR</Source>
+   <Target>OBS: Firefox:input_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR</Source>
+   <Target>Scarlett 4i4 Output:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE</Source>
+   <Target>OBS: Firefox:input_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE</Source>
+   <Target>Scarlett 4i4 Output:playback_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL-1743858</Source>
+   <Target>OBS: Firefox:input_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL-1743858</Source>
+   <Target>Scarlett 4i4 Output:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR-1743859</Source>
+   <Target>OBS: Firefox:input_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR-1743859</Source>
+   <Target>Scarlett 4i4 Output:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE-1743860</Source>
+   <Target>OBS: Firefox:input_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE-1743860</Source>
+   <Target>Scarlett 4i4 Output:playback_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL-927585</Source>
+   <Target>OBS: Firefox:input_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL-927585</Source>
+   <Target>Scarlett 4i4 Output:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR-927586</Source>
+   <Target>OBS: Firefox:input_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR-927586</Source>
+   <Target>Scarlett 4i4 Output:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE-927587</Source>
+   <Target>OBS: Firefox:input_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE-927587</Source>
+   <Target>Scarlett 4i4 Output:playback_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL-1931892</Source>
+   <Target>OBS: Firefox:input_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL-1931892</Source>
+   <Target>Scarlett 4i4 Output:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR-1931893</Source>
+   <Target>OBS: Firefox:input_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR-1931893</Source>
+   <Target>Scarlett 4i4 Output:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE-1931894</Source>
+   <Target>OBS: Firefox:input_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE-1931894</Source>
+   <Target>Scarlett 4i4 Output:playback_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL-1012654</Source>
+   <Target>OBS: Firefox:input_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL-1012654</Source>
+   <Target>Scarlett 4i4 Output:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR-1012655</Source>
+   <Target>OBS: Firefox:input_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR-1012655</Source>
+   <Target>Scarlett 4i4 Output:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE-1012656</Source>
+   <Target>OBS: Firefox:input_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_LFE-1012656</Source>
+   <Target>Scarlett 4i4 Output:playback_LFE</Target>
+  </Connection>
+  <Connection>
+   <Source>Scarlett 4i4 Input:capture_MONO</Source>
+   <Target>OBS:input_MONO</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS Audio Input:monitor_FL</Source>
+   <Target>OBS:input_FL-276540</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS Audio Input:monitor_FR</Source>
+   <Target>OBS:input_FR-276541</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS: Discord:monitor_FL</Source>
+   <Target>OBS: Discord:input_FL-276531</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS: Discord:monitor_FR</Source>
+   <Target>OBS: Discord:input_FR-276532</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS: Discord:monitor_LFE</Source>
+   <Target>OBS: Discord:input_LFE-276533</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS: Firefox:monitor_FL</Source>
+   <Target>OBS: Firefox:input_FL-276546</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS: Firefox:monitor_FR</Source>
+   <Target>OBS: Firefox:input_FR-276547</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS: Firefox:monitor_LFE</Source>
+   <Target>OBS: Firefox:input_LFE-276548</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS: Spotify:monitor_FL</Source>
+   <Target>OBS: Spotify:input_FL-276516</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS: Spotify:monitor_FR</Source>
+   <Target>OBS: Spotify:input_FR-276517</Target>
+  </Connection>
+  <Connection>
+   <Source>OBS: Spotify:monitor_LFE</Source>
+   <Target>OBS: Spotify:input_LFE-276518</Target>
+  </Connection>
+ </ExternalPatchbay>
 </CARLA-PROJECT>

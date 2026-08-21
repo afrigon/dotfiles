@@ -1,8 +1,10 @@
+.DS_Store
+__py_cache__
+
 .luarc.json
 private.sh
 private.bash
 private.fish
-.DS_Store
 
 # claude code
 .claude

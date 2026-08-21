@@ -1,0 +1,77 @@
+window {
+  background-color: transparent;
+}
+
+.panel {
+  background-color: rgba(20, 20, 20, 0.75);
+  border-radius: 4px;
+  padding: 7px 10px;
+  color: #e0e0e0;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 15px;
+}
+
+.coords {
+  color: #7fd7ff;
+  font-weight: bold;
+}
+
+.coord {
+  font-weight: bold;
+}
+
+.coord.pos {
+  color: #9ee89e;
+}
+
+.coord.neg {
+  color: #ff9e9e;
+}
+
+.conf.high {
+  color: #9ee89e;
+}
+
+.conf.mid {
+  color: #d6e89e;
+}
+
+.conf.low {
+  color: #ff9e9e;
+}
+
+.meta {
+  color: #9a9a9a;
+}
+
+.adj {
+  font-weight: bold;
+}
+
+.adj.pos {
+  color: #9ee89e;
+}
+
+.adj.neg {
+  color: #ff9e9e;
+}
+
+.msg {
+  font-weight: bold;
+}
+
+.msg-icon.warning {
+  color: #e8d69e;
+}
+
+.msg-icon.error {
+  color: #ff9e9e;
+}
+
+.msg.warning {
+  color: #e8d69e;
+}
+
+.msg.error {
+  color: #ff9e9e;
+}

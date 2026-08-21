@@ -9,14 +9,15 @@
         "hyprland/window"
     ],
     "modules-right": [
-        "custom/monitor-input",
         "tray",
         "battery",
         "network#wireguard",
         "network",
-        "bluetooth", 
-        "pulseaudio", 
-        "cpu", 
+        "bluetooth",
+        "pulseaudio",
+        "custom/microphone",
+        "custom/monitor-input",
+        "cpu",
         "clock"
     ],
     "hyprland/workspaces": {
@@ -38,9 +39,19 @@
         "format": "<span size='120%'>󰂯</span>",
         "on-click": "ghostty -e bluetui"
     },
+    "custom/microphone": {
+        "exec": "~/.config/waybar/scripts/microphone-status.sh",
+        "return-type": "json",
+        "interval": 1,
+        "format": "<span size='120%'>{}</span>",
+        "on-click": "ghostty -e pulsemixer",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "on-click-middle": "systemctl --user restart scarlet.service"
+    },
     "pulseaudio": {
-        "format": "{volume}% ",
-        "format-muted": "{volume}% ",
+        "format": "<span size='120%'></span>",
+        "format-muted": "<span size='120%'></span>",
+        "scroll-step": 0,
         "on-click": "ghostty -e pulsemixer",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },

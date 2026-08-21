@@ -14,8 +14,16 @@ window#waybar {
     margin: 0 8px;
 }
 
-#workspaces, #window, #tray, #battery, #network, #bluetooth, #pulseaudio, #cpu, #clock {
-    padding: 2px 8px;
+#workspaces, #window, #tray, #battery, #network, #bluetooth, #pulseaudio, #cpu, #clock, #custom-microphone, #custom-monitor-input {
+    padding: 2px 5px;
+}
+
+#custom-microphone {
+    min-width: 14px;
+}
+
+#battery, #network.wireguard, #pulseaudio, #cpu, #clock {
+    margin-left: 8px;
 }
 
 #workspaces button {
@@ -38,6 +46,15 @@ tooltip {
 
 tooltip label {
     color: #FFFFFF;
+}
+
+menu {
+    background-color: #191724;
+    border: 1px solid #393552;
+}
+
+menu menuitem:hover {
+    background-color: #393552;
 }
 
 #network.wireguard.disconnected {
