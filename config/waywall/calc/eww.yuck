@@ -1,5 +1,5 @@
 (deflisten data
-  :initial "{\"type\": \"NONE\", \"predictions\": []}"
+  :initial "{\"type\": \"NONE\", \"throws\": 0, \"correction\": 0, \"correctionIncrements\": 0, \"predictions\": []}"
   "./scripts/calc.sh")
 
 (deflisten focused
@@ -77,10 +77,10 @@
 (defwidget boat-icon []
   (box :space-evenly false
        :visible {focused == "true" && gamestate == "inworld,unpaused"}
-    (image :visible {boat.state == "VALID"} :image-width 32 :image-height 32 :path "assets/boat_green_2x.png")
-    (image :visible {boat.state == "MEASURING"} :image-width 32 :image-height 32 :path "assets/boat_blue_2x.png")
-    (image :visible {boat.state == "ERROR"} :image-width 32 :image-height 32 :path "assets/boat_red_2x.png")
-    (image :visible {boat.state == "NONE"} :image-width 32 :image-height 32 :path "assets/boat_gray_2x.png")))
+    (image :visible {boat.state == "VALID"} :image-width 24 :image-height 24 :path "assets/boat_green_24.png")
+    (image :visible {boat.state == "MEASURING"} :image-width 24 :image-height 24 :path "assets/boat_blue_24.png")
+    (image :visible {boat.state == "ERROR"} :image-width 24 :image-height 24 :path "assets/boat_red_24.png")
+    (image :visible {boat.state == "NONE"} :image-width 24 :image-height 24 :path "assets/boat_gray_24.png")))
 
 (defwindow boat
   :monitor 0
@@ -88,6 +88,54 @@
   :focusable false
   :geometry (geometry :x "300px" :y "88px" :anchor "bottom center")
   (boat-icon))
+
+(defwidget fcoord [value]
+  (label :class {value < 0 ? "coord neg" : "coord pos"}
+         :valign "center" :show-truncated false
+         :text "${value}.000"))
+
+(defwidget f3-line []
+  (box :class "f3line" :orientation "h" :space-evenly false :spacing 12
+       :halign "start" :valign "center"
+       :visible {focused == "true" && gamestate == "inworld,unpaused"}
+    ; (box :class "f3seg" :space-evenly false
+    ;   (boat-icon))
+    (box :class "f3seg" :orientation "h" :space-evenly false
+         :visible {data.type == "TRIANGULATION" && arraylength(data.predictions) > 0}
+      (label :valign "center" :show-truncated false :unindent false :text "      ")
+      (fcoord :value {data.predictions[0].nx})
+      (label :valign "center" :show-truncated false :unindent false :text " / 40.00000 / ")
+      (fcoord :value {data.predictions[0].nz}))
+    (label :valign "center" :show-truncated false
+           :visible {data.type == "TRIANGULATION" && arraylength(data.predictions) > 0 && (data.throws > 0 || arraylength(warnings.messages) > 0)}
+           :text "|")
+    (box :class "f3seg" :orientation "h" :space-evenly false :spacing 12
+         :visible {data.throws > 0 || arraylength(warnings.messages) > 0}
+      (label :class {data.predictions[0].certainty >= 0.95 ? "conf high" : (data.predictions[0].certainty >= 0.9 ? "conf mid" : "conf low")}
+             :valign "center" :show-truncated false
+             :visible {data.type == "TRIANGULATION" && arraylength(data.predictions) > 0}
+             :text "${round(data.predictions[0].certainty * 100, 1)}%")
+      (label :valign "center" :show-truncated false
+             :visible {data.type == "TRIANGULATION" && arraylength(data.predictions) > 0}
+             :text "${data.predictions[0].distance} (${data.predictions[0].netherDistance})")
+      (label :class {data.correctionIncrements > 0 ? "adj pos" : "adj neg"}
+             :valign "center" :show-truncated false
+             :visible {data.correctionIncrements != 0}
+             :text {data.correctionIncrements > 0 ? "+${data.correctionIncrements}" : "${data.correctionIncrements}"})
+      (label :class "meta" :valign "center" :show-truncated false
+             :visible {data.throws > 0}
+             :text "t: ${data.throws}")
+      (for m in {warnings.messages}
+        (label :class {m.severity == "ERROR" ? "msg error" : "msg warning"}
+               :valign "center" :show-truncated false
+               :text "${m.type}")))))
+
+(defwindow f3line
+  :monitor 0
+  :stacking "overlay"
+  :focusable false
+  :geometry (geometry :x "3px" :y "218px" :anchor "top left")
+  (f3-line))
 
 (defwindow calc
   :monitor 0
