@@ -22,8 +22,11 @@ local ensure_started = function(app)
     local running = handle:read("*l") ~= nil
     handle:close()
 
+    print("ensure_started: " .. app.pattern .. " -> " .. (running and "already running" or "starting"))
+
     if not running then
-        io.popen("pkill -9 -f '" .. app.pattern .. "'"):close()
+        io.popen("pgrep -f '" .. app.pattern .. "' | while read p;" ..
+            " do [ \"$(awk '{print $4}' /proc/$p/stat)\" = 1 ] && kill -9 $p; done"):close()
         waywall.exec(app.command)
     end
 end
@@ -83,10 +86,75 @@ local function on_load()
     if ok then
         on_state(state)
     end
+
 end
 
 local function on_state_changed()
     on_state(waywall.state())
+end
+
+local make_mirror = function(options)
+    local this = nil
+
+    return function(enable)
+        if enable and not this then
+            this = waywall.mirror(options)
+        elseif this and not enable then
+            this:close()
+            this = nil
+        end
+    end
+end
+
+local make_image = function(path, dst)
+    local this = nil
+
+    return function(enable)
+        if enable and not this then
+            this = waywall.image(path, dst)
+        elseif this and not enable then
+            this:close()
+            this = nil
+        end
+    end
+end
+
+local mode_mirrors_and_overlays = {}
+
+for name, mode in pairs(options.modes) do
+    local toggles = {}
+
+    for _, mirror in pairs(mode.mirrors or {}) do
+        table.insert(toggles, make_mirror(mirror))
+    end
+
+    for _, image in pairs(mode.overlays or {}) do
+        table.insert(toggles, make_image(image.path, { dst = image.dst, depth = image.depth }))
+    end
+
+    mode_mirrors_and_overlays[name] = toggles
+end
+
+local active_mirrors_and_overlays = nil
+
+local function set_mirrors_and_overlays(name)
+    if active_mirrors_and_overlays == name then
+        return
+    end
+
+    if active_mirrors_and_overlays then
+        for _, toggle in ipairs(mode_mirrors_and_overlays[active_mirrors_and_overlays]) do
+            toggle(false)
+        end
+    end
+
+    active_mirrors_and_overlays = name
+
+    if name then
+        for _, toggle in ipairs(mode_mirrors_and_overlays[name]) do
+            toggle(true)
+        end
+    end
 end
 
 waywall.listen("load", on_load)
@@ -94,9 +162,12 @@ waywall.listen("state", on_state_changed)
 
 config.actions = {}
 
-config.actions[options.floating_key] = helpers.toggle_floating
+config.actions[options.floating_key] = function()
+    ensure_started(options.apps.calc)
+    helpers.toggle_floating()
+end
 
-for _, mode in pairs(options.modes) do
+for name, mode in pairs(options.modes) do
     config.actions[mode.key] = function()
         if waywall.get_key("F3") then
             return false
@@ -112,9 +183,11 @@ for _, mode in pairs(options.modes) do
         if active_width == mode.width and active_height == mode.height then
             waywall.set_resolution(0, 0)
             waywall.set_sensitivity(0)
+            set_mirrors_and_overlays(nil)
         else
             waywall.set_resolution(mode.width, mode.height)
             waywall.set_sensitivity(mode.sensitivity or 0)
+            set_mirrors_and_overlays(name)
         end
     end
 end

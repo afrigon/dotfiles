@@ -20,7 +20,17 @@ return {
         thin = {
             key = "Z",
             width = math.floor(340 * width / 1920),
-            height = height
+            height = height,
+            mirrors = {
+                ecounter = {
+                    src = { x = 1, y = 37, w = 49, h = 9 },
+                    dst = { x = 1530, y = 618, w = 8 * 49, h = 8 * 9 },
+                    color_key = {
+                        input = "#DDDDDD",
+                        output = "#FFFFFF",
+                    }
+                }
+            }
         },
         wide = {
             key = "X",
@@ -37,11 +47,19 @@ return {
     apps = {
         calc = {
             pattern = "[N]injabrain.*jar",
-            command = "java -jar " .. calc_path,
+            command = config_path .. "/calc/scripts/start-calc.sh",
         },
         calc_display = {
-            pattern = "[e]ww.*daemon",
+            pattern = "[e]ww --config " .. config_path .. "/calc daemon",
             command = config_path .. "/calc/scripts/start-display.sh",
+        },
+        obs_state = {
+            pattern = "[o]bs-state.sh",
+            command = config_path .. "/calc/scripts/obs-state.sh",
+        },
+        obs_server = {
+            pattern = "[h]ttp.server 52534",
+            command = "python3 -m http.server 52534 --bind 127.0.0.1 --directory " .. config_path .. "/calc/obs",
         },
     },
     remaps = {
