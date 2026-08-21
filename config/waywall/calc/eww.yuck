@@ -18,62 +18,6 @@
   :initial "{\"messages\": []}"
   "./scripts/warnings.sh")
 
-(defwidget coord [value]
-  (label :class {value < 0 ? "coord neg" : "coord pos"}
-         :show-truncated false
-         :text "${value}"))
-
-(defwidget calc-panel []
-  (box :class "panel" :orientation "v" :space-evenly false :spacing 4
-       :halign "end" :valign "end"
-       :visible {focused == "true" && gamestate == "inworld,unpaused" && (data.type == "TRIANGULATION" || data.type == "FAILED" || (data.throws > 0 && arraylength(data.predictions) == 0) || arraylength(warnings.messages) > 0)}
-    (box :orientation "h" :space-evenly false :spacing 16
-         :visible {data.type == "TRIANGULATION"}
-      (box :orientation "v" :spacing 4
-        (for p in {data.predictions}
-          (box :orientation "h" :space-evenly false :halign "start"
-            (label :class "coords" :show-truncated false :text "(")
-            (coord :value {p.nx})
-            (label :class "coords" :show-truncated false :text ", ")
-            (coord :value {p.nz})
-            (label :class "coords" :show-truncated false :text ")"))))
-      (box :orientation "v" :spacing 4
-        (for p in {data.predictions}
-          (label :class {p.certainty >= 0.95 ? "conf high" : (p.certainty >= 0.9 ? "conf mid" : "conf low")}
-                 :show-truncated false
-                 :halign "end"
-                 :text "${round(p.certainty * 100, 1)}%")))
-      (box :orientation "v" :spacing 4
-        (for p in {data.predictions}
-          (label :show-truncated false
-                 :halign "start"
-                 :text "${p.distance} (${p.netherDistance})"))))
-    (box :orientation "h" :space-evenly false :spacing 12 :halign "start"
-         :visible {data.throws > 0}
-      (label :class "meta" :show-truncated false :text "throws: ${data.throws}")
-      (box :orientation "h" :space-evenly false :spacing 4
-           :visible {data.correctionIncrements != 0}
-        (label :class "meta" :show-truncated false :text "adj:")
-        (label :class {data.correctionIncrements > 0 ? "adj pos" : "adj neg"}
-               :show-truncated false
-               :text {data.correctionIncrements > 0 ? "+${data.correctionIncrements}" : "${data.correctionIncrements}"})))
-    (box :orientation "h" :space-evenly false :spacing 10 :halign "start"
-         :visible {data.type == "FAILED" || (data.throws > 0 && arraylength(data.predictions) == 0)}
-      (label :class "msg-icon error" :valign "center" :show-truncated false :text "")
-      (label :class "msg error" :valign "center" :show-truncated false :text "reset measurements"))
-    (box :orientation "v" :space-evenly false :spacing 2
-         :visible {arraylength(warnings.messages) > 0}
-      (for m in {warnings.messages}
-        (box :orientation "h" :space-evenly false :spacing 10 :halign "start"
-          (label :class {m.severity == "ERROR" ? "msg-icon error" : "msg-icon warning"}
-                 :valign "center"
-                 :show-truncated false
-                 :text {m.severity == "ERROR" ? "" : ""})
-          (label :class {m.severity == "ERROR" ? "msg error" : "msg warning"}
-                 :valign "center"
-                 :show-truncated false
-                 :text "${m.type}"))))))
-
 (defwidget boat-icon []
   (box :space-evenly false
        :visible {focused == "true" && gamestate == "inworld,unpaused"}
@@ -81,13 +25,6 @@
     (image :visible {boat.state == "MEASURING"} :image-width 24 :image-height 24 :path "assets/boat_blue_24.png")
     (image :visible {boat.state == "ERROR"} :image-width 24 :image-height 24 :path "assets/boat_red_24.png")
     (image :visible {boat.state == "NONE"} :image-width 24 :image-height 24 :path "assets/boat_gray_24.png")))
-
-(defwindow boat
-  :monitor 0
-  :stacking "overlay"
-  :focusable false
-  :geometry (geometry :x "300px" :y "88px" :anchor "bottom center")
-  (boat-icon))
 
 (defwidget fcoord [value]
   (label :class {value < 0 ? "coord neg" : "coord pos"}
@@ -98,11 +35,13 @@
   (box :class "f3line" :orientation "h" :space-evenly false :spacing 12
        :halign "start" :valign "center"
        :visible {focused == "true" && gamestate == "inworld,unpaused"}
-    ; (box :class "f3seg" :space-evenly false
-    ;   (boat-icon))
+    (box :class "f3seg" :space-evenly false
+      (label :valign "center" :show-truncated false :unindent false :text " ")
+      (boat-icon)
+      (label :valign "center" :show-truncated false :unindent false :text " "))
     (box :class "f3seg" :orientation "h" :space-evenly false
          :visible {data.type == "TRIANGULATION" && arraylength(data.predictions) > 0}
-      (label :valign "center" :show-truncated false :unindent false :text "      ")
+      (label :valign "center" :show-truncated false :unindent false :text " ")
       (fcoord :value {data.predictions[0].nx})
       (label :valign "center" :show-truncated false :unindent false :text " / 40.00000 / ")
       (fcoord :value {data.predictions[0].nz}))
@@ -125,6 +64,9 @@
       (label :class "meta" :valign "center" :show-truncated false
              :visible {data.throws > 0}
              :text "t: ${data.throws}")
+      (label :class "msg error" :valign "center" :show-truncated false
+             :visible {data.type == "FAILED" || (data.throws > 0 && arraylength(data.predictions) == 0)}
+             :text "reset measurements")
       (for m in {warnings.messages}
         (label :class {m.severity == "ERROR" ? "msg error" : "msg warning"}
                :valign "center" :show-truncated false
@@ -134,12 +76,5 @@
   :monitor 0
   :stacking "overlay"
   :focusable false
-  :geometry (geometry :x "3px" :y "218px" :anchor "top left")
+  :geometry (geometry :x "3px" :y "218.5px" :anchor "top left")
   (f3-line))
-
-(defwindow calc
-  :monitor 0
-  :stacking "overlay"
-  :focusable false
-  :geometry (geometry :x "680px" :y "12px" :anchor "bottom right")
-  (calc-panel))
