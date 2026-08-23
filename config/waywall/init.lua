@@ -2,6 +2,13 @@ local waywall = require("waywall")
 local helpers = require("waywall.helpers")
 local options = require("options")
 
+local read_file = function(path)
+    local file = assert(io.open(path, "r"))
+    local data = file:read("*a")
+    file:close()
+    return data
+end
+
 local config = {
     input = {
         layout = options.layout,
@@ -14,6 +21,17 @@ local config = {
         background = options.background_color,
         ninb_anchor = "right",
         ninb_opacity = 0.75
+    },
+    shaders = {
+        pie = {
+            fragment = read_file(options.config_path .. "/pie.frag"),
+        },
+        outline = {
+            fragment = read_file(options.config_path .. "/outline.frag"),
+        },
+        ecounter = {
+            fragment = read_file(options.config_path .. "/ecounter.frag"),
+        },
     },
 }
 

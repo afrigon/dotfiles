@@ -6,7 +6,7 @@ ShowOpenInSplitView=false
 ShowOpenTerminal=false
 
 [DetailsMode]
-PreviewSize=80
+PreviewSize=160
 
 [ExtractDialog]
 3 screens: Window-Maximized=true
@@ -17,7 +17,7 @@ Version=202
 ViewPropsTimestamp=2025,11,15,0,8,3.925
 
 [IconsMode]
-PreviewSize=128
+PreviewSize=240
 
 [KFileDialog Settings]
 Places Icons Auto-resize=false
