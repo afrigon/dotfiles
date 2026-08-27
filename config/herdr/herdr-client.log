@@ -1,0 +1,11 @@
+2026-08-26T20:39:52.298481Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2357764
+2026-08-26T20:39:52.298530Z  INFO herdr::client: connecting to server path=/home/xehos/.config/herdr/herdr-client.sock
+2026-08-26T20:39:52.529915Z  INFO herdr::client: handshake succeeded version=20 encoding=SemanticFrame
+2026-08-26T23:52:38.642511Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=2357764
+2026-08-26T23:57:45.081140Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2513176
+2026-08-26T23:57:45.081173Z  INFO herdr::client: connecting to server path=/home/xehos/.config/herdr/herdr-client.sock
+2026-08-26T23:57:45.130018Z  INFO herdr::client: handshake succeeded version=20 encoding=SemanticFrame
+2026-08-27T00:43:40.438658Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=2513176
+2026-08-27T03:42:36.214961Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2680760
+2026-08-27T03:42:36.215343Z  INFO herdr::client: connecting to server path=/home/xehos/.config/herdr/herdr-client.sock
+2026-08-27T03:42:36.349805Z  INFO herdr::client: handshake succeeded version=20 encoding=SemanticFrame

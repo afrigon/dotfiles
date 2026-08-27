@@ -224,8 +224,6 @@ lazy.setup({
 
     "norcalli/nvim-colorizer.lua",                      -- Colorizer
 
-    "github/copilot.vim",                               -- Github Copilot
-
     "xiyaowong/transparent.nvim",                       -- Transparent Background
 
     {

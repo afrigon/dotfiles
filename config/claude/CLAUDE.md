@@ -26,7 +26,6 @@ if I didn't get to weigh in, it's wrong.
 - **Don't rabbit-hole.** When you're reasonably confident, act on it — no
   deep research spirals or re-validation loops. If you're genuinely unsure,
   say so and ask instead of researching around it.
-- **Git is mine.** Never commit or push; I review and commit manually.
 - **Dependencies start at latest.** When adding a dependency, resolve its
   version through the package manager (`cargo add`, `npm install`, ...) so
   it lands on the latest release — never copy version pins from another
