@@ -1,0 +1,18 @@
+[tools]
+"aqua:rust-lang/rustup" = "latest"
+bat = "latest"
+claude = "latest"
+fd = "latest"
+fzf = "latest"
+gh = "latest"
+"github:afrigon/clock" = "latest"
+"github:afrigon/mc" = "latest"
+"github:afrigon/snorm" = "latest"
+herdr = "latest"
+jq = "latest"
+just = "latest"
+python = "3.14"
+ripgrep = "latest"
+starship = "latest"
+usage = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }

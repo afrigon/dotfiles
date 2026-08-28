@@ -1,4 +1,8 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Read(./**)",
@@ -43,5 +47,8 @@
   "preferredNotifChannel": "notifications_disabled",
   "agentPushNotifEnabled": true,
   "remoteControlAtStartup": false,
+  "env": {
+    "DISABLE_AUTOUPDATER": "1"
+  },
   "model": "claude-fable-5[1m]"
 }

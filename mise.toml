@@ -1,0 +1,15 @@
+[tasks.setup]
+description = "Stow config into ~/.config"
+run = """
+mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
+stow -t "${XDG_CONFIG_HOME:-$HOME/.config}" -R --no-folding config
+"""
+
+[tasks.bootstrap]
+description = "Stow config and install tools"
+depends = ["setup"]
+run = "mise install"
+
+[tasks.herdr-integration]
+description = "Install the herdr hook for Claude Code"
+run = "herdr integration install claude"

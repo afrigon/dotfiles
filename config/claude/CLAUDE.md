@@ -79,6 +79,18 @@ if I didn't get to weigh in, it's wrong.
   needs context that lives there, inline the minimal fact or drop the
   comment.
 
+## My system
+
+- Every machine runs the same core tooling: fish as the shell, nvim as the
+  editor, and mise for CLI tool installs (starship, herdr, node, ...) —
+  `mise which <tool>` locates the real binary.
+- Dotfiles live in ~/src/dotfiles and are stowed into ~/.config by
+  `mise run setup` (`stow --no-folding`). A new config file must be created
+  in the repo and stowed, never written directly into ~/.config.
+- Arch Linux machines: system packages via paru; Hyprland on Wayland,
+  launched via uwsm.
+- macOS machines: system packages via Homebrew.
+
 ## Improving this file
 
 Auto memory is disabled — this file is the only thing that persists across
