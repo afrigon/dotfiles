@@ -1,4 +1,7 @@
 {
+  "env": {
+    "DISABLE_AUTOUPDATER": "1"
+  },
   "attribution": {
     "commit": "",
     "pr": ""
@@ -20,6 +23,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "claude-fable-5[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.config/claude/statusline.sh",
@@ -45,10 +49,6 @@
   "theme": "dark",
   "editorMode": "vim",
   "preferredNotifChannel": "notifications_disabled",
-  "agentPushNotifEnabled": true,
   "remoteControlAtStartup": false,
-  "env": {
-    "DISABLE_AUTOUPDATER": "1"
-  },
-  "model": "claude-fable-5[1m]"
+  "agentPushNotifEnabled": true
 }

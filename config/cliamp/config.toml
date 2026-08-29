@@ -1,0 +1,8 @@
+theme = "rose-pine"
+visualizer = "Firework"
+shuffle = false
+provider = "spotify"
+
+[spotify]
+client_id = "8027a52929404b63a94068436c2b9b1c"
+bitrate   = 320
