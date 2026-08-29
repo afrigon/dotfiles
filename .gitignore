@@ -1,20 +1,10 @@
 .DS_Store
-__py_cache__
 
+# python
+__pycache__/
+
+# lua
 .luarc.json
-private.sh
-private.bash
-private.fish
 
 # claude code
 .claude
-config/claude/*
-config/claude/!.gitignore
-config/claude/!CLAUDE.md
-config/claude/!settings.json
-config/claude/!statusline.sh
-config/claude/!keybindings.json
-
-# systemd enablement state
-config/systemd/user/*.wants/
-config/systemd/user/pipewire-session-manager.service
