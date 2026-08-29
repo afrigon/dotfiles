@@ -57,5 +57,9 @@ if status is-interactive
     if command -q starship
         starship init fish | source
     end
+
+    if command -q try
+        try init | source
+    end
 end
 
