@@ -90,6 +90,10 @@ if I didn't get to weigh in, it's wrong.
 - Arch Linux machines: system packages via paru; Hyprland on Wayland,
   launched via uwsm.
 - macOS machines: system packages via Homebrew.
+- My GitHub repositories follow a documented standard covering naming,
+  README, license, topics, gitignore, version pinning, and repository
+  settings. Load the `repo-standard` skill before creating a repository,
+  scaffolding a project, or changing any of those things in an existing one.
 
 ## Improving this file
 
