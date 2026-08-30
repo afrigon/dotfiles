@@ -105,23 +105,48 @@ Nothing else scaffolds a project in a listed language. A Python repository does 
 
 Dependencies are never installed globally. Every toolchain that supports project-local isolation must use it — `uv` resolves into `.venv`, `aube` into the project's `node_modules`, `cargo` into `target`. A setup step that writes into the user's home or a system path is wrong; only the toolchains themselves are installed globally, through mise.
 
-## Task runner
+## Tasks
 
-Any repository that builds has a `justfile` with `build` and `run` at minimum. Add `test`, `lint`, and `format` where they exist. Recipes call the language toolchain — `just` orchestrates, it does not replace `cargo` or `uv`.
+Tasks live in `mise.toml`, under `[tasks]`. mise is already required for version pinning, so tasks sit beside the tools that run them and there is no second runner to install.
 
-An application built through Xcode is the exception to the minimum: Xcode owns building and running it. Such a repository still carries a `justfile` for everything around that — lint, format, test, code generation — so those tasks are invoked the same way as in every other repository.
+A repository that builds defines `build` and `run` at minimum. Add `test`, `lint`, and `format` where they exist. Tasks call the language toolchain — mise orchestrates, it does not replace `cargo` or `uv`.
 
-C and C++ repositories keep a Makefile, because make genuinely drives compilation there: object files, link steps, header dependencies. They still get a `justfile` if they need tasks beyond building, and its recipes call `make`.
+```toml
+[tasks.build]
+description = "Build in release mode"
+run = "cargo build --release"
 
-A Makefile in any other language is a task runner wearing the wrong hat. Port it to a `justfile`.
+[tasks.test]
+depends = ["build"]
+run = "cargo test"
+```
 
-`mise [tasks]` covers the narrow case where a task needs the mise-managed environment or a secret that must not reach a `justfile`:
+A task that takes arguments declares them, so `mise run` can check and document them:
+
+```toml
+[tasks.deploy]
+usage = '''
+arg "<environment>" help="where to deploy"
+flag "--dry-run" help="print the plan without applying"
+'''
+run = 'deploy --target "$usage_environment"'
+```
+
+A task that outgrows a `run` string becomes an executable script in `.mise/tasks/`, where it is an ordinary shell script rather than a string inside TOML.
+
+Secrets reach a task through its own `env`, never inline in the command:
 
 ```toml
 [tasks.serve]
 env = { API_TOKEN = "{{ exec(command='op read op://Personal/…/api-token') }}" }
 run = "./serve --verbose"
 ```
+
+An application built through Xcode is the exception to the `build` and `run` minimum: Xcode owns building and running it. Such a repository still defines tasks for everything around that — lint, format, test, code generation — so they are invoked the same way as in every other repository.
+
+C and C++ repositories keep a Makefile, because make genuinely drives compilation there: object files, link steps, header dependencies. Their tasks call `make`.
+
+A Makefile in any other language is a task runner wearing the wrong hat. Port it to `[tasks]`.
 
 ## Containers
 
@@ -133,7 +158,7 @@ A library, a CLI, a static site, or anything that runs only on a developer's mac
 
 ## Continuous integration
 
-Every repository created from here on runs CI on pull requests, wherever the language supports it: build, then test and lint if they exist. The workflow calls the same justfile recipes a person would, so CI and local runs cannot drift.
+Every repository created from here on runs CI on pull requests, wherever the language supports it: build, then test and lint if they exist. The workflow calls the same mise tasks a person would, so CI and local runs cannot drift.
 
 Repositories predating this standard are exempt. Do not add CI to an existing repository as part of a standardization pass — only when it is being worked on for another reason.
 
@@ -177,6 +202,20 @@ Rename a default branch through the API, which retargets open pull requests and 
 
 ```sh
 gh api -X POST repos/{owner}/{repo}/branches/master/rename -f new_name=main
+```
+
+Every repository has an active branch ruleset named `protect-default-branch` blocking deletion and force pushes on the default branch. Create it through the API:
+
+```sh
+gh api -X POST repos/{owner}/{repo}/rulesets --input - <<'EOF'
+{
+  "name": "protect-default-branch",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": { "ref_name": { "include": ["~DEFAULT_BRANCH"], "exclude": [] } },
+  "rules": [{ "type": "deletion" }, { "type": "non_fast_forward" }]
+}
+EOF
 ```
 
 Archiving makes a repository read-only. Where a repository is going to be archived, complete every settings and content change before archiving it.
