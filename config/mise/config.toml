@@ -16,3 +16,6 @@ ripgrep = "latest"
 starship = "latest"
 usage = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
+
+[settings]
+python.default_packages_file = "~/.config/mise/default-python-packages"

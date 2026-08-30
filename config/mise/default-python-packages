@@ -1,0 +1,7 @@
+requests
+httpx
+beautifulsoup4
+lxml
+pyyaml
+pandas
+pillow
