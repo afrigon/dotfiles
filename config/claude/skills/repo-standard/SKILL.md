@@ -189,11 +189,15 @@ Every feature is off unless it is carrying something. An enabled empty feature i
 | Packages | Off, unless a package is published. |
 | Deployments | Off, unless a deployment has run. |
 | Issues | On. |
+| Delete head branches on merge | On. A merged branch has nothing left to say. |
+| Suggest updating pull request branches | On. Offers the update rather than leaving a stale branch to be merged blind. |
 
-Wiki and Projects are settable through the API:
+These are settable through the API:
 
 ```sh
-gh api -X PATCH repos/{owner}/{repo} -F has_wiki=false -F has_projects=false
+gh api -X PATCH repos/{owner}/{repo} \
+  -F has_wiki=false -F has_projects=false \
+  -F delete_branch_on_merge=true -F allow_update_branch=true
 ```
 
 Releases, Packages and Deployments are home-page visibility toggles with no API. Set them by hand under the repository's About panel.
