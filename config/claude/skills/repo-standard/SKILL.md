@@ -109,6 +109,8 @@ Dependencies are never installed globally. Every toolchain that supports project
 
 Any repository that builds has a `justfile` with `build` and `run` at minimum. Add `test`, `lint`, and `format` where they exist. Recipes call the language toolchain — `just` orchestrates, it does not replace `cargo` or `uv`.
 
+An application built through Xcode is the exception to the minimum: Xcode owns building and running it. Such a repository still carries a `justfile` for everything around that — lint, format, test, code generation — so those tasks are invoked the same way as in every other repository.
+
 C and C++ repositories keep a Makefile, because make genuinely drives compilation there: object files, link steps, header dependencies. They still get a `justfile` if they need tasks beyond building, and its recipes call `make`.
 
 A Makefile in any other language is a task runner wearing the wrong hat. Port it to a `justfile`.
@@ -123,11 +125,11 @@ run = "./serve --verbose"
 
 ## Containers
 
-A project that is meant to be hosted — an API, a service, anything that runs somewhere other than a developer's machine — ships a `Dockerfile` and a `docker-compose.yml`.
+A `Dockerfile` belongs wherever an image is the artifact: a service that gets deployed, or a reproducible build environment such as a cross-compilation toolchain.
 
-The Dockerfile builds the deployable image. The compose file is the canonical way to run the whole thing: the service plus every backing store it needs, so a single `docker compose up` gives a working stack. Publish the compose file alongside whatever configuration it reads, and keep it working — it is the self-hosting instructions in executable form.
+A `docker-compose.yml` is narrower. Add one only when running the project means running more than one thing — a service plus the database, cache, or queue it depends on. Then compose is the canonical way to start the stack, and `docker compose up` must give a working system. A Dockerfile with nothing to compose alongside it does not get a compose file.
 
-A library, a CLI, or anything that runs only on a developer's machine does not need either.
+A library, a CLI, a static site, or anything that runs only on a developer's machine needs neither.
 
 ## Continuous integration
 
