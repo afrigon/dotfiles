@@ -14,6 +14,7 @@ just = "latest"
 python = "3.14"
 ripgrep = "latest"
 starship = "latest"
+tree-sitter = "latest"
 usage = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 
