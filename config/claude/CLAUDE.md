@@ -31,6 +31,10 @@ if I didn't get to weigh in, it's wrong.
   it lands on the latest release — never copy version pins from another
   project or from memory. Pin older versions only for a real compatibility
   constraint, and say so.
+- **Cross-repository changes go through herdr.** When a task needs edits
+  in a repository other than the current one, load the `herdr` skill,
+  start a herdr workspace with a worktree on that repository, and land
+  the change as a pull request — never commit to it directly.
 
 ## Code comments
 
@@ -90,6 +94,10 @@ if I didn't get to weigh in, it's wrong.
 - Arch Linux machines: system packages via paru; Hyprland on Wayland,
   launched via uwsm.
 - macOS machines: system packages via Homebrew.
+- My GitHub repositories follow a documented standard covering naming,
+  README, license, topics, gitignore, version pinning, and repository
+  settings. Load the `repo-standard` skill before creating a repository,
+  scaffolding a project, or changing any of those things in an existing one.
 
 ## Improving this file
 
