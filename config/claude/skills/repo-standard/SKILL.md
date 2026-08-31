@@ -64,9 +64,9 @@ Data-tier repositories get no license. Neither do forks — a fork keeps its ups
 
 ## Gitignore
 
-Required. Always ignore `.DS_Store` and `.claude`. Add the artifacts of every language present, not just the primary one.
+Required. Always ignore `.DS_Store`, `.claude`, and `.env` files — keeping `.env.example` and `.env.op`, which hold shape and references, never values. Add the artifacts of every language present, not just the primary one. A repository with a `mise.toml` also ignores `mise.local.toml`.
 
-`templates/gitignore/` holds a base plus one file per language. Concatenate the base with each language that applies. Verify the entries match reality: a pattern without a leading dot, like `DS_Store`, silently matches nothing.
+`templates/gitignore/` holds a base, one file per language, and a `mise` file. Concatenate the base with each language that applies, plus `mise` wherever a `mise.toml` exists. Verify the entries match reality: a pattern without a leading dot, like `DS_Store`, silently matches nothing.
 
 ## Version pinning
 
@@ -107,7 +107,7 @@ Dependencies are never installed globally. Every toolchain that supports project
 
 ## Tasks
 
-Tasks live in `mise.toml`, under `[tasks]`. mise is already required for version pinning, so tasks sit beside the tools that run them and there is no second runner to install.
+Tasks live in `mise.toml`, under `[tasks]`. mise is already required for version pinning, so tasks sit beside the tools that run them and there is no second runner to install. The `mise` skill holds the mechanics — task options, arguments, environment, CI wiring; load it whenever writing a `mise.toml` that goes beyond the shapes shown here.
 
 A repository that builds defines `build` and `run` at minimum. Add `test`, `lint`, and `format` where they exist. Tasks call the language toolchain — mise orchestrates, it does not replace `cargo` or `uv`.
 
