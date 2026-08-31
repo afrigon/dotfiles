@@ -1,8 +1,8 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$username\
-$hostname\
+${custom.ssh_user}\
+${custom.ssh_host}\
 $directory\
 $git_branch\
 ${custom.git_worktree}\
@@ -24,8 +24,8 @@ $character\
 
 [profiles]
 claude-code = """
-$username\
-$hostname\
+${custom.ssh_user}\
+${custom.ssh_host}\
 $directory\
 $git_branch\
 ${custom.git_worktree}\
@@ -42,15 +42,30 @@ ${env_var.CLAUDE_RATE_LIMIT_FIVE_HOUR}\
 ${env_var.CLAUDE_RATE_LIMIT_SEVEN_DAY}\
 """
 
-[username]
-format = '[$user]($style)@'
+[custom.ssh_user]
+command = 'echo "$USER"'
+when = 'test -n "$SSH_CONNECTION" -o -n "$SSH_TTY"'
+shell = 'sh'
+style = 'bold yellow'
+format = '[$output]($style)@'
 
-[hostname]
-format = '[$hostname]($style) in '
+[custom.ssh_host]
+command = 'uname -n'
+when = 'test -n "$SSH_CONNECTION" -o -n "$SSH_TTY"'
+shell = 'sh'
+style = 'bold dimmed green'
+format = '[$output]($style) in '
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [custom.git_worktree]
-command = 'basename "$(git rev-parse --show-toplevel)"'
+command = '''
+worktree="$(basename "$(git rev-parse --show-toplevel)")"
+test "$worktree" = "$(git branch --show-current)" || echo "$worktree"
+'''
 when = 'test "$(git rev-parse --git-dir)" != "$(git rev-parse --git-common-dir)"'
+shell = 'sh'
 symbol = ' '
 style = 'bold purple'
 format = '[$symbol$output]($style) '
