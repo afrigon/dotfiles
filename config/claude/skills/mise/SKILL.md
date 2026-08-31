@@ -176,17 +176,30 @@ Reusable values go in a top-level `[vars]` table and interpolate as
 
 ### Secrets
 
-Pass secrets through a task's `env`, resolved at run time, never inline in
-the command:
+Never inline a secret in a command, and never hard-wire one secret store
+into the tracked config — collaborators store secrets differently. The
+tracked `mise.toml` declares the need; each person satisfies it:
 
 ```toml
-[tasks.serve]
-env = { API_TOKEN = "{{ exec(command='op read op://Vault/item/token') }}" }
-run = "./serve"
+redactions = ["API_TOKEN"]
+
+[env]
+_.file = ".env"                    # git-ignored; plain values go here
+API_TOKEN = { required = true }
 ```
 
-Add the variable name to a top-level `redactions = ["API_TOKEN"]` array to
-mask it in task output.
+Someone without a secret manager writes `.env` by hand. A 1Password user
+satisfies the same requirement from their git-ignored `mise.local.toml`
+instead:
+
+```toml
+[env]
+API_TOKEN = "{{ exec(command='op read op://Vault/item/token') }}"
+```
+
+Where a committed `.env.op` documents the `op://` references, `op inject
+-i .env.op -o .env` produces the plain file in one step. The top-level
+`redactions` array masks the named variables in task output either way.
 
 ### File tasks
 
