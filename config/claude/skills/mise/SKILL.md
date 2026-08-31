@@ -197,9 +197,9 @@ instead:
 API_TOKEN = "{{ exec(command='op read op://Vault/item/token') }}"
 ```
 
-Where a committed `.env.op` documents the `op://` references, `op inject
--i .env.op -o .env` produces the plain file in one step. The top-level
-`redactions` array masks the named variables in task output either way.
+The exec queries 1Password every time mise composes the environment, so
+the secret never lands on disk. The top-level `redactions` array masks
+the named variables in task output.
 
 ### File tasks
 
