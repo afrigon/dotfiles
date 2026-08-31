@@ -88,11 +88,11 @@ Specs stay loose, pinned to the position that carries breaking changes so an upg
 
 | | |
 | --- | --- |
-| semver at 1.0 or above | major — `rust = "1"` |
-| semver below 1.0 | minor — `swiftlint = "0.65"` |
-| projects whose minor is the breaking axis | minor — `python = "3.14"` |
+| the major moves on a breaking release | major — `node = "26"` |
+| the major is frozen, the minor moves | minor — `rust = "1.98"`, `python = "3.14"` |
+| still below 1.0 | minor — `swiftlint = "0.65"` |
 
-Python never bumps its major, so `python = "3"` pins nothing; the same holds for anything else that ships breaking changes in the minor forever. `"0"` is the same mistake: it names every version the project has ever published. Tools owned by the same account track `latest`, because their releases are yours to control.
+Most tools are the middle case. Rust has been on 1 since 2015 and Python on 3 since 2008, so `rust = "1"` and `python = "3"` name every release those projects have ever made and pin nothing. `"0"` is the same mistake from the other end. Tools owned by the same account track `latest`, because their releases are yours to control.
 
 A channel is not a version. `rust = "nightly"` resolves to whatever shipped that morning, so the lock records a build that is stale by the next one; pin a version, or accept that the repository is deliberately unpinned and say so. The lock records the exact resolved version, download URL, and checksum per platform — that is what makes two machines resolve identically, so `mise.lock` is committed, never ignored. Upgrading is deliberate: `mise lock --bump` re-resolves the specs, and the change lands as a commit.
 
