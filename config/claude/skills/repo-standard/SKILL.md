@@ -82,7 +82,15 @@ swiftlint = "0.65"
 "github:{owner}/{tool}" = "latest"
 ```
 
-Specs stay loose, pinned to the position that carries breaking changes so an upgrade never silently crosses one. Under semver that is the major for a release at 1.0 or above (`rust = "1"`), and the minor while a project is still at 0.x, where the minor is where breaking changes land (`swiftlint = "0.65"`). Pinning `"0"` names every version the project has ever published and pins nothing. Tools owned by the same account track `latest`, because their releases are yours to control.
+Specs stay loose, pinned to the position that carries breaking changes so an upgrade never silently crosses one. Which position that is depends on the project, not on a rule of thumb:
+
+| | |
+| --- | --- |
+| semver at 1.0 or above | major — `rust = "1"` |
+| semver below 1.0 | minor — `swiftlint = "0.65"` |
+| projects whose minor is the breaking axis | minor — `python = "3.14"` |
+
+Python never bumps its major, so `python = "3"` pins nothing; the same holds for anything else that ships breaking changes in the minor forever. `"0"` is the same mistake: it names every version the project has ever published. Tools owned by the same account track `latest`, because their releases are yours to control.
 
 A channel is not a version. `rust = "nightly"` resolves to whatever shipped that morning, so the lock records a build that is stale by the next one; pin a version, or accept that the repository is deliberately unpinned and say so. The lock records the exact resolved version, download URL, and checksum per platform — that is what makes two machines resolve identically, so `mise.lock` is committed, never ignored. Upgrading is deliberate: `mise lock --bump` re-resolves the specs, and the change lands as a commit.
 
