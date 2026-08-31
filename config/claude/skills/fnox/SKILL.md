@@ -22,23 +22,34 @@ into the project and removes them on the way out.
 
 ## Machine setup (once)
 
-fnox, age, and the 1Password CLI install globally through mise; the age
-key is generated per machine and never leaves it:
+fnox, age, and the 1Password CLI install globally through mise. Each
+machine gets its own age key, generated straight into the OS keychain
+(macOS Keychain, Linux Secret Service) so it never exists as a file:
 
 ```sh
 mise use -g fnox age 1password-cli
-age-keygen -o ~/.config/fnox/age.txt
+fnox provider add keychain keychain --global
+age-keygen | fnox set AGE_KEY --provider keychain --key-name age-key --global
+fnox remove AGE_KEY --global
 ```
 
-The global config `~/.config/fnox/config.toml` declares the personal
-cache provider every project syncs through (`fnox provider add sync-age
-age --global` scaffolds the entry):
+`age-keygen` prints the public key — it goes in the recipients below.
+`fnox set` writes the key into the keychain but also adds an `AGE_KEY`
+secrets entry that would export the private key into every environment;
+`fnox remove` deletes the entry and leaves the keychain item in place.
+
+The global config `~/.config/fnox/config.toml` ends up declaring the
+keychain and the personal cache provider every project syncs through:
 
 ```toml
+[providers.keychain]
+type = "keychain"
+service = "fnox"
+
 [providers.sync-age]
 type = "age"
 recipients = ["age1..."]              # public key printed by age-keygen
-key_file = "~/.config/fnox/age.txt"
+identity = { provider = "keychain", value = "age-key" }
 ```
 
 Shell integration goes in the shell profile — for fish:
@@ -51,31 +62,17 @@ Entering a directory whose `fnox.toml` defines secrets then loads them
 (`fnox: +2 DATABASE_URL, STRIPE_KEY`); leaving unloads them.
 `FNOX_SHELL_OUTPUT` tunes the feedback (`none`, `normal`, `debug`).
 
-`age.txt` is the private key; only its `# public key:` comment line is
-shareable. Never commit it — not to dotfiles, not to any repository,
-public or private. A key that reached a commit is compromised: generate
-a fresh one, re-encrypt everything it protected, re-sync.
+Only the `age1...` public key is shareable. The private key stays in
+the keychain: never write it to a file (`age-keygen -o`), and never
+commit it anywhere, public or private. A key that reached a commit is
+compromised — generate a fresh one, re-encrypt everything it protected,
+re-sync. Losing a key costs nothing: the cache it protects rebuilds
+from the vault with a sync, which is why per-machine keys need no
+backup or escrow.
 
-The key does not have to sit in plaintext on disk. The `identity` field
-replaces `key_file`, reading the key from another provider — the OS
-keychain (macOS Keychain, Linux Secret Service) keeps it encrypted at
-rest and unlocks with the login session:
-
-```toml
-[providers.keychain]
-type = "keychain"
-service = "fnox"
-
-[providers.sync-age]
-type = "age"
-recipients = ["age1..."]
-identity = { provider = "keychain", value = "age-key" }
-```
-
-With the key stored in the keychain under that service and name, delete
-`age.txt`. Hardware goes further — a YubiKey, Apple's Secure Enclave, a
-TPM — through age plugins: no key file exists at all, and the recipient
-string carries the plugin prefix (`age1yubikey1...`).
+The key can move further into hardware — a YubiKey, Apple's Secure
+Enclave, a TPM — through age plugins: the identity lives in the chip
+and the recipient string carries the plugin prefix (`age1yubikey1...`).
 
 ## Project setup
 
