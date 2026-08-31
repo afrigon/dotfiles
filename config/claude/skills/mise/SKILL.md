@@ -66,10 +66,59 @@ mise which <tool>     # path to the real binary
 mise x -- <cmd>       # run one command with the project's tools on PATH
 ```
 
+`[wrappers]` routes a command through another program while it keeps its
+ordinary name — useful for a drop-in replacement:
+
+```toml
+[wrappers]
+terraform = "tofu"
+
+[wrappers.python]
+command = "uv"
+args = ["run", "python"]
+```
+
+Run `mise reshim` after adding or removing one.
+
 mise also honors idiomatic version files (`.nvmrc`, `.python-version`,
 `rust-toolchain.toml`, ...) when enabled per tool via the
 `idiomatic_version_file_enable_tools` setting; a `mise.toml` in the same
 directory takes precedence.
+
+## Getting the context into a command
+
+There are three ways a command sees mise's tools and environment, and they
+behave differently:
+
+- **PATH activation** — `mise activate <shell>` in the interactive rc file.
+  mise rewrites `PATH` and env vars every time the prompt is drawn. Full
+  feature set, but it depends on a prompt, so it does nothing in scripts.
+- **Shims** — `mise activate <shell> --shims`, shorthand for putting
+  `~/.local/share/mise/shims` on `PATH`. Each shim is a small executable
+  pointing at mise. Works without a prompt, so this is the one for scripts,
+  IDEs, and containers.
+- **Neither** — `mise x -- <cmd>` and `mise run <task>` load the context for
+  one command. Tasks always carry it, which is why a task is the reliable
+  way to run something.
+
+The usual split is `--shims` in the profile (`.bash_profile`, `.zprofile`,
+`config.fish`) for non-interactive shells and plain `mise activate` in the
+rc file for interactive ones.
+
+Shims cost three things. Env vars from `mise.toml` reach mise-managed tools
+but not the shell itself, so `echo $NODE_ENV` is empty where
+`node -p process.env.NODE_ENV` is not. The `cd`, `enter`, `leave` hooks and
+`watch_files` need PATH activation. And `which node` returns the shim —
+`mise which node` gives the real path.
+
+One sharp edge: a shim that cannot resolve its tool falls back to the first
+same-named binary on `PATH` rather than failing. For something the OS also
+ships, like `python3`, that silently runs an unrelated interpreter. Set
+`not_found_auto_install = false` and `not_found_system_fallback = false` to
+make it fail instead.
+
+`mise reshim` rebuilds the shim directory. Installing a tool already does it;
+it is only needed when the directory is missing something.
 
 ## Tasks
 
@@ -227,6 +276,30 @@ parallel output is line-prefixed with the task name, switching to
 interleaved at `--jobs 1` (`--output prefix|interleave|keep-order`).
 `mise run` with no task runs the task named `default` if one exists.
 
+## Monorepo
+
+`monorepo_root = true` at the top of the root `mise.toml` makes mise discover
+configs in subdirectories and namespace their tasks by path:
+
+```toml
+monorepo_root = true
+
+[tools]
+node = "26"        # inherited by every subdirectory
+```
+
+A subdirectory with its own `mise.toml` becomes a config root, and its tasks
+are addressed as `//path:task`:
+
+```sh
+mise //frontend:build      # absolute, from anywhere in the repo
+mise :build                # the nearest enclosing config root
+mise '//frontend:*'        # wildcards need quoting
+```
+
+Subdirectory configs layer on the root's tools and environment rather than
+replacing them, and trusting the root trusts every descendant.
+
 ## Environment
 
 ```toml
@@ -272,6 +345,32 @@ like `"3.12"` become reproducible, and CI installs verify checksums.
 `mise lock --bump` re-resolves fuzzy specs to their latest matches. Full
 checksum support covers the `github`, `gitlab`, `aqua`, and `http`
 backends.
+
+## Docker
+
+Install mise into a system path and put the **shims** directory on `PATH` —
+not the mise binary's directory. Pointing `MISE_*_DIR` at `/mise` keeps
+everything out of a particular user's home, so the image still works when it
+runs as someone other than root:
+
+```dockerfile
+ENV MISE_DATA_DIR="/mise"
+ENV MISE_CONFIG_DIR="/mise"
+ENV MISE_CACHE_DIR="/mise/cache"
+ENV MISE_INSTALL_PATH="/usr/local/bin/mise"
+ENV PATH="/mise/shims:$PATH"
+RUN curl https://mise.run | sh
+```
+
+`MISE_VERSION` pins mise itself. `mise install --system` puts tools in
+`/usr/local/share/mise/installs`, shared by every user in the image — useful
+for a toolbox container, and each user can still install their own versions
+on top.
+
+A config holding only `min_version`, plain `[tools]` versions and `[tasks]`
+needs no trust, so an entrypoint of `mise run <task>` works with nothing
+extra. A config using templates or tool options does need trust, which in an
+image means `MISE_TRUSTED_CONFIG_PATHS`.
 
 ## GitHub Actions
 
