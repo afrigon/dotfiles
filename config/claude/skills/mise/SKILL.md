@@ -295,11 +295,24 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: jdx/mise-action@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
       - run: mise run build
       - run: mise run test
 ```
+
+Actions are pinned to the commit SHA of their latest release, never to a
+tag, with the readable version in a trailing comment. A tag is a moving
+pointer: whoever owns the repository can repoint it at different code
+after it was reviewed, and the workflow picks that up silently. A SHA
+cannot move. Resolve one with:
+
+```sh
+gh api repos/{owner}/{repo}/git/ref/tags/{tag} --jq .object.sha
+```
+
+An annotated tag returns `.object.type == "tag"`; dereference it with
+`gh api repos/{owner}/{repo}/git/tags/{sha} --jq .object.sha`.
 
 Workflow steps call the same mise tasks a person runs locally, so CI and
 local runs cannot drift. Action inputs worth knowing: `version` pins the
