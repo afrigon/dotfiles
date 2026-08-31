@@ -11,3 +11,11 @@ __pycache__/
 
 # fnox age key, never committed anywhere
 age.txt
+
+# env files
+.env
+.env.*
+!.env.example
+
+# mise
+mise.local.toml
