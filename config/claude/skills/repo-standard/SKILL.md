@@ -70,7 +70,7 @@ Required. Always ignore `.DS_Store`, `.claude`, and `.env` files — keeping `.e
 
 ## Version pinning
 
-Every code-tier repository has a `mise.toml` pinning its toolchain through a committed `mise.lock`:
+A code-tier repository with a toolchain to pin has a `mise.toml`, pinning it through a committed `mise.lock`:
 
 ```toml
 [settings]
@@ -78,12 +78,17 @@ lockfile = true
 
 [tools]
 rust = "1"
+swiftlint = "0.65"
 "github:{owner}/{tool}" = "latest"
 ```
 
-Specs stay loose. External tools name the major version, so an upgrade never silently crosses one; tools owned by the same account track `latest`, because their releases are yours to control. The lock records the exact resolved version, download URL, and checksum per platform — that is what makes two machines resolve identically, so `mise.lock` is committed, never ignored. Upgrading is deliberate: `mise lock --bump` re-resolves the specs, and the change lands as a commit.
+Specs stay loose, pinned to the position that carries breaking changes so an upgrade never silently crosses one. Under semver that is the major for a release at 1.0 or above (`rust = "1"`), and the minor while a project is still at 0.x, where the minor is where breaking changes land (`swiftlint = "0.65"`). Pinning `"0"` names every version the project has ever published and pins nothing. Tools owned by the same account track `latest`, because their releases are yours to control.
+
+A channel is not a version. `rust = "nightly"` resolves to whatever shipped that morning, so the lock records a build that is stale by the next one; pin a version, or accept that the repository is deliberately unpinned and say so. The lock records the exact resolved version, download URL, and checksum per platform — that is what makes two machines resolve identically, so `mise.lock` is committed, never ignored. Upgrading is deliberate: `mise lock --bump` re-resolves the specs, and the change lands as a commit.
 
 The `lockfile` setting lives in the repository's `mise.toml`, not in global config — CI reads only the repository's file.
+
+A repository with nothing to pin and no tasks to run gets no `mise.toml`. A file holding only `lockfile = true`, with an empty lock beside it, is noise.
 
 JavaScript and TypeScript repositories pin their toolchain through aube instead: `aube runtime set node <version>` writes `devEngines.runtime` into `package.json` and records the exact node release in `aube-lock.yaml`, and `"packageManager": "aube@<version>"` pins aube itself. Such a repository carries a `mise.toml` only when it needs tools beyond node and aube, environment variables, or chore tasks.
 
@@ -158,6 +163,8 @@ A `Dockerfile` belongs wherever an image is the artifact: a service that gets de
 A `docker-compose.yml` is narrower. Add one only when running the project means running more than one thing — a service plus the database, cache, or queue it depends on. Then compose is the canonical way to start the stack, and `docker compose up` must give a working system. A Dockerfile with nothing to compose alongside it does not get a compose file.
 
 A library, a CLI, a static site, or anything that runs only on a developer's machine needs neither.
+
+Docker is not pinned through mise — the daemon comes with the system package. What decides whether a build reproduces is the base image: give every `FROM` and every compose `image:` an explicit version tag, never `latest`.
 
 ## Continuous integration
 
