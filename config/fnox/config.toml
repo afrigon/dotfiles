@@ -1,0 +1,8 @@
+[providers.keychain]
+type = "keychain"
+service = "fnox"
+
+[providers.sync-age]
+type = "age"
+recipients = ["age1kqs25emszzyav0tdvuhw4sppykpn2kfy8n0xt9uqa65pujsp8g5s8tfjjd"]
+identity = { provider = "keychain", value = "age-key" }

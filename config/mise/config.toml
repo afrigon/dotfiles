@@ -1,8 +1,11 @@
 [tools]
+age = "latest"
 "aqua:rust-lang/rustup" = "latest"
+aube = "latest"
 bat = "latest"
 claude = "latest"
 fd = "latest"
+fnox = "latest"
 fzf = "latest"
 gh = "latest"
 "github:afrigon/clock" = "latest"
