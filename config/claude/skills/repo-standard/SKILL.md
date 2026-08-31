@@ -54,6 +54,8 @@ After that, only sections the repository actually needs:
 - **Configuration** — every key, if the thing reads a config file
 - **Development** — how to build, test, and lint, if that differs from usage
 
+Where the repository defines tasks, the README calls them — `mise run build`, not `cargo build`. The tasks are the interface; a README that documents the command underneath drifts the moment the task changes, and silently lies once the tool it names is gone. Raw commands are right only where no task covers them.
+
 Write commands as copy-pasteable blocks. Do not add badges that point at a service the repository does not use; a dead badge is worse than none. Do not write a Contributing or Code of Conduct section for a personal repository.
 
 ## License
