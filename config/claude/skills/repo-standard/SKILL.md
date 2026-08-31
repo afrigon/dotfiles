@@ -70,7 +70,7 @@ Required. Always ignore `.DS_Store`, `.claude`, and `.env` files — keeping `.e
 
 ## Version pinning
 
-Every code-tier repository has a `mise.toml` pinning its toolchain through a committed `mise.lock`:
+A code-tier repository with a toolchain to pin has a `mise.toml`, pinning it through a committed `mise.lock`:
 
 ```toml
 [settings]
@@ -87,6 +87,8 @@ Specs stay loose, pinned to the position that carries breaking changes so an upg
 A channel is not a version. `rust = "nightly"` resolves to whatever shipped that morning, so the lock records a build that is stale by the next one; pin a version, or accept that the repository is deliberately unpinned and say so. The lock records the exact resolved version, download URL, and checksum per platform — that is what makes two machines resolve identically, so `mise.lock` is committed, never ignored. Upgrading is deliberate: `mise lock --bump` re-resolves the specs, and the change lands as a commit.
 
 The `lockfile` setting lives in the repository's `mise.toml`, not in global config — CI reads only the repository's file.
+
+A repository with nothing to pin and no tasks to run gets no `mise.toml`. A file holding only `lockfile = true`, with an empty lock beside it, is noise.
 
 JavaScript and TypeScript repositories pin their toolchain through aube instead: `aube runtime set node <version>` writes `devEngines.runtime` into `package.json` and records the exact node release in `aube-lock.yaml`, and `"packageManager": "aube@<version>"` pins aube itself. Such a repository carries a `mise.toml` only when it needs tools beyond node and aube, environment variables, or chore tasks.
 
