@@ -36,6 +36,24 @@ if I didn't get to weigh in, it's wrong.
   start a herdr workspace with a worktree on that repository, and land
   the change as a pull request — never commit to it directly.
 
+## Git
+
+- The repository checkout stays on `main`; work happens in a worktree.
+  Inside herdr, that worktree comes from herdr — load the `herdr` skill.
+  Outside herdr, use a plain branch or `git worktree` instead.
+- Never work on the `main` branch unless explicitly asked to.
+- On a branch, commit often — at natural checkpoints, and always before
+  a large or risky change — so any point in the implementation is easy
+  to return to.
+- Commit messages stay short: a subject line, with a few bullets when
+  the commit spans multiple topics. Never an essay.
+- An implementation task ends with a pull request. Don't open one for
+  research, prototyping, or exploration.
+- Pull requests: assign me (`--assignee @me`). Keep the body short
+  enough that it actually gets read — bullet points where they help,
+  detail only where there is real complexity. When the PR addresses an
+  issue, include `Closes #<number>` so merging closes it.
+
 ## Code comments
 
 - Default to zero comments. The code itself must be clean and
