@@ -1,0 +1,87 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+${custom.git_worktree}\
+$git_commit\
+$git_state\
+$git_status\
+$nix_shell\
+$conda\
+$docker_context\
+$direnv\
+$claude_model\
+$claude_context\
+${env_var.CLAUDE_RATE_LIMIT_FIVE_HOUR}\
+${env_var.CLAUDE_RATE_LIMIT_SEVEN_DAY}\
+$jobs\
+$line_break\
+$character\
+"""
+
+[profiles]
+claude-code = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+${custom.git_worktree}\
+$git_commit\
+$git_state\
+$git_status\
+$nix_shell\
+$conda\
+$docker_context\
+$direnv\
+$claude_model\
+$claude_context\
+${env_var.CLAUDE_RATE_LIMIT_FIVE_HOUR}\
+${env_var.CLAUDE_RATE_LIMIT_SEVEN_DAY}\
+"""
+
+[username]
+format = '[$user]($style)@'
+
+[hostname]
+format = '[$hostname]($style) in '
+
+[custom.git_worktree]
+command = 'basename "$(git rev-parse --show-toplevel)"'
+when = 'test "$(git rev-parse --git-dir)" != "$(git rev-parse --git-common-dir)"'
+symbol = ' '
+style = 'bold purple'
+format = '[$symbol$output]($style) '
+
+[claude_context]
+format = '[$input_tokens/$total_tokens]($style) '
+
+[[claude_context.display]]
+threshold = 0.0
+style = 'bold green'
+hidden = true
+
+[[claude_context.display]]
+threshold = 1.0
+style = 'bold green'
+hidden = false
+
+[[claude_context.display]]
+threshold = 60.0
+style = 'bold yellow'
+hidden = false
+
+[[claude_context.display]]
+threshold = 80.0
+style = 'bold red'
+hidden = false
+
+[env_var.CLAUDE_RATE_LIMIT_FIVE_HOUR]
+format = '[5h ${env_value}%]($style) '
+style = 'dimmed white'
+
+[env_var.CLAUDE_RATE_LIMIT_SEVEN_DAY]
+format = '[7d ${env_value}%]($style) '
+style = 'dimmed white'

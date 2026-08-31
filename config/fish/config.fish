@@ -7,7 +7,10 @@ set -x SUDO_EDITOR $EDITOR
 set -x VISUAL $EDITOR
 set -x BROWSER firefox
 
-set -x CLAUDE_CONFIG_DIR ~/.config/claude
+set -q XDG_CONFIG_HOME; or set -x XDG_CONFIG_HOME $HOME/.config
+
+set -x CLAUDE_CONFIG_DIR $XDG_CONFIG_HOME/claude
+set -x STARSHIP_CONFIG $XDG_CONFIG_HOME/starship/starship.toml
 
 # disable fish greeting
 set -g fish_greeting
@@ -47,11 +50,8 @@ if status is-login; and command -q uwsm
 end
 
 if status is-interactive
-    set -l config_home $HOME/.config
-    test -n "$XDG_CONFIG_HOME"; and set config_home $XDG_CONFIG_HOME
-
-    if test -f "$config_home/op/plugins.sh"
-        source "$config_home/op/plugins.sh"
+    if test -f "$XDG_CONFIG_HOME/op/plugins.sh"
+        source "$XDG_CONFIG_HOME/op/plugins.sh"
     end
 
     if command -q starship
