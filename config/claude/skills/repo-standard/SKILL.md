@@ -99,6 +99,8 @@ One toolchain per language:
 | Swift | Swift Package Manager |
 | C / C++ | `make` |
 
+Swift repositories lint and format with `swiftlint` and `swiftformat`, both pinned in `[tools]`. Copy `templates/swift/.swiftlint.yml` and `templates/swift/.swiftformat` unchanged, then set `--swift-version` in the latter to match the package's `swift-tools-version` — it is not cosmetic, it gates which transforms run. The two configs are a matched pair: `indented_cases: true` and `--indent-case true` must agree or the tools undo each other's work.
+
 Any language not in the table uses whatever ships with it — `go` for Go, `terraform` for HCL. Where a language has no meaningful toolchain, as with shell scripts, the rule does not apply.
 
 Nothing else scaffolds a project in a listed language. A Python repository does not use `pip` and a bare `venv`; a Swift package does not carry a hand-rolled Xcode project as its build entry point.
