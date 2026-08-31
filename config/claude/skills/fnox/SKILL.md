@@ -51,9 +51,31 @@ Entering a directory whose `fnox.toml` defines secrets then loads them
 (`fnox: +2 DATABASE_URL, STRIPE_KEY`); leaving unloads them.
 `FNOX_SHELL_OUTPUT` tunes the feedback (`none`, `normal`, `debug`).
 
-The age key can instead live in hardware — a YubiKey, Apple's Secure
-Enclave, a TPM — through age plugins; the recipient string then carries
-the plugin prefix (`age1yubikey1...`).
+`age.txt` is the private key; only its `# public key:` comment line is
+shareable. Never commit it — not to dotfiles, not to any repository,
+public or private. A key that reached a commit is compromised: generate
+a fresh one, re-encrypt everything it protected, re-sync.
+
+The key does not have to sit in plaintext on disk. The `identity` field
+replaces `key_file`, reading the key from another provider — the OS
+keychain (macOS Keychain, Linux Secret Service) keeps it encrypted at
+rest and unlocks with the login session:
+
+```toml
+[providers.keychain]
+type = "keychain"
+service = "fnox"
+
+[providers.sync-age]
+type = "age"
+recipients = ["age1..."]
+identity = { provider = "keychain", value = "age-key" }
+```
+
+With the key stored in the keychain under that service and name, delete
+`age.txt`. Hardware goes further — a YubiKey, Apple's Secure Enclave, a
+TPM — through age plugins: no key file exists at all, and the recipient
+string carries the plugin prefix (`age1yubikey1...`).
 
 ## Project setup
 
