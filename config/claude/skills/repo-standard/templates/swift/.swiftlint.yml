@@ -18,6 +18,10 @@ opt_in_rules:
   - toggle_bool
   - yoda_condition
 
+disabled_rules:
+  - line_length
+  - identifier_name
+
 excluded:
   - .build
   - .swiftpm
@@ -31,12 +35,3 @@ implicitly_unwrapped_optional: error
 # Must match --indent-case true in .swiftformat, or the two tools fight.
 switch_case_alignment:
   indented_cases: true
-
-line_length:
-  warning: 120
-  error: 200
-  ignores_comments: true
-  ignores_urls: true
-
-identifier_name:
-  min_length: 2
