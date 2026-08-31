@@ -8,3 +8,6 @@ __pycache__/
 
 # claude code
 .claude
+
+# fnox age key, never committed anywhere
+age.txt

@@ -174,30 +174,24 @@ Reusable values go in a top-level `[vars]` table and interpolate as
 
 ### Secrets
 
-Never inline a secret in a command, and never hard-wire one secret store
-into the tracked config — collaborators store secrets differently. The
-tracked `mise.toml` declares the need; each person satisfies it:
+Never inline a secret in a command, and never compose one through
+`[env]` — an `exec` template that queries a secret store runs on every
+environment composition and hard-wires one person's tooling into the
+tracked config. Secrets belong to fnox: the project's committed
+`fnox.toml` declares which secrets exist and which store resolves them,
+fnox's shell integration exports them for interactive work, and a task
+that must also run without it — CI, an un-activated shell — wraps its
+command:
 
 ```toml
 redactions = ["API_TOKEN"]
 
-[env]
-_.file = ".env"                    # git-ignored; plain values go here
-API_TOKEN = { required = true }
+[tasks.serve]
+run = "fnox exec -- ./serve --verbose"
 ```
 
-Someone without a secret manager writes `.env` by hand. A 1Password user
-satisfies the same requirement from their git-ignored `mise.local.toml`
-instead:
-
-```toml
-[env]
-API_TOKEN = "{{ exec(command='op read op://Vault/item/token') }}"
-```
-
-The exec queries 1Password every time mise composes the environment, so
-the secret never lands on disk. The top-level `redactions` array masks
-the named variables in task output.
+The top-level `redactions` array masks the named variables in task
+output.
 
 ### File tasks
 
