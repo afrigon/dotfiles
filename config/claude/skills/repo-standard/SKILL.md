@@ -64,7 +64,7 @@ Data-tier repositories get no license. Neither do forks — a fork keeps its ups
 
 ## Gitignore
 
-Required. Always ignore `.DS_Store` and `.claude`. Add the artifacts of every language present, not just the primary one.
+Required. Always ignore `.DS_Store`, `.claude`, `mise.local.toml`, and `.env` files — keeping `.env.example` and `.env.op`, which hold shape and references, never values. Add the artifacts of every language present, not just the primary one.
 
 `templates/gitignore/` holds a base plus one file per language. Concatenate the base with each language that applies. Verify the entries match reality: a pattern without a leading dot, like `DS_Store`, silently matches nothing.
 
