@@ -162,9 +162,7 @@ A `docker-compose.yml` is narrower. Add one only when running the project means 
 
 A library, a CLI, a static site, or anything that runs only on a developer's machine needs neither.
 
-Docker itself is not pinned in `mise.toml`. The registry carries `docker-cli` and `docker-compose` but no daemon, and the daemon arrives with the system package — on Arch, `docker` and `dockerd` come from the same `docker` package. Pinning the client while the daemon floats buys the appearance of reproducibility rather than the thing, and the client is the half deliberately kept compatible across daemon versions. What decides whether a build reproduces is the base image: give every `FROM` and every compose `image:` an explicit version tag, never `latest`.
-
-Daemonless runtimes are a different case — `podman`, `nerdctl`, `colima` and `lima` are all in the registry and pin like any other tool.
+Docker is not pinned through mise — the daemon comes with the system package. What decides whether a build reproduces is the base image: give every `FROM` and every compose `image:` an explicit version tag, never `latest`.
 
 ## Continuous integration
 
