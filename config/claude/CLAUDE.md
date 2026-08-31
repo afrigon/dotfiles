@@ -83,6 +83,14 @@ if I didn't get to weigh in, it's wrong.
   needs context that lives there, inline the minimal fact or drop the
   comment.
 
+## Writing skills
+
+- Skills must be portable and individually shareable: each one stands
+  alone. Never reference another skill from inside a skill — no names, no
+  "load the X skill" pointers.
+- Routing lives outside the skills: the frontmatter description says when
+  a skill gets loaded, and this file holds any wiring between them.
+
 ## My system
 
 - Every machine runs the same core tooling: fish as the shell, nvim as the

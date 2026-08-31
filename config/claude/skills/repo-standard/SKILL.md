@@ -70,22 +70,20 @@ Required. Always ignore `.DS_Store`, `.claude`, and `.env` files — keeping `.e
 
 ## Version pinning
 
-Every code-tier repository has a `mise.toml` pinning its toolchain.
-
-External tools take an exact version, so two machines resolve identically:
+Every code-tier repository has a `mise.toml` pinning its toolchain through a committed `mise.lock`:
 
 ```toml
-[tools]
-rust = "1.90.0"
-node = "24.4.1"
-```
+[settings]
+lockfile = true
 
-Tools owned by the same account track `latest`, because their releases are yours to control:
-
-```toml
 [tools]
+node = "24"
 "github:{owner}/{tool}" = "latest"
 ```
+
+Specs stay loose. External tools name the major version, so an upgrade never silently crosses one; tools owned by the same account track `latest`, because their releases are yours to control. The lock records the exact resolved version, download URL, and checksum per platform — that is what makes two machines resolve identically, so `mise.lock` is committed, never ignored. Upgrading is deliberate: `mise lock --bump` re-resolves the specs, and the change lands as a commit.
+
+The `lockfile` setting lives in the repository's `mise.toml`, not in global config — CI reads only the repository's file.
 
 ## Toolchain
 
@@ -107,7 +105,7 @@ Dependencies are never installed globally. Every toolchain that supports project
 
 ## Tasks
 
-Tasks live in `mise.toml`, under `[tasks]`. mise is already required for version pinning, so tasks sit beside the tools that run them and there is no second runner to install. The `mise` skill holds the mechanics — task options, arguments, environment, CI wiring; load it whenever writing a `mise.toml` that goes beyond the shapes shown here.
+Tasks live in `mise.toml`, under `[tasks]`. mise is already required for version pinning, so tasks sit beside the tools that run them and there is no second runner to install.
 
 A repository that builds defines `build` and `run` at minimum. Add `test`, `lint`, and `format` where they exist. Tasks call the language toolchain — mise orchestrates, it does not replace `cargo` or `uv`.
 
@@ -162,7 +160,7 @@ Every repository created from here on runs CI on pull requests, wherever the lan
 
 Repositories predating this standard are exempt. Do not add CI to an existing repository as part of a standardization pass — only when it is being worked on for another reason.
 
-CI matters more once versions are pinned exactly: a pin that has gone stale fails in CI rather than on a machine months later.
+CI matters more once versions are locked: a lock that has gone stale fails in CI rather than on a machine months later.
 
 ## Secrets
 

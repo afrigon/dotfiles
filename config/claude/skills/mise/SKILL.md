@@ -6,10 +6,7 @@ description: "Reference for mise: pinning tools in mise.toml, defining and runni
 # mise
 
 mise does three jobs from one `mise.toml`: pin tool versions per project,
-run tasks, and set environment variables scoped to a directory. Policy for
-personal repositories — when a repo needs a `mise.toml`, what gets pinned
-exactly, which tasks must exist — lives in the `repo-standard` skill; this
-skill is the mechanics.
+run tasks, and set environment variables scoped to a directory.
 
 ## Configuration files
 
