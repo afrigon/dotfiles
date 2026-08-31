@@ -107,7 +107,7 @@ Dependencies are never installed globally. Every toolchain that supports project
 
 ## Tasks
 
-Tasks live in `mise.toml`, under `[tasks]`. mise is already required for version pinning, so tasks sit beside the tools that run them and there is no second runner to install.
+Tasks live in `mise.toml`, under `[tasks]`. mise is already required for version pinning, so tasks sit beside the tools that run them and there is no second runner to install. The `mise` skill holds the mechanics — task options, arguments, environment, CI wiring; load it whenever writing a `mise.toml` that goes beyond the shapes shown here.
 
 A repository that builds defines `build` and `run` at minimum. Add `test`, `lint`, and `format` where they exist. Tasks call the language toolchain — mise orchestrates, it does not replace `cargo` or `uv`.
 
