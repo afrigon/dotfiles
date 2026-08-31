@@ -77,13 +77,15 @@ Every code-tier repository has a `mise.toml` pinning its toolchain through a com
 lockfile = true
 
 [tools]
-node = "24"
+rust = "1"
 "github:{owner}/{tool}" = "latest"
 ```
 
 Specs stay loose. External tools name the major version, so an upgrade never silently crosses one; tools owned by the same account track `latest`, because their releases are yours to control. The lock records the exact resolved version, download URL, and checksum per platform — that is what makes two machines resolve identically, so `mise.lock` is committed, never ignored. Upgrading is deliberate: `mise lock --bump` re-resolves the specs, and the change lands as a commit.
 
 The `lockfile` setting lives in the repository's `mise.toml`, not in global config — CI reads only the repository's file.
+
+JavaScript and TypeScript repositories pin their toolchain through aube instead: `aube runtime set node <version>` writes `devEngines.runtime` into `package.json` and records the exact node release in `aube-lock.yaml`, and `"packageManager": "aube@<version>"` pins aube itself. Such a repository carries a `mise.toml` only when it needs tools beyond node and aube, environment variables, or chore tasks.
 
 ## Toolchain
 
@@ -140,7 +142,9 @@ env = { API_TOKEN = "{{ exec(command='op read op://Personal/…/api-token') }}" 
 run = "./serve --verbose"
 ```
 
-An application built through Xcode is the exception to the `build` and `run` minimum: Xcode owns building and running it. Such a repository still defines tasks for everything around that — lint, format, test, code generation — so they are invoked the same way as in every other repository.
+JavaScript and TypeScript repositories are an exception to the `build` and `run` minimum: `package.json` scripts are the task surface there, run through `aubr`, so the ecosystem's tooling — editors, aube's install-freshness check, script completions — keeps working. mise tasks in such a repository cover only chores that are not package scripts.
+
+An application built through Xcode is another exception to the `build` and `run` minimum: Xcode owns building and running it. Such a repository still defines tasks for everything around that — lint, format, test, code generation — so they are invoked the same way as in every other repository.
 
 C and C++ repositories keep a Makefile, because make genuinely drives compilation there: object files, link steps, header dependencies. Their tasks call `make`.
 
@@ -156,7 +160,7 @@ A library, a CLI, a static site, or anything that runs only on a developer's mac
 
 ## Continuous integration
 
-Every repository created from here on runs CI on pull requests, wherever the language supports it: build, then test and lint if they exist. The workflow calls the same mise tasks a person would, so CI and local runs cannot drift.
+Every repository created from here on runs CI on pull requests, wherever the language supports it: build, then test and lint if they exist. The workflow calls the same mise tasks a person would, so CI and local runs cannot drift. In JavaScript and TypeScript repositories the workflow installs aube through `jdx/aube-action` and calls `aube ci` and the same package scripts a person runs through `aubr` — same rule, with aube as the runner.
 
 Repositories predating this standard are exempt. Do not add CI to an existing repository as part of a standardization pass — only when it is being worked on for another reason.
 
