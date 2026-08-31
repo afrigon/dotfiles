@@ -64,9 +64,9 @@ Data-tier repositories get no license. Neither do forks — a fork keeps its ups
 
 ## Gitignore
 
-Required. Always ignore `.DS_Store`, `.claude`, and `.env` files — keeping `.env.example` and `.env.op`, which hold shape and references, never values. Add the artifacts of every language present, not just the primary one. A repository with a `mise.toml` also ignores `mise.local.toml`.
+Required. Always ignore `.DS_Store`, `.claude`, and `.env` files — keeping `.env.example`, which holds shape, never values. Add the artifacts of every language present, not just the primary one. A repository with a `mise.toml` also ignores `mise.local.toml`; one with a `fnox.toml` also ignores `fnox.local.toml`.
 
-`templates/gitignore/` holds a base, one file per language, and a `mise` file. Concatenate the base with each language that applies, plus `mise` wherever a `mise.toml` exists. Verify the entries match reality: a pattern without a leading dot, like `DS_Store`, silently matches nothing.
+`templates/gitignore/` holds a base, one file per language, and `mise` and `fnox` files. Concatenate the base with each language that applies, plus `mise` and `fnox` wherever the corresponding config file exists. Verify the entries match reality: a pattern without a leading dot, like `DS_Store`, silently matches nothing.
 
 ## Version pinning
 
@@ -134,12 +134,11 @@ run = 'deploy --target "$usage_environment"'
 
 A task that outgrows a `run` string becomes an executable script in `.mise/tasks/`, where it is an ordinary shell script rather than a string inside TOML.
 
-Secrets reach a task through its own `env`, never inline in the command:
+Secrets reach a task through `fnox exec`, never inline in the command; the repository's `fnox.toml` declares which secrets exist and where they come from, and the wrapper makes the task work in CI and in shells without fnox integration:
 
 ```toml
 [tasks.serve]
-env = { API_TOKEN = "{{ exec(command='op read op://Personal/…/api-token') }}" }
-run = "./serve --verbose"
+run = "fnox exec -- ./serve --verbose"
 ```
 
 JavaScript and TypeScript repositories are an exception to the `build` and `run` minimum: `package.json` scripts are the task surface there, run through `aubr`, so the ecosystem's tooling — editors, aube's install-freshness check, script completions — keeps working. mise tasks in such a repository cover only chores that are not package scripts.
@@ -168,13 +167,18 @@ CI matters more once versions are locked: a lock that has gone stale fails in CI
 
 ## Secrets
 
-No secret in the tree, in any tier, public or private. Reference secrets through 1Password and commit the reference, not the value:
+No secret in the tree, in any tier, public or private. Secrets live in 1Password; the committed `fnox.toml` holds references and resolves them at use time:
 
-```
-DATABASE_PASSWORD="op://Infrastructure/Postgres/password"
+```toml
+[providers.op]
+type = "1password"
+vault = "Infrastructure"
+
+[secrets]
+DATABASE_PASSWORD = { provider = "op", value = "Postgres/password" }
 ```
 
-Wherever a `.env.example` documents the shape, a `.env.op` sits beside it holding the same keys as `op://` references. The example shows what is needed; the `.env.op` resolves it.
+`fnox.toml` is the manifest of what the repository needs, so no separate shape file documents the secrets. The per-machine encrypted cache `fnox.local.toml` is git-ignored. CI resolves the same references through a 1Password service account token in `OP_SERVICE_ACCOUNT_TOKEN`.
 
 A secret that reached a commit is compromised — rotate it. Deleting the file does not help, because the history keeps it.
 
