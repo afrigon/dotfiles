@@ -16,7 +16,8 @@ skill is the mechanics.
 `mise.toml` at the project root is the canonical file. Two variants sit
 beside it:
 
-- `mise.local.toml` — personal overrides, git-ignored. Highest precedence.
+- `mise.local.toml` — personal overrides; belongs in `.gitignore`. Highest
+  precedence.
 - `mise.{env}.toml` — loaded only when `MISE_ENV={env}` is set, e.g.
   `mise.production.toml`.
 

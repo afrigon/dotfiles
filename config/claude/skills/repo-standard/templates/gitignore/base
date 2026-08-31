@@ -4,4 +4,3 @@
 .env.*
 !.env.example
 !.env.op
-mise.local.toml
