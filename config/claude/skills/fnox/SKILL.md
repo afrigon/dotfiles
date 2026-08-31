@@ -22,12 +22,16 @@ into the project and removes them on the way out.
 
 ## Machine setup (once)
 
-fnox, age, and the 1Password CLI install globally through mise. Each
+fnox and age install globally through mise. The 1Password CLI does not:
+the desktop app only delegates authentication to a binary carrying the
+trust setup its system packages install — on Linux a root-owned setgid
+`onepassword-cli` group — so `op` comes from the system package manager
+(paru on Arch, Homebrew on macOS), never from a per-user install. Each
 machine gets its own age key, generated straight into the OS keychain
 (macOS Keychain, Linux Secret Service) so it never exists as a file:
 
 ```sh
-mise use -g fnox age 1password-cli
+mise use -g fnox age
 fnox provider add keychain keychain --global
 age-keygen | fnox set AGE_KEY --provider keychain --key-name age-key --global
 fnox remove AGE_KEY --global
