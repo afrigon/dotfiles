@@ -147,6 +147,17 @@ tool cannot be pinned for (`docker`, `open`, `systemctl`). A tool needed
 by exactly one task can ride on that task's `tools` key instead of the
 top-level table.
 
+### Naming
+
+A task name is read as `mise run <name>`, so it should not repeat the verb.
+`mise run run`, `mise run task`, `mise run mise` all stutter. Name the task
+after what it produces or the thing it starts — `dev`, `serve`, `watch`,
+`migrate`, `release` — and reserve `build`, `test`, `lint` and `format` for
+their obvious meanings.
+
+The exception is a task invoked by tooling that expects a fixed name; say so
+in its `description` when that is why it is called what it is.
+
 ### run
 
 A string, or an array of strings executed sequentially — a failing entry
