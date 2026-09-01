@@ -90,6 +90,8 @@ The `lockfile` setting lives in the repository's `mise.toml`, not in global conf
 
 A repository with nothing to pin and no tasks to run gets no `mise.toml`. A file holding only `lockfile = true`, with an empty lock beside it, is noise.
 
+Where a package manager owns its own runtime, it does the pinning and mise pins only the package manager. Two places naming a runtime version is one too many, and the package manager wins — `uv` downloads and uses the interpreter from `.python-version` whatever mise put on `PATH`, so a `python` entry in `[tools]` is not a second opinion, it is a dead one. A Python repository pins `uv` in `[tools]` and the interpreter in `.python-version`, never both.
+
 JavaScript and TypeScript repositories pin their toolchain through aube instead: `aube runtime set node <version>` writes `devEngines.runtime` into `package.json` and records the exact node release in `aube-lock.yaml`, and `"packageManager": "aube@<version>"` pins aube itself. Such a repository carries a `mise.toml` only when it needs tools beyond node and aube, environment variables, or chore tasks.
 
 ## Toolchain
