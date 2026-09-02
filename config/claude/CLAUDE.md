@@ -52,7 +52,8 @@ if I didn't get to weigh in, it's wrong.
 - Pull requests: assign me (`--assignee @me`). Keep the body short
   enough that it actually gets read — bullet points where they help,
   detail only where there is real complexity. When the PR addresses an
-  issue, include `Closes #<number>` so merging closes it.
+  issue, include `Closes #<number>` so merging closes it. Always give me
+  the full PR link after opening one.
 
 ## Code comments
 
