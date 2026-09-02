@@ -77,12 +77,12 @@ A code-tier repository with a toolchain to pin has a `mise.toml`, pinning it thr
 lockfile = true
 
 [tools]
-rust = "1"
+rust = "1.90"
 swiftlint = "0.65"
 "github:{owner}/{tool}" = "latest"
 ```
 
-Specs stay loose, pinned to the position that carries breaking changes so an upgrade never silently crosses one. Under semver that is the major for a release at 1.0 or above (`rust = "1"`), and the minor while a project is still at 0.x, where the minor is where breaking changes land (`swiftlint = "0.65"`). Pinning `"0"` names every version the project has ever published and pins nothing. Tools owned by the same account track `latest`, because their releases are yours to control.
+Specs pin the minor: `rust = "1.90"`, `swiftlint = "0.65"`. Patch releases flow through `mise upgrade` and `mise lock --bump`; moving to a new minor or major is a manifest edit that lands as its own commit. A major-only pin like `rust = "1"` looks safe but lets a lock bump silently cross minor releases, which change behavior even when they break nothing. Tools owned by the same account track `latest`, because their releases are yours to control.
 
 A channel is not a version. `rust = "nightly"` resolves to whatever shipped that morning, so the lock records a build that is stale by the next one; pin a version, or accept that the repository is deliberately unpinned and say so. The lock records the exact resolved version, download URL, and checksum per platform — that is what makes two machines resolve identically, so `mise.lock` is committed, never ignored. Upgrading is deliberate: `mise lock --bump` re-resolves the specs, and the change lands as a commit.
 
