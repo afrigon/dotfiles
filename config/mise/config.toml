@@ -1,6 +1,5 @@
 [tools]
 age = "latest"
-"aqua:rust-lang/rustup" = "latest"
 aube = "latest"
 bat = "latest"
 claude = "latest"
