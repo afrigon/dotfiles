@@ -19,3 +19,6 @@ age.txt
 
 # mise
 mise.local.toml
+
+# machine-local stow ignores
+.stow-local-ignore
