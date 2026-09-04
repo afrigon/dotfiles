@@ -45,6 +45,11 @@ if I didn't get to weigh in, it's wrong.
 - On a branch, commit often — at natural checkpoints, and always before
   a large or risky change — so any point in the implementation is easy
   to return to.
+- **Never `--amend` or rewrite a commit that has already been pushed.**
+  New work is a new commit and a plain `git push`, so every checkpoint
+  stays reachable. Force-pushing is acceptable only to restack a branch
+  onto a moved base, or to purge a sensitive file — and say so before
+  doing it. Never force-push to tidy history.
 - Commit messages stay short: a subject line, with a few bullets when
   the commit spans multiple topics. Never an essay.
 - An implementation task ends with a pull request. Don't open one for
