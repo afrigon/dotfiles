@@ -99,13 +99,15 @@ if I didn't get to weigh in, it's wrong.
   isn't; if the information isn't critical, drop it rather than let it
   rot.
 
-## Nothing AI-flavored in projects
+## AI references and attribution
 
-- Never reference Claude, AI assistance, or CLAUDE.md in project files —
-  code, comments, docs, commit messages. Conventions live *in* CLAUDE.md
-  files, but nothing in the project may point *at* them; if a comment
-  needs context that lives there, inline the minimal fact or drop the
-  comment.
+- Never reference Claude, AI assistance, or CLAUDE.md in anything you
+  write into a project — code, comments, docs, commit messages, PR
+  bodies. Conventions live *in* CLAUDE.md files, but nothing in the
+  project may point *at* them; if a comment needs context that lives
+  there, inline the minimal fact or drop the comment.
+- Commit and PR attribution is out of scope for this rule: the
+  `attribution` setting in each machine's settings.json controls it.
 
 ## Writing skills
 
