@@ -102,10 +102,13 @@ if I didn't get to weigh in, it's wrong.
 ## Nothing AI-flavored in projects
 
 - Never reference Claude, AI assistance, or CLAUDE.md in project files —
-  code, comments, docs, commit messages. Conventions live *in* CLAUDE.md
-  files, but nothing in the project may point *at* them; if a comment
-  needs context that lives there, inline the minimal fact or drop the
-  comment.
+  code, comments, docs, and the prose of commit messages and PR bodies.
+  Conventions live *in* CLAUDE.md files, but nothing in the project may
+  point *at* them; if a comment needs context that lives there, inline
+  the minimal fact or drop the comment.
+- The attribution trailer on commits and PRs is not prose: it is governed
+  by the `attribution` setting in each machine's settings.json. Include
+  it when the harness instructs to, and never add or strip it by hand.
 
 ## Writing skills
 
