@@ -103,6 +103,8 @@ local function on_load()
     local ok, state = pcall(waywall.state)
     if ok then
         on_state(state)
+    else
+        apply_remaps(options.remaps)
     end
 
 end
