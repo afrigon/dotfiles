@@ -103,6 +103,8 @@ local function on_load()
     local ok, state = pcall(waywall.state)
     if ok then
         on_state(state)
+    else
+        apply_remaps(options.remaps)
     end
 
 end
@@ -191,8 +193,8 @@ for name, mode in pairs(options.modes) do
             return false
         end
 
-        local state = waywall.state()
-        if state.screen ~= "inworld" or state.inworld == "menu" then
+        local ok, state = pcall(waywall.state)
+        if ok and (state.screen ~= "inworld" or state.inworld == "menu") then
             return false
         end
 
