@@ -23,7 +23,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "claude-fable-5[1m]",
+  "model": "fable[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.config/claude/statusline.sh",
@@ -31,9 +31,22 @@
     "hideVimModeIndicator": true
   },
   "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": true,
+    "poka-swe@poka-claude-marketplace": true,
+    "code-review@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
-    "poka-swe@poka-claude-marketplace": true
+    "skill-creator@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    }
   },
   "feedbackSurveyRate": 0,
   "spinnerTipsEnabled": false,

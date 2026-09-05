@@ -8,7 +8,7 @@ fnox = "latest"
 fzf = "latest"
 gh = "latest"
 "github:afrigon/clock" = "latest"
-"github:afrigon/mc" = "latest"
+"github:afrigon/mc" = { version = "latest", minimum_release_age = "0" }
 "github:afrigon/snorm" = "latest"
 herdr = "latest"
 jq = "latest"
