@@ -172,6 +172,24 @@ Docker is not pinned through mise — the daemon comes with the system package. 
 
 Every repository created from here on runs CI on pull requests, wherever the language supports it: build, then test and lint if they exist. The workflow calls the same mise tasks a person would, so CI and local runs cannot drift. In JavaScript and TypeScript repositories the workflow installs aube through `jdx/aube-action` and calls `aube ci` and the same package scripts a person runs through `aubr` — same rule, with aube as the runner.
 
+The workflow file is `.github/workflows/pull_request.yml`, its `name` is `pull_request`, and the job that runs the tests is `test`. The job id is the status check context the branch ruleset requires, so the same name in every repository means the same ruleset works everywhere:
+
+```yaml
+name: pull_request
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
+      - run: mise run test
+```
+
+A repository with this workflow also requires a pull request and a passing `test` check before anything reaches the default branch — see Repository settings.
+
 Repositories predating this standard are exempt. Do not add CI to an existing repository as part of a standardization pass — only when it is being worked on for another reason.
 
 CI matters more once versions are locked: a lock that has gone stale fails in CI rather than on a machine months later.
@@ -235,6 +253,45 @@ gh api -X POST repos/{owner}/{repo}/rulesets --input - <<'EOF'
   "enforcement": "active",
   "conditions": { "ref_name": { "include": ["~DEFAULT_BRANCH"], "exclude": [] } },
   "rules": [{ "type": "deletion" }, { "type": "non_fast_forward" }]
+}
+EOF
+```
+
+A repository with a `pull_request` workflow extends the same ruleset with two more rules: every change reaches the default branch through a pull request, and the `test` check must pass on a branch that is up to date with the base. Reviews are not required — a personal repository has no second reviewer — but every review thread must be resolved. The owner is a bypass actor in `pull_request` mode, so a pull request can still be merged when the check is broken for reasons outside the change, while a direct push never can. The integration id `15368` is GitHub Actions, so only a workflow run satisfies the check. Update the ruleset in place:
+
+```sh
+ruleset=$(gh api repos/{owner}/{repo}/rulesets --jq '.[] | select(.name == "protect-default-branch") | .id')
+owner_id=$(gh api user --jq .id)
+gh api -X PUT repos/{owner}/{repo}/rulesets/$ruleset --input - <<EOF
+{
+  "name": "protect-default-branch",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": { "ref_name": { "include": ["~DEFAULT_BRANCH"], "exclude": [] } },
+  "bypass_actors": [{ "actor_id": $owner_id, "actor_type": "User", "bypass_mode": "pull_request" }],
+  "rules": [
+    { "type": "deletion" },
+    { "type": "non_fast_forward" },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 0,
+        "dismiss_stale_reviews_on_push": true,
+        "require_code_owner_review": false,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": true,
+        "allowed_merge_methods": ["merge", "squash", "rebase"]
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [{ "context": "test", "integration_id": 15368 }]
+      }
+    }
+  ]
 }
 EOF
 ```
