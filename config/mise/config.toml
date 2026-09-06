@@ -11,6 +11,7 @@ gh = "latest"
 "github:afrigon/mc" = { version = "latest", minimum_release_age = "0" }
 "github:afrigon/snorm" = "latest"
 herdr = "latest"
+java = "latest"
 jq = "latest"
 just = "latest"
 python = "3.14"
