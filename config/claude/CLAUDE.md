@@ -53,7 +53,10 @@ if I didn't get to weigh in, it's wrong.
 - Commit messages stay short: a subject line, with a few bullets when
   the commit spans multiple topics. Never an essay.
 - An implementation task ends with a pull request. Don't open one for
-  research, prototyping, or exploration.
+  research, prototyping, or exploration. **Never open a pull request on a
+  repository I do not own or that is not in one of my organizations**
+  without my explicit written consent in the conversation. No exceptions,
+  even when the task seems to call for one.
 - Pull requests: assign me (`--assignee @me`). Keep the body short
   enough that it actually gets read — bullet points where they help,
   detail only where there is real complexity. When the PR addresses an
