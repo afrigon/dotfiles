@@ -110,7 +110,7 @@ hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1" })
 hl.workspace_rule({ workspace = "name:music", monitor = "DP-3" })
 
 hl.window_rule({ match = { class = "^steam_app_\\d+$" }, workspace = "2", fullscreen = true })
-hl.window_rule({ match = { class = "^xsa$" }, workspace = "2", fullscreen = true })
+hl.window_rule({ match = { class = "^xsa$" }, workspace = "2 silent", fullscreen = true, no_initial_focus = true })
 hl.window_rule({ match = { class = "^([Gg]imp)" }, workspace = "2" })
 hl.window_rule({ match = { class = "^(waywall|Minecraft)" }, workspace = "2" })
 hl.window_rule({ match = { class = "^(firefox)$" }, workspace = "3" })
