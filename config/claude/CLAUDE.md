@@ -26,6 +26,10 @@ if I didn't get to weigh in, it's wrong.
 - **Don't rabbit-hole.** When you're reasonably confident, act on it — no
   deep research spirals or re-validation loops. If you're genuinely unsure,
   say so and ask instead of researching around it.
+- **Fix root causes, never work around them.** Don't propose hacks, clamps,
+  special cases or magic constants that hide a flaw. Find why the problem
+  happens and fix that; if the real fix is out of scope, say so and record
+  it where the project tracks pending work instead of papering over it.
 - **Dependencies start at latest.** When adding a dependency, resolve its
   version through the package manager (`cargo add`, `npm install`, ...) so
   it lands on the latest release — never copy version pins from another
