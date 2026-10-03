@@ -8,7 +8,9 @@ paths:
 - Module layout: a directory module is `name.rs` next to `name/`, never
   `name/mod.rs`. `name.rs` declares the submodules — one type per file —
   and re-exports their types with `pub use`, so callers write
-  `command::TimeRate`, not `command::time_rate::TimeRate`.
+  `command::TimeRate`, not `command::time_rate::TimeRate`. The type a
+  module is named after lives in `name.rs` itself (`simulation.rs` holds
+  `Simulation`), never in `name/name.rs` (clippy's `module_inception`).
 - Unit tests live at the bottom of the file they test, in
   `#[cfg(test)] mod tests`; tests of a crate's public behavior live in its
   `tests/` directory.
