@@ -86,6 +86,8 @@ if I didn't get to weigh in, it's wrong.
 - Output is not logging: what the user asked to see (command results, a
   server's address and fingerprint) prints directly; diagnostics go through
   the logging system.
+- KDL documents follow the latest KDL specification, and parsers accept only
+  that version, with no fallback to older ones.
 
 ## Code comments
 
