@@ -63,6 +63,30 @@ if I didn't get to weigh in, it's wrong.
   issue, include `Closes #<number>` so merging closes it. Always give me
   the full PR link after opening one.
 
+## Code structure
+
+- Follow the language's conventions, idioms and best practices. When a rule
+  below conflicts with a strong language convention, say so instead of
+  silently picking one.
+- One type per file. A module is a directory grouping one concept
+  (commands, events, messages, render passes); each file in it defines one
+  public type and its impls, and the module re-exports them. A private
+  helper type used only by that type may share its file.
+- Code grows by adding files, not by growing central ones: a new command,
+  message or event is a new file in its module. Only a single dispatch
+  point (an enum listing the variants, a registry) is shared.
+- Methods over free functions. A free function is for a pure, stateless
+  helper with no natural owner (math, unit conversion).
+- A blank line before and after every `if`, `match`, loop or block
+  statement, unless it is the first or last statement of its block.
+- Fix root causes, never work around them. No hacks, clamps, special cases
+  or magic constants that hide a flaw; if the real fix is out of scope, say
+  so and record it where the project tracks deferred work.
+- Constants over magic numbers, including binary format offsets and flags.
+- Output is not logging: what the user asked to see (command results, a
+  server's address and fingerprint) prints directly; diagnostics go through
+  the logging system.
+
 ## Code comments
 
 - Default to zero comments. The code itself must be clean and
@@ -80,10 +104,10 @@ if I didn't get to weigh in, it's wrong.
 
 - Full words, never abbreviations: `description` not `desc`, `protocol`
   not `proto`. Single-letter names are fine in tight local scope (loop
-  indices, short lambdas).
-- Follow the language's naming standard (snake_case vs. camelCase etc.);
-  when a language has no standard, prefer camelCase. Established idioms of
-  a language count as its standard (`err` in Go, `ctx` for a context).
+  indices, short lambdas); a language's established idioms are fine too
+  (`err` in Go, `ctx` for a context).
+- When a language has no naming standard, prefer camelCase for names and
+  PascalCase for types.
 
 ## Domain terminology
 
