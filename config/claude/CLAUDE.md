@@ -82,8 +82,7 @@ if I didn't get to weigh in, it's wrong.
 - Fix root causes, never work around them. No hacks, clamps, special cases
   or magic constants that hide a flaw; if the real fix is out of scope, say
   so and record it where the project tracks deferred work.
-- Placeholder code standing in for an unbuilt feature (a step, clamp or
-  fallback that hides a missing system) must be tracked where the project
+- Placeholder code standing in for an unbuilt feature must be tracked where the project
   records deferred work. When you come across one that isn't, point it out
   and propose an entry.
 - Constants over magic numbers, including binary format offsets and flags.
