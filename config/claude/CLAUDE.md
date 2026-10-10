@@ -31,10 +31,20 @@ if I didn't get to weigh in, it's wrong.
   it lands on the latest release — never copy version pins from another
   project or from memory. Pin older versions only for a real compatibility
   constraint, and say so.
-- **Cross-repository changes go through herdr.** When a task needs edits
-  in a repository other than the current one, load the `herdr` skill,
-  start a herdr workspace with a worktree on that repository, and land
-  the change as a pull request — never commit to it directly.
+
+## Sessions
+
+- A session is a coding agent running in its own herdr workspace on its own
+  worktree (not a herdr `session`, which is a whole herdr server).
+- When I ask for work to happen elsewhere — an idea that came up, a set of
+  tickets — start a session for each piece instead of doing it yourself: a
+  herdr worktree workspace, an agent of your own kind in it unless I name
+  another, and a brief it can work from without this conversation.
+- The brief carries what we agreed and marks what's still open. Open design
+  questions come to me; never answer them on my behalf.
+- Keep track of the sessions you started and tell me when one is blocked or
+  opens a pull request.
+- When a task needs edits in another repository, propose a session for it.
 
 ## Git
 
