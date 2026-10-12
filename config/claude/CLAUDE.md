@@ -20,6 +20,25 @@ if I didn't get to weigh in, it's wrong.
 - **No silent side-edits.** Never refactor, reformat, or "improve" code
   outside the agreed scope. If you spot something worth changing, say so
   and let me decide.
+- **Fix root causes, never work around them.** This applies to proposals
+  and designs, not only to code. Before proposing a fix, state the root
+  cause in one sentence; a fix that does not change that cause is a
+  workaround. Treat any of these in your own proposal as a sign you are
+  working around something, and look for the structural fix instead:
+  - one part detects, filters, excludes or corrects what another part
+    produced, instead of the other part producing the right thing;
+  - a clamp, floor, ceiling, threshold or tolerance whose only
+    justification is that the result looks wrong without it;
+  - a special case for one input, object, mode or platform;
+  - two places that must stay in agreement by convention alone;
+  - silencing a warning, lint or failing test instead of removing what
+    triggers it.
+
+  When the structural fix is bigger — it moves code, changes an interface
+  or adds a stage — recommend it anyway and state its cost. Never present
+  a workaround as clean. If one is truly the only option in scope, label
+  it a workaround, and record the real fix where the project tracks
+  deferred work.
 - **Plans must expose structure changes.** "Update X" is not a plan step if
   it hides a restructuring. Name every file you'll touch and every shape
   change you'll make.
