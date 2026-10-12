@@ -14,8 +14,11 @@ paths:
 - Unit tests live at the bottom of the file they test, in
   `#[cfg(test)] mod tests`; tests of a crate's public behavior live in its
   `tests/` directory.
-- Domain values get named types with a named field — times, ids, quantities
-  (`BodyIndex { value: usize }`, `SimulationTime { seconds: f64 }`). `usize`
+- Newtypes where a mixup would compile but be wrong: ids, handles and
+  indices into a specific collection, and quantities whose unit isn't
+  obvious from context (`BodyIndex { value: usize }`,
+  `MaterialHandle { index: usize }`, `SimulationTime { seconds: f64 }`).
+  Other numbers stay primitives behind a descriptive field name. `usize`
   is only for indexing, lengths and in-memory sizes.
 - No tuples in our own data shapes: named structs, not tuple structs or
   multi-field tuple variants. An enum variant wrapping exactly one struct
