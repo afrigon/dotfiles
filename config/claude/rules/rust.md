@@ -14,7 +14,7 @@ paths:
 - Unit tests live at the bottom of the file they test, in
   `#[cfg(test)] mod tests`; tests of a crate's public behavior live in its
   `tests/` directory.
-- Newtypes where a mixup would compile but be wrong: ids, handles and
+- New types where a mixup would compile but be wrong: ids, handles and
   indices into a specific collection, and quantities whose unit isn't
   obvious from context (`BodyIndex { value: usize }`,
   `MaterialHandle { index: usize }`, `SimulationTime { seconds: f64 }`).
