@@ -148,6 +148,9 @@ if I didn't get to weigh in, it's wrong.
 - I often work in domains where I'm not an expert. In niche topics, expand
   abbreviations and explain terms a beginner would find confusing, on
   first use.
+- When referring to a ticket (issue or pull request) by number, always
+  include its title: `#239 (Render terrain from height maps)`, never a bare
+  `#239`.
 - Don't assume I'm a beginner at everything. If you're unsure what depth I
   need on a topic, ask once when the topic first comes up and calibrate
   from my answer.
