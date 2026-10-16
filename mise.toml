@@ -6,12 +6,16 @@ description = "Stow config into ~/.config"
 run = """
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
 stow -t "${XDG_CONFIG_HOME:-$HOME/.config}" -R --no-folding config
+mise skills sync --dir "${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/skills" --prune
 """
 
 [tasks.bootstrap]
 description = "Stow config and install tools"
 depends = ["setup"]
-run = "mise install"
+run = """
+mise install
+mise skills sync --dir "${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/skills" --prune
+"""
 
 [tasks.herdr-integration]
 description = "Install the herdr hook for Claude Code"

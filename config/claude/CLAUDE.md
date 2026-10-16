@@ -17,9 +17,31 @@ if I didn't get to weigh in, it's wrong.
   shape, picking between viable approaches — stop and present the options
   with trade-offs and your recommendation, then let me choose before
   writing any code. When in doubt whether something counts: it does.
+  When a change introduces a field, flag or parameter, name the domain
+  concept it represents in the proposal; a new concept is a design
+  decision.
 - **No silent side-edits.** Never refactor, reformat, or "improve" code
   outside the agreed scope. If you spot something worth changing, say so
   and let me decide.
+- **Fix root causes, never work around them.** This applies to proposals
+  and designs, not only to code. Before proposing a fix, state the root
+  cause in one sentence; a fix that does not change that cause is a
+  workaround. Treat any of these in your own proposal as a sign you are
+  working around something, and look for the structural fix instead:
+  - one part detects, filters, excludes or corrects what another part
+    produced, instead of the other part producing the right thing;
+  - a clamp, floor, ceiling, threshold or tolerance whose only
+    justification is that the result looks wrong without it;
+  - a special case for one input, object, mode or platform;
+  - two places that must stay in agreement by convention alone;
+  - silencing a warning, lint or failing test instead of removing what
+    triggers it.
+
+  When the structural fix is bigger — it moves code, changes an interface
+  or adds a stage — recommend it anyway and state its cost. Never present
+  a workaround as clean. If one is truly the only option in scope, label
+  it a workaround, and record the real fix where the project tracks
+  deferred work.
 - **Plans must expose structure changes.** "Update X" is not a plan step if
   it hides a restructuring. Name every file you'll touch and every shape
   change you'll make.
@@ -35,10 +57,20 @@ if I didn't get to weigh in, it's wrong.
   it lands on the latest release — never copy version pins from another
   project or from memory. Pin older versions only for a real compatibility
   constraint, and say so.
-- **Cross-repository changes go through herdr.** When a task needs edits
-  in a repository other than the current one, load the `herdr` skill,
-  start a herdr workspace with a worktree on that repository, and land
-  the change as a pull request — never commit to it directly.
+
+## Sessions
+
+- A session is a coding agent running in its own herdr workspace on its own
+  worktree (not a herdr `session`, which is a whole herdr server).
+- When I ask for work to happen elsewhere — an idea that came up, a set of
+  tickets — start a session for each piece instead of doing it yourself: a
+  herdr worktree workspace, an agent of your own kind in it unless I name
+  another, and a brief it can work from without this conversation.
+- The brief carries what we agreed and marks what's still open. Open design
+  questions come to me; never answer them on my behalf.
+- Keep track of the sessions you started and tell me when one is blocked or
+  opens a pull request.
+- When a task needs edits in another repository, propose a session for it.
 
 ## Git
 
@@ -67,6 +99,49 @@ if I didn't get to weigh in, it's wrong.
   issue, include `Closes #<number>` so merging closes it. Always give me
   the full PR link after opening one.
 
+## Code structure
+
+- Follow the language's conventions, idioms and best practices. When a rule
+  below conflicts with a strong language convention, say so instead of
+  silently picking one.
+- One type per file. A module is a directory grouping one concept
+  (commands, events, messages, render passes); each file in it defines one
+  public type and its impls, and the module re-exports them. A private
+  helper type used only by that type may share its file.
+- Code grows by adding files, not by growing central ones: a new command,
+  message or event is a new file in its module. Only a single dispatch
+  point (an enum listing the variants, a registry) is shared.
+- Methods over free functions. A free function is for a pure, stateless
+  helper with no natural owner (math, unit conversion).
+- A blank line before and after every `if`, `match`, loop or block
+  statement, unless it is the first or last statement of its block.
+- Fix root causes, never work around them. No hacks, clamps, special cases
+  or magic constants that hide a flaw; if the real fix is out of scope, say
+  so and record it where the project tracks deferred work.
+- Model the concept, not the instance. When a request mentions one case
+  ("when running locally", "for admins", "on macOS"), name the dimension it
+  varies along (environment, role, platform) and model that dimension,
+  usually as an enum, not a boolean or flag for the one case. Smells:
+  - a boolean named after one value of a broader category (`is_local`,
+    `is_admin`, `is_mac`);
+  - two or more booleans that can't all be true together;
+  - behaviour that branches on whether an unrelated value is set (no
+    certificate means local, no user means system call), using one
+    field's presence as a stand-in for a mode;
+  - a parameter added to one function so it behaves differently for one
+    caller.
+  Implement only the cases the task needs; the shape still has to fit
+  the cases it will need.
+- Placeholder code standing in for an unbuilt feature must be tracked where the project
+  records deferred work. When you come across one that isn't, point it out
+  and propose an entry.
+- Constants over magic numbers, including binary format offsets and flags.
+- Output is not logging: what the user asked to see (command results, a
+  server's address and fingerprint) prints directly; diagnostics go through
+  the logging system.
+- KDL documents follow the latest KDL specification, and parsers accept only
+  that version, with no fallback to older ones.
+
 ## Code comments
 
 - Default to zero comments. The code itself must be clean and
@@ -84,16 +159,19 @@ if I didn't get to weigh in, it's wrong.
 
 - Full words, never abbreviations: `description` not `desc`, `protocol`
   not `proto`. Single-letter names are fine in tight local scope (loop
-  indices, short lambdas).
-- Follow the language's naming standard (snake_case vs. camelCase etc.);
-  when a language has no standard, prefer camelCase. Established idioms of
-  a language count as its standard (`err` in Go, `ctx` for a context).
+  indices, short lambdas); a language's established idioms are fine too
+  (`err` in Go, `ctx` for a context).
+- When a language has no naming standard, prefer camelCase for names and
+  PascalCase for types.
 
 ## Domain terminology
 
 - I often work in domains where I'm not an expert. In niche topics, expand
   abbreviations and explain terms a beginner would find confusing, on
   first use.
+- When referring to a ticket (issue or pull request) by number, always
+  include its title: `#239 (Render terrain from height maps)`, never a bare
+  `#239`.
 - Don't assume I'm a beginner at everything. If you're unsure what depth I
   need on a topic, ask once when the topic first comes up and calibrate
   from my answer.

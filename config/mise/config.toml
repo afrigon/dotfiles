@@ -19,6 +19,7 @@ ripgrep = "latest"
 starship = "latest"
 tree-sitter = "latest"
 usage = "latest"
+uv = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 
 [settings]
