@@ -17,6 +17,9 @@ if I didn't get to weigh in, it's wrong.
   shape, picking between viable approaches — stop and present the options
   with trade-offs and your recommendation, then let me choose before
   writing any code. When in doubt whether something counts: it does.
+  When a change introduces a field, flag or parameter, name the domain
+  concept it represents in the proposal; a new concept is a design
+  decision.
 - **No silent side-edits.** Never refactor, reformat, or "improve" code
   outside the agreed scope. If you spot something worth changing, say so
   and let me decide.
@@ -111,6 +114,20 @@ if I didn't get to weigh in, it's wrong.
 - Fix root causes, never work around them. No hacks, clamps, special cases
   or magic constants that hide a flaw; if the real fix is out of scope, say
   so and record it where the project tracks deferred work.
+- Model the concept, not the instance. When a request mentions one case
+  ("when running locally", "for admins", "on macOS"), name the dimension it
+  varies along (environment, role, platform) and model that dimension,
+  usually as an enum, not a boolean or flag for the one case. Smells:
+  - a boolean named after one value of a broader category (`is_local`,
+    `is_admin`, `is_mac`);
+  - two or more booleans that can't all be true together;
+  - behaviour that branches on whether an unrelated value is set (no
+    certificate means local, no user means system call), using one
+    field's presence as a stand-in for a mode;
+  - a parameter added to one function so it behaves differently for one
+    caller.
+  Implement only the cases the task needs; the shape still has to fit
+  the cases it will need.
 - Placeholder code standing in for an unbuilt feature must be tracked where the project
   records deferred work. When you come across one that isn't, point it out
   and propose an entry.
