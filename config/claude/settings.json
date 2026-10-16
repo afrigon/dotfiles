@@ -62,5 +62,6 @@
   "editorMode": "vim",
   "preferredNotifChannel": "notifications_disabled",
   "remoteControlAtStartup": false,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "feedbackDrafts": "off"
 }
