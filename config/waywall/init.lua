@@ -15,6 +15,7 @@ local config = {
         repeat_rate = options.repeat_rate,
         repeat_delay = options.repeat_delay,
         sensitivity = options.sensitivity,
+        raw_sensitivity = options.sensitivity,
         confine_pointer = options.confine_pointer,
     },
     theme = {
@@ -203,10 +204,12 @@ for name, mode in pairs(options.modes) do
         if active_width == mode.width and active_height == mode.height then
             waywall.set_resolution(0, 0)
             waywall.set_sensitivity(0)
+            waywall.set_raw_sensitivity(0)
             set_mirrors_and_overlays(nil)
         else
             waywall.set_resolution(mode.width, mode.height)
             waywall.set_sensitivity(mode.sensitivity or 0)
+            waywall.set_raw_sensitivity(mode.sensitivity or 0)
             set_mirrors_and_overlays(name)
         end
     end
