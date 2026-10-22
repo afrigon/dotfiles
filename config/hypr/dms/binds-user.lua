@@ -15,3 +15,4 @@ hl.bind("SUPER + G", hl.dsp.group.toggle(), { description = "togglegroup" })
 
 hl.unbind("SUPER + SHIFT + S")
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("dms ipc call quickCapture screenshot region edit"), { description = "Region Screenshot" })
+hl.bind("SUPER + ALT + F", hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "toggle" }), { description = "Fake fullscreen" })
