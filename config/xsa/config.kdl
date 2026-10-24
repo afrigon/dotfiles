@@ -1,0 +1,14 @@
+logging {
+    shell {
+        ipc {
+            output {
+                enabled #false
+            }
+        }
+        script {
+            output {
+                enabled #false
+            }
+        }
+    }
+}
