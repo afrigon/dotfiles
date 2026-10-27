@@ -38,6 +38,9 @@ keybind = ctrl+h=goto_split:left
 keybind = ctrl+]=new_split:right
 keybind = ctrl+[=new_split:down
 
+# Remove Conflicting Keybinds
+keybind = ctrl+enter=unbind
+
 # Material 3 UI elements
 unfocused-split-opacity = 0.7
 unfocused-split-fill = #44464f
