@@ -1,8 +1,9 @@
 local waywall = require("waywall")
 local paths = require("paths")
+local window_size = require("window")
 
-local width = 2560
-local height = 1440
+local width = window_size.width
+local height = window_size.height
 
 local thin = { w = math.floor(340 * width / 1920), h = height }
 local tall = { w = 340, h = 16384 }

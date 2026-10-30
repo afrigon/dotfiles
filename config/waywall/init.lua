@@ -1,6 +1,8 @@
+local helpers = require("waywall.helpers")
 local shaders = require("shaders")
 local modes = require("modes")
 local events = require("events")
+local overlay = require("overlay")
 
 local sensitivity = 5.74146011
 
@@ -19,10 +21,13 @@ local config = {
         ninb_opacity = 0.75
     },
     shaders = shaders,
-    actions = {}
+    actions = {
+        ["Ctrl-N"] = helpers.toggle_floating
+    }
 }
 
 events.register()
+overlay.register()
 modes.register(config)
 
 return config
