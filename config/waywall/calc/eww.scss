@@ -1,0 +1,67 @@
+window {
+  background-color: transparent;
+}
+
+.f3line {
+  font-family: "Minecraft Vanilla", "JetBrainsMono Nerd Font", monospace;
+  font-size: 24px;
+  color: #e0e0e0;
+  background-color: rgba(90, 90, 90, 0.4);
+  padding: 3px 3px 0 3px;
+
+  label {
+    font-weight: normal;
+  }
+}
+
+.coord {
+  font-weight: bold;
+}
+
+.coord.pos {
+  color: #9ee89e;
+}
+
+.coord.neg {
+  color: #ff9e9e;
+}
+
+.conf.high {
+  color: #9ee89e;
+}
+
+.conf.mid {
+  color: #d6e89e;
+}
+
+.conf.low {
+  color: #ff9e9e;
+}
+
+.meta {
+  color: #9a9a9a;
+}
+
+.adj {
+  font-weight: bold;
+}
+
+.adj.pos {
+  color: #9ee89e;
+}
+
+.adj.neg {
+  color: #ff9e9e;
+}
+
+.msg {
+  font-weight: bold;
+}
+
+.msg.warning {
+  color: #e8d69e;
+}
+
+.msg.error {
+  color: #ff9e9e;
+}
