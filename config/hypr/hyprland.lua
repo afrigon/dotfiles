@@ -103,22 +103,29 @@ hl.window_rule({
 })
 hl.workspace_rule({ workspace = "1", monitor = "DP-1" })
 hl.workspace_rule({ workspace = "2", monitor = "DP-1" })
+
 hl.workspace_rule({ workspace = "3", monitor = "DP-3" })
+hl.window_rule({ match = { class = "^(firefox)$" }, workspace = "3" })
+
 hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1" })
+
+hl.workspace_rule({ workspace = "name:discord", monitor = "HDMI-A-1" })
+hl.window_rule({ match = { class = "^(discord)$" }, workspace = "5" })
+
+hl.workspace_rule({ workspace = "name:steam", monitor = "HDMI-A-1" })
+hl.window_rule({ match = { class = "^(steam)$" }, workspace = "6" })
+
 hl.workspace_rule({ workspace = "name:music", monitor = "DP-3" })
+hl.window_rule({ match = { class = "^[Ss]potify$" }, workspace = "name:music" })
 
 hl.window_rule({ match = { class = "^steam_app_\\d+$" }, workspace = "2", fullscreen = true })
+hl.window_rule({ match = { class = "^(waywall|Minecraft)" }, workspace = "2", fullscreen = true })
 hl.window_rule({ match = { class = "^xsa$" }, workspace = "4 silent", fullscreen = true })
+
 hl.window_rule({ match = { class = "^([Gg]imp)" }, workspace = "2" })
 hl.window_rule({ match = { class = "^([Bb]lender)$" }, workspace = "2" })
-hl.window_rule({ match = { class = "^(waywall|Minecraft)" }, workspace = "2" })
-hl.window_rule({ match = { class = "^(firefox)$" }, workspace = "3" })
+
 hl.window_rule({ match = { class = "^(com\\.obsproject\\.Studio)$" }, workspace = "4" })
-hl.window_rule({ match = { class = "^(discord)$" }, workspace = "5" })
-hl.window_rule({ match = { class = "^(steam)$" }, workspace = "6" })
-hl.window_rule({ match = { class = "^[Ss]potify$" }, workspace = "name:music" })
 
 hl.layer_rule({ match = { namespace = "^(quickshell)$" }, no_anim = true })
 hl.layer_rule({ match = { namespace = "^dms:.*" }, no_anim = true })
