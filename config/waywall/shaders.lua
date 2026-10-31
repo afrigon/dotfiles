@@ -24,6 +24,7 @@ end
 
 return {
     entity_counter = outline(mirrors.entity_counter.capture),
+    block_coordinates = outline(mirrors.block_coordinates.capture),
     pie_chart = {
         fragment = read_file(paths.shaders .. "/pie_chart.frag")
     },
