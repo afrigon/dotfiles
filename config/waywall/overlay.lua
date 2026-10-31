@@ -56,8 +56,26 @@ local function follow()
     end
 end
 
-local function on_load()
+local function start()
     waywall.exec(paths.ninbot .. " " .. paths.overlay .. " " .. paths.state_output)
+end
+
+-- waywall takes the first window it sees for Minecraft, so Ninjabrain Bot must open after it.
+local function start_after_minecraft()
+    if pcall(waywall.state) then
+        start()
+        return
+    end
+
+    local cancel
+    cancel = waywall.listen("state", function()
+        cancel()
+        start()
+    end)
+end
+
+local function on_load()
+    start_after_minecraft()
     follow()
 end
 
