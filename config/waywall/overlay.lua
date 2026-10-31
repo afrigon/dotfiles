@@ -8,6 +8,7 @@ local PNG_HEIGHT_OFFSET = 20
 
 local image = nil
 local shown = nil
+local visible = true
 
 local function read(path)
     local file = io.open(path, "rb")
@@ -48,12 +49,23 @@ local function follow()
     while true do
         local bytes = read(paths.overlay)
 
-        if bytes and bytes ~= shown then
+        if visible and bytes and bytes ~= shown then
             show(bytes)
         end
 
         waywall.sleep(POLL_INTERVAL_MS)
     end
+end
+
+local function toggle()
+    visible = not visible
+
+    if image then
+        image:close()
+        image = nil
+    end
+
+    shown = nil
 end
 
 local function start()
@@ -84,5 +96,6 @@ local function register()
 end
 
 return {
-    register = register
+    register = register,
+    toggle = toggle
 }

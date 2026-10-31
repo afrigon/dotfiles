@@ -22,7 +22,8 @@ local config = {
     },
     shaders = shaders,
     actions = {
-        ["Ctrl-N"] = helpers.toggle_floating
+        ["Ctrl-N"] = helpers.toggle_floating,
+        ["Ctrl-M"] = overlay.toggle
     }
 }
 
