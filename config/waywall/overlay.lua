@@ -12,6 +12,7 @@ local shown = nil
 local visible = true
 local line_height = 0
 local fullscreen = true
+local playing = false
 
 local function read(path)
     local file = io.open(path, "rb")
@@ -33,7 +34,7 @@ local function big_endian_u32(bytes, offset)
 end
 
 local function place_f3_line()
-    if fullscreen then
+    if fullscreen and playing then
         f3_line.place(window_size.height - line_height)
     else
         f3_line.close()
@@ -117,8 +118,18 @@ local function on_resolution()
     place_f3_line()
 end
 
+local function update_playing()
+    local ok, state = pcall(waywall.state)
+    local now_playing = ok and state.screen == "inworld" and state.inworld == "unpaused"
+
+    if now_playing ~= playing then
+        playing = now_playing
+        place_f3_line()
+    end
+end
+
 local function on_load()
-    place_f3_line()
+    update_playing()
     start_after_minecraft()
     follow()
 end
@@ -126,6 +137,7 @@ end
 local function register()
     waywall.listen("load", on_load)
     waywall.listen("resolution", on_resolution)
+    waywall.listen("state", update_playing)
 end
 
 return {
