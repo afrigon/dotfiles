@@ -1,6 +1,25 @@
 [settings]
 lockfile = true
 
+[vars]
+prism_instances = "{{ get_env(name='XDG_DATA_HOME', default=env.HOME ~ '/.local/share') }}/PrismLauncher/instances"
+
+[tasks.setup-mcsr]
+description = "Stow Minecraft speedrun settings into a Prism instance"
+usage = '''
+flag "--instance <instance>" default="mcsr" help="Prism instance to stow into" {
+  choices "mcsr" "rsg"
+}
+'''
+run = """
+stow -d mcsr -t "{{ vars.prism_instances }}/${usage_instance}/minecraft" -R --no-folding instance
+prefs="$HOME/.java/.userPrefs/ninjabrainbot"
+if [ ! -e "$prefs/prefs.xml" ]; then
+  mkdir -p "$prefs"
+  cp mcsr/ninjabrainbot/prefs.xml "$prefs/prefs.xml"
+fi
+"""
+
 [tasks.setup]
 description = "Stow config into ~/.config"
 run = """

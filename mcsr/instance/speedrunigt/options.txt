@@ -1,0 +1,35 @@
+mcsrranked:world_queue_size_race:2
+mcsrranked:gui_opacity:0.6061345
+mcsrranked:end_sound_volume:0.8
+mcsrranked:gui_background_type:BLUR
+mcsrranked:dragon_sound_vol_flap:0.7541992
+mcsrranked:anger_enderman_vol:0.75883245
+mcsrranked:world_queue_size_match:1
+mcsrranked:show_hud_player_pace:true
+mcsrranked:show_hud_status_icon:true
+mcsrranked:ff_private_cooldown:3
+mcsrranked:transition_type:DEFAULT
+mcsrranked:gui_scale:0.75
+mcsrranked:world_queue_priority_match:2
+mcsrranked:last_crash_report:crash-2026-08-18_01.16.31-client.txt
+mcsrranked:toggle_gui:true
+mcsrranked:bot_queue_casual_level:EASY
+mcsrranked:dragon_sound_vol_sitting:1.0
+mcsrranked:disconnect_sound_volume:0.6
+mcsrranked:product_agreement_v2:Aug 18, 2026 12:50 AM EST
+mcsrranked:ghast_sound_pit:1.0
+mcsrranked:end_portal_filled_vol:1.0
+mcsrranked:leaves_break_vol:0.9070963
+mcsrranked:show_hud_progress:1
+mcsrranked:world_queue_priority_race:2
+mcsrranked:ghast_sound_vol:1.0
+mcsrranked:match_queue_type:BALANCE
+mcsrranked:start_sound_volume:0.3
+mcsrranked:dragon_sound_vol_roar:0.50863713
+mcsrranked:door_sound_vol:0.9070963
+mcsrranked:dragon_sound_vol_death:0.50863713
+mcsrranked:standard_settings_checked_v3:Oct 30, 2026, 11:15 PM EST
+mcsrranked:world_max_save:20
+mcsrranked:world_reset_cooldown:0
+mcsrranked:igt_reset_world_reset:true
+mcsrranked:seed_type_display_casual:true
