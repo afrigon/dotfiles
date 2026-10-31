@@ -1,5 +1,6 @@
 local waywall = require("waywall")
 local paths = require("paths")
+local mirrors = require("mirrors")
 local window_size = require("window")
 
 local width = window_size.width
@@ -11,25 +12,21 @@ local tall = { w = 340, h = 16384 }
 local blockentities_percentage_dst = { x = 1659, y = 811, w = 88, h = 56 }
 local unspecified_percentage_dst = { x = 1659, y = 875, w = 88, h = 56 }
 
--- The capture must match the entity_counter shader; the margin leaves room for its outline.
-local ecounter_capture = { x = 14, y = 38, w = 23, h = 7 }
-local ecounter_margin = 1
-local ecounter_scale = 8
-local ecounter_position = { x = 1530, y = 626 }
-
 local ecounter_mirror = function(depth)
+    local counter = mirrors.entity_counter
+
     return {
         src = {
-            x = ecounter_capture.x - ecounter_margin,
-            y = ecounter_capture.y - ecounter_margin,
-            w = ecounter_capture.w + 2 * ecounter_margin,
-            h = ecounter_capture.h + 2 * ecounter_margin
+            x = counter.capture.x - counter.margin,
+            y = counter.capture.y - counter.margin,
+            w = counter.capture.w + 2 * counter.margin,
+            h = counter.capture.h + 2 * counter.margin
         },
         dst = {
-            x = ecounter_position.x - ecounter_margin * ecounter_scale,
-            y = ecounter_position.y - ecounter_margin * ecounter_scale,
-            w = (ecounter_capture.w + 2 * ecounter_margin) * ecounter_scale,
-            h = (ecounter_capture.h + 2 * ecounter_margin) * ecounter_scale
+            x = counter.position.x - counter.margin * counter.scale,
+            y = counter.position.y - counter.margin * counter.scale,
+            w = (counter.capture.w + 2 * counter.margin) * counter.scale,
+            h = (counter.capture.h + 2 * counter.margin) * counter.scale
         },
         depth = depth,
         shader = "entity_counter",
@@ -51,7 +48,7 @@ local pie_percentage_mirror = function(window, input, output, dst, depth)
         src = { x = window.w - 93, y = window.h - 221, w = 13, h = 9 },
         dst = { x = dst.x - 8, y = dst.y - 8, w = dst.w + 16, h = dst.h + 16 },
         depth = depth,
-        shader = "outline",
+        shader = "pie_percentage",
         color_key = { input = input, output = output },
     }
 end
