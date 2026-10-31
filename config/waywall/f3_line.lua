@@ -8,6 +8,8 @@ local PADDING_RIGHT = 3
 local PADDING_LEFT = 3
 local CONTENT_HEIGHT = 24
 local SEGMENT_GAP = 12
+-- The ninbot line opens with the boat dot in a square, so its coordinates start one slot later.
+local BOAT_SLOT = CONTENT_HEIGHT
 local SEPARATOR_WIDTH = 3
 local SEPARATOR_ADVANCE = 6
 local BACKDROP_DEPTH = 0
@@ -15,7 +17,7 @@ local CONTENT_DEPTH = 1
 local F3_TEXT = "#DDDDDD"
 local SEPARATOR_COLOR = "#E0E0E0"
 
-local sections = { mirrors.block_coordinates, mirrors.entity_count, mirrors.surface_heights }
+local sections = { mirrors.block_coordinates, mirrors.entity_count, mirrors.surface_height }
 
 local opened = {}
 
@@ -54,7 +56,7 @@ local function place(bottom)
 
     local top = bottom - PADDING_TOP - CONTENT_HEIGHT
     local y = top + PADDING_TOP
-    local x = PADDING_LEFT
+    local x = PADDING_LEFT + BOAT_SLOT + SEGMENT_GAP
 
     for index, mirror in ipairs(sections) do
         if index > 1 then
