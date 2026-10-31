@@ -7,53 +7,39 @@ varying vec4 f_dst_rgba;
 uniform sampler2D u_texture;
 uniform vec2 u_src_size;
 
-const float threshold = 0.01;
-// The capture starts at the first digit of the F3 entity line ("E: " is
-// 14px wide); every glyph from there advances 6px until the comma after
-// the total.
-const float text_left = 14.0;
-const float text_top = 37.0;
+// Same as Toolscreen's E Counter: keyed text in the output colour with a black outline.
+// The capture must match the mirror's src in modes.lua; the outline never reaches outside it.
+const vec4 capture = vec4(14.0, 38.0, 23.0, 7.0);
+const float sensitivity = 0.001;
+const int border_width = 2;
+const vec4 border_color = vec4(0.0, 0.0, 0.0, 1.0);
 
-bool keyed_at(vec2 texel) {
+bool matches_at(vec2 texel) {
+    if (texel.x < capture.x || texel.y < capture.y || texel.x >= capture.x + capture.z ||
+        texel.y >= capture.y + capture.w) {
+        return false;
+    }
+
     vec3 rgb = texture2D(u_texture, texel / u_src_size).rgb;
-    return all(lessThan(abs(rgb - f_src_rgba.rgb), vec3(threshold)));
+    return distance(rgb, f_src_rgba.rgb) < sensitivity;
 }
 
-int cell_pixel_count(int cell) {
-    int count = 0;
-    for (int y = 0; y < 9; y++) {
-        for (int x = 0; x < 6; x++) {
-            vec2 texel = vec2(
-                text_left + float(cell * 6 + x) + 0.5,
-                text_top + float(y) + 0.5);
-            if (keyed_at(texel)) {
-                count++;
+void main() {
+    vec2 texel = f_src_pos * u_src_size;
+
+    if (matches_at(texel)) {
+        gl_FragColor = vec4(f_dst_rgba.rgb, 1.0);
+        return;
+    }
+
+    for (int y = -border_width; y <= border_width; y++) {
+        for (int x = -border_width; x <= border_width; x++) {
+            if (matches_at(texel + vec2(float(x), float(y)))) {
+                gl_FragColor = border_color;
+                return;
             }
         }
     }
-    return count;
-}
 
-// Digits have 12+ lit pixels per 6px cell and '/' has 7, but the comma that
-// ends "12/64, B: ..." has only 2. Everything from the comma cell rightward
-// is masked so the mirror always shows exactly "count/total".
-void main() {
-    vec2 texel = f_src_pos * u_src_size;
-    int cell = int(floor((texel.x - text_left) / 6.0));
-
-    for (int j = 0; j < 8; j++) {
-        if (j > cell) {
-            break;
-        }
-        if (cell_pixel_count(j) <= 4) {
-            gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
-            return;
-        }
-    }
-
-    if (keyed_at(texel)) {
-        gl_FragColor = vec4(f_dst_rgba.rgb, 1.0);
-    } else {
-        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
-    }
+    gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
 }

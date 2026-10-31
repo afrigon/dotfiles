@@ -13,8 +13,8 @@ local unspecified_percentage_dst = { x = 1659, y = 875, w = 88, h = 56 }
 
 local ecounter_mirror = function(depth)
     return {
-        src = { x = 14, y = 37, w = 48, h = 9 },
-        dst = { x = 1530, y = 618, w = 8 * 48, h = 8 * 9 },
+        src = { x = 14, y = 38, w = 23, h = 7 },
+        dst = { x = 1530, y = 626, w = 8 * 23, h = 8 * 7 },
         depth = depth,
         shader = "entity_counter",
         color_key = { input = "#DDDDDD", output = "#FFFFFF" },
