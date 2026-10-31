@@ -22,9 +22,24 @@ local outline = function(capture)
     }
 end
 
+local fill = function(color)
+    local define = string.format(
+        "#define FILL vec4(%.1f / 255.0, %.1f / 255.0, %.1f / 255.0, %.1f / 255.0)\n",
+        color.r,
+        color.g,
+        color.b,
+        color.a
+    )
+
+    return {
+        fragment = define .. read_file(paths.shaders .. "/fill.frag")
+    }
+end
+
 return {
     entity_counter = outline(mirrors.entity_counter.capture),
-    block_coordinates = outline(mirrors.block_coordinates.capture),
+    -- The ninbot line's background.
+    f3_backdrop = fill({ r = 90, g = 90, b = 90, a = 102 }),
     pie_chart = {
         fragment = read_file(paths.shaders .. "/pie_chart.frag")
     },
