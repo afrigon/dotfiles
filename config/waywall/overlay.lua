@@ -89,6 +89,16 @@ local function show(bytes)
     set_line_height(height)
 end
 
+local function hide()
+    if image then
+        image:close()
+        image = nil
+    end
+
+    shown = nil
+    set_line_height(0)
+end
+
 -- waywall loads an image once and cannot reload it, so changes are picked up by polling.
 local function follow()
     while true do
@@ -96,6 +106,8 @@ local function follow()
 
         if visible and bytes and bytes ~= shown then
             show(bytes)
+        elseif not bytes and image then
+            hide()
         end
 
         waywall.sleep(POLL_INTERVAL_MS)
@@ -104,14 +116,7 @@ end
 
 local function toggle()
     visible = not visible
-
-    if image then
-        image:close()
-        image = nil
-    end
-
-    shown = nil
-    set_line_height(0)
+    hide()
 end
 
 local function start()
