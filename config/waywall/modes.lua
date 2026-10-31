@@ -11,10 +11,26 @@ local tall = { w = 340, h = 16384 }
 local blockentities_percentage_dst = { x = 1659, y = 811, w = 88, h = 56 }
 local unspecified_percentage_dst = { x = 1659, y = 875, w = 88, h = 56 }
 
+-- The capture must match the entity_counter shader; the margin leaves room for its outline.
+local ecounter_capture = { x = 14, y = 38, w = 23, h = 7 }
+local ecounter_margin = 1
+local ecounter_scale = 8
+local ecounter_position = { x = 1530, y = 626 }
+
 local ecounter_mirror = function(depth)
     return {
-        src = { x = 14, y = 38, w = 23, h = 7 },
-        dst = { x = 1530, y = 626, w = 8 * 23, h = 8 * 7 },
+        src = {
+            x = ecounter_capture.x - ecounter_margin,
+            y = ecounter_capture.y - ecounter_margin,
+            w = ecounter_capture.w + 2 * ecounter_margin,
+            h = ecounter_capture.h + 2 * ecounter_margin
+        },
+        dst = {
+            x = ecounter_position.x - ecounter_margin * ecounter_scale,
+            y = ecounter_position.y - ecounter_margin * ecounter_scale,
+            w = (ecounter_capture.w + 2 * ecounter_margin) * ecounter_scale,
+            h = (ecounter_capture.h + 2 * ecounter_margin) * ecounter_scale
+        },
         depth = depth,
         shader = "entity_counter",
         color_key = { input = "#DDDDDD", output = "#FFFFFF" },
