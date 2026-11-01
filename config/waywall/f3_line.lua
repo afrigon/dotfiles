@@ -16,10 +16,14 @@ local BACKDROP_DEPTH = 0
 local CONTENT_DEPTH = 1
 local F3_TEXT = "#DDDDDD"
 local SEPARATOR_COLOR = "#E0E0E0"
+local MARKER_SIZE = 12
+local BOAT_SLOT_MARKER = "x_axis_marker"
 
-local lines = {
-    { mirrors.block_coordinates, mirrors.entity_count, mirrors.surface_height },
-    { mirrors.chunk_coordinates }
+local sections = {
+    { mirror = mirrors.block_coordinates, trailing_marker = "z_axis_marker" },
+    { mirror = mirrors.entity_count },
+    { mirror = mirrors.surface_height },
+    { mirror = mirrors.chunk_coordinates }
 }
 
 local opened = {}
@@ -54,20 +58,41 @@ local function section(mirror, x, y)
     })
 end
 
-local function place_line(sections, bottom)
+local function marker(shader, x, y)
+    open({
+        src = mirrors.f3_open.capture,
+        dst = { x = x, y = y + (CONTENT_HEIGHT - MARKER_SIZE) / 2, w = MARKER_SIZE, h = MARKER_SIZE },
+        depth = CONTENT_DEPTH,
+        shader = shader,
+        color_key = { input = F3_TEXT, output = F3_TEXT }
+    })
+end
+
+local function place(bottom)
+    close()
+
     local top = bottom - PADDING_TOP - CONTENT_HEIGHT
     local y = top + PADDING_TOP
+
+    marker(BOAT_SLOT_MARKER, PADDING_LEFT + (BOAT_SLOT - MARKER_SIZE) / 2, y)
+
     local x = PADDING_LEFT + BOAT_SLOT + SEGMENT_GAP
 
-    for index, mirror in ipairs(sections) do
+    for index, entry in ipairs(sections) do
         if index > 1 then
             x = x + SEGMENT_GAP
             separator(x, y)
             x = x + SEPARATOR_ADVANCE + SEGMENT_GAP
         end
 
-        section(mirror, x, y)
-        x = x + mirror.capture.w * SCALE
+        section(entry.mirror, x, y)
+        x = x + entry.mirror.capture.w * SCALE
+
+        if entry.trailing_marker then
+            x = x + SEGMENT_GAP
+            marker(entry.trailing_marker, x, y)
+            x = x + MARKER_SIZE
+        end
     end
 
     open({
@@ -77,18 +102,6 @@ local function place_line(sections, bottom)
         shader = "f3_backdrop",
         color_key = { input = F3_TEXT, output = F3_TEXT }
     })
-
-    return top
-end
-
-local function place(bottom)
-    close()
-
-    local line_bottom = bottom
-
-    for _, sections in ipairs(lines) do
-        line_bottom = place_line(sections, line_bottom)
-    end
 end
 
 return {
