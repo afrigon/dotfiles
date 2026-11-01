@@ -17,7 +17,10 @@ local CONTENT_DEPTH = 1
 local F3_TEXT = "#DDDDDD"
 local SEPARATOR_COLOR = "#E0E0E0"
 
-local sections = { mirrors.block_coordinates, mirrors.entity_count, mirrors.surface_height }
+local lines = {
+    { mirrors.block_coordinates, mirrors.entity_count, mirrors.surface_height },
+    { mirrors.chunk_coordinates }
+}
 
 local opened = {}
 
@@ -51,9 +54,7 @@ local function section(mirror, x, y)
     })
 end
 
-local function place(bottom)
-    close()
-
+local function place_line(sections, bottom)
     local top = bottom - PADDING_TOP - CONTENT_HEIGHT
     local y = top + PADDING_TOP
     local x = PADDING_LEFT + BOAT_SLOT + SEGMENT_GAP
@@ -76,6 +77,18 @@ local function place(bottom)
         shader = "f3_backdrop",
         color_key = { input = F3_TEXT, output = F3_TEXT }
     })
+
+    return top
+end
+
+local function place(bottom)
+    close()
+
+    local line_bottom = bottom
+
+    for _, sections in ipairs(lines) do
+        line_bottom = place_line(sections, line_bottom)
+    end
 end
 
 return {

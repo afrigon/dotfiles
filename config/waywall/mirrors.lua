@@ -9,6 +9,9 @@ return {
     block_coordinates = {
         capture = { x = 136, y = 404, w = 344, h = 32 }
     },
+    chunk_coordinates = {
+        capture = { x = 148, y = 440, w = 176, h = 32 }
+    },
     entity_count = {
         capture = { x = 8, y = 152, w = 140, h = 32 }
     },
