@@ -7,7 +7,7 @@ return {
         position = { x = 1530, y = 626 }
     },
     block_coordinates = {
-        capture = { x = 136, y = 404, w = 296, h = 32 }
+        capture = { x = 136, y = 404, w = 320, h = 32 }
     },
     chunk_coordinates = {
         capture = { x = 148, y = 440, w = 176, h = 32 }
