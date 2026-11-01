@@ -42,6 +42,11 @@ if I didn't get to weigh in, it's wrong.
   a workaround as clean. If one is truly the only option in scope, label
   it a workaround, and record the real fix where the project tracks
   deferred work.
+- **Bugs in third-party projects stay upstream.** When a bug's cause is
+  in a project I don't own, never propose patching that project or
+  reporting an issue there. Instead, search its existing issues, pull
+  requests and known solutions, tell me what you found, and look for an
+  alternative fix on my side.
 - **Plans must expose structure changes.** "Update X" is not a plan step if
   it hides a restructuring. Name every file you'll touch and every shape
   change you'll make.
