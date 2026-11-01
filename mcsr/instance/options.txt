@@ -18,11 +18,11 @@ fullscreen:false
 bobView:false
 toggleCrouch:false
 toggleSprint:true
-mouseSensitivity:0.02291164919734001
+mouseSensitivity:0.02291165
 fov:0.75
 gamma:5.0
-renderDistance:16
-entityDistanceScaling:5.0
+renderDistance:8
+entityDistanceScaling:0.5
 guiScale:4
 particles:2
 maxFps:240
