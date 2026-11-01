@@ -11,6 +11,7 @@ mcsrranked:show_hud_player_pace:true
 mcsrranked:ff_private_cooldown:3
 mcsrranked:transition_type:DEFAULT
 mcsrranked:world_queue_priority_match:2
+mcsrranked:world_filter:true
 speedrunigt:hide_timer_in_options:true
 speedrunigt:timer_scale_igt:0.6
 mcsrranked:toggle_gui:true
