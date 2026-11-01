@@ -1,0 +1,11 @@
+// Waywall swaps the D/G and A/B keycodes; these characters swap them back for typing.
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+    include "us(basic)"
+    name[Group1] = "English (US, MCSR)";
+
+    key <AC01> { [ b, B ] };
+    key <AC03> { [ g, G ] };
+    key <AC05> { [ d, D ] };
+    key <AB05> { [ a, A ] };
+};

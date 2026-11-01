@@ -1,19 +1,20 @@
 local helpers = require("waywall.helpers")
 local shaders = require("shaders")
 local modes = require("modes")
-local events = require("events")
+local binds = require("binds")
 local overlay = require("overlay")
 
 local sensitivity = 5.74146011
 
 local config = {
     input = {
-        layout = "us",
+        layout = "mcsr",
         repeat_rate = 40,
         repeat_delay = 300,
         sensitivity = sensitivity,
         raw_sensitivity = sensitivity,
         confine_pointer = false,
+        remaps = binds,
     },
     theme = {
         background = "#303030ff",
@@ -27,7 +28,6 @@ local config = {
     }
 }
 
-events.register()
 overlay.register()
 modes.register(config)
 
