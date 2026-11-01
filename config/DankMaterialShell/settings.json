@@ -38,8 +38,8 @@
   "acLockTimeout": 600,
   "acPostLockMonitorTimeout": 1800,
   "dockLauncherEnabled": true,
-  "osdPowerProfileEnabled": true,
   "osdCapsLockEnabled": false,
+  "osdPowerProfileEnabled": true,
   "powerMenuActions": [
     "reboot",
     "logout",
@@ -175,7 +175,8 @@
     "hslHue": -1,
     "hslSaturation": 0,
     "hslLightness": 1,
-    "valid": true
+    "valid": true,
+    "rgba": -1
   },
   "systemMonitorCustomColor": {
     "r": 1,
@@ -188,7 +189,8 @@
     "hslHue": -1,
     "hslSaturation": 0,
     "hslLightness": 1,
-    "valid": true
+    "valid": true,
+    "rgba": -1
   },
   "builtInPluginSettings": {
     "dms_settings_search": {
